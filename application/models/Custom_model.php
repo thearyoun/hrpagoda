@@ -1,0 +1,444 @@
+<?php
+if (!defined('BASEPATH'))
+	exit('No direct script access allowed');
+
+class Custom_model extends CI_Model {
+	public function get_monk_take_leaves() {
+		$this -> db -> select('l.*,m.username as monk_name,h.username as handle_name,leave_types.name as leave_type_name');
+		$this -> db -> from('monk_take_leaves AS l');
+		$this -> db -> join('monks AS m', 'm.id = l.use_monk_id');
+		$this -> db -> join('monks AS h', 'h.id = l.use_monk_id');
+		$this -> db -> join('leave_types', 'leave_types.id= l.use_leave_type_id');		
+		$this -> db -> order_by('l.created_at',' DESC');
+		$query = $this -> db -> get();
+		return $query;
+	}
+	public function get_member_take_leaves() {
+		$this -> db -> select('mem.*,m.username as member_name,h.username as handle_name,leave_types.name as leave_type_name');
+		$this -> db -> from('member_take_leaves AS mem');
+		$this -> db -> join('monks AS m', 'm.id = mem.use_member_id');
+		$this -> db -> join('monks AS h', 'h.id = mem.use_handle_by_id');
+		$this -> db -> join('leave_types', 'leave_types.id= mem.use_leave_type_id');		
+		$this -> db -> order_by('mem.created_at',' DESC');
+		$query = $this -> db -> get();
+		return $query;
+	}
+	public function get_attendants() {
+		
+		$this -> db -> select('att.*,mon.username as mon_name,pro.name as pro_name,hou.name as house_name');
+		$this -> db -> from('attendants AS att');
+		$this -> db -> join('monks AS mon', 'mon.id = att.use_monk_id');
+		$this -> db -> join('programmes AS pro', 'pro.id = att.use_programme_id');
+		$this -> db -> join('houses AS hou', 'hou.id= mon.use_house_id');		
+		$this -> db -> order_by('att.created_at',' DESC');
+		$query = $this -> db -> get();
+		return $query;
+	}	
+	
+	public function get_monk_info($monk_id){
+		$this -> db -> select('mon.*,hou.name as house_name,loc.name as location_name,pos.name as position_name,mem_types.name as vegetarian_name');
+		$this -> db -> from('monks AS mon');
+		$this -> db -> join('positions AS pos', 'pos.id = mon.use_position_id');
+		$this -> db -> join('member_types AS mem_types', 'mem_types.id = mon.vegetarian_types');
+		$this -> db -> join('houses AS hou', 'hou.id = mon.use_house_id');
+		$this -> db -> join('locations AS loc', 'loc.id = mon.use_location_id');				
+		$this -> db -> where('mon.id',$monk_id);
+		$query = $this -> db -> get();
+		return $query;
+	}
+	public function get_member_info($member_id){
+		$this -> db -> select('members.*');
+		$this -> db -> from('members');
+		//$this -> db -> join('positions AS pos', 'pos.id = mon.use_position_id');
+					
+		$this -> db -> where('members.id',$member_id);
+		$query = $this -> db -> get();
+		return $query;
+	}
+	public function get_report_groups(){
+		 $query = $this -> db -> query('SELECT g.*, IFNULL(a.counts,0) AS total_members
+           FROM groups AS g LEFT JOIN (
+           SELECT use_group_id, COUNT( * ) AS counts
+           FROM monks WHERE monks.status = 1 GROUP BY use_group_id
+           ) AS a ON g.id = a.use_group_id
+           ORDER BY g.id');
+        return $query;  
+			
+	}
+	public function get_monk_book_info(){
+		/*$this -> db -> select('mon.*,hou.name as house_name,loc.name as location_name,pos.name as position_name,mem_types.name as vegetarian_name');
+		$this -> db -> from('monks AS mon');
+		$this -> db -> join('positions AS pos', 'pos.id = mon.use_position_id');
+		$this -> db -> join('member_types AS mem_types', 'mem_types.id = mon.vegetarian_types');
+		$this -> db -> join('houses AS hou', 'hou.id = mon.use_house_id');
+		$this -> db -> join('locations AS loc', 'loc.id = mon.use_location_id');				
+		$this -> db -> order_by("mon.use_house_ida ASC");
+		$query = $this -> db -> get();
+		return $query;*/
+		$query = $this -> db -> query("SELECT
+		`mon`.*,
+	`hou`.`name` AS `house_name`,
+	`loc`.`name` AS `location_name`,
+	`pos`.`name` AS `position_name`,
+	`mem_types`.`name` AS `vegetarian_name`
+FROM
+	`monks` AS `mon`
+JOIN `positions` AS `pos` ON `pos`.`id` = `mon`.`use_position_id`
+JOIN `member_types` AS `mem_types` ON `mem_types`.`id` = `mon`.`vegetarian_types`
+JOIN `houses` AS `hou` ON `hou`.`id` = `mon`.`use_house_id`
+JOIN `locations` AS `loc` ON `loc`.`id` = `mon`.`use_location_id`
+ORDER BY
+	`mon`.`use_house_id` ASC,FIELD(vegetarian_name, 'ភិក្ខុ', 'សាមណេរ'),`mon`.`vegetarian_year` DESC");
+        return $query;
+	}
+	public function get_monk_book_info_where($house_id = null){
+		/*$this -> db -> select('mon.*,hou.name as house_name,loc.name as location_name,pos.name as position_name,mem_types.name as vegetarian_name');
+		$this -> db -> from('monks AS mon');
+		$this -> db -> join('positions AS pos', 'pos.id = mon.use_position_id');
+		$this -> db -> join('member_types AS mem_types', 'mem_types.id = mon.vegetarian_types');
+		$this -> db -> join('houses AS hou', 'hou.id = mon.use_house_id');
+		$this -> db -> join('locations AS loc', 'loc.id = mon.use_location_id');	
+		$this -> db -> where("mon.use_house_id",$house_id);		
+		$this -> db -> order_by("mon.use_house_id ASC");
+		$query = $this -> db -> get();
+		return $query;*/
+		$query = $this -> db -> query("SELECT
+		`mon`.*,
+	`hou`.`name` AS `house_name`,
+	`loc`.`name` AS `location_name`,
+	`pos`.`name` AS `position_name`,
+	`mem_types`.`name` AS `vegetarian_name`
+FROM
+	`monks` AS `mon`
+JOIN `positions` AS `pos` ON `pos`.`id` = `mon`.`use_position_id`
+JOIN `member_types` AS `mem_types` ON `mem_types`.`id` = `mon`.`vegetarian_types`
+JOIN `houses` AS `hou` ON `hou`.`id` = `mon`.`use_house_id`
+JOIN `locations` AS `loc` ON `loc`.`id` = `mon`.`use_location_id`
+WHERE `mon`.`use_house_id` = '$house_id'
+ORDER BY
+	`mon`.`use_house_id` ASC,FIELD(vegetarian_name, 'ភិក្ខុ', 'សាមណេរ'),`mon`.`vegetarian_year` DESC");
+        return $query;
+	}
+	public function get_member_book_info(){
+		$this -> db -> select('mem.*');
+		$this -> db -> from('members AS mem');
+		/*$this -> db -> join('positions AS pos', 'pos.id = mon.use_position_id');
+		$this -> db -> join('member_types AS mem_types', 'mem_types.id = mon.vegetarian_types');
+		$this -> db -> join('houses AS hou', 'hou.id = mon.use_house_id');
+		$this -> db -> join('locations AS loc', 'loc.id = mon.use_location_id');*/				
+		
+		$query = $this -> db -> get();
+		return $query;
+	}
+	public function get_people_in_house(){
+		 $query = $this -> db -> query('
+		 	SELECT
+				g.id,
+				g. NAME,
+				IFNULL(a.counts, 0) AS total_monk_level1,
+				IFNULL(a2.counts2, 0) AS total_monk_level2,
+				IFNULL(b.count_member, 0) AS total_member,
+				(
+					IFNULL(a.counts, 0) + IFNULL(a2.counts2, 0) + IFNULL(b.count_member, 0)
+				) AS total
+			FROM
+				houses AS g
+			LEFT JOIN (
+				SELECT
+					use_house_id,
+					COUNT(*) AS counts
+				FROM
+					monks
+				WHERE vegetarian_types = 1 AND status = 1
+				GROUP BY
+					use_house_id
+			) AS a ON g.id = a.use_house_id
+			LEFT JOIN (
+				SELECT
+					use_house_id,
+					COUNT(*) AS counts2
+				FROM
+					monks
+				WHERE vegetarian_types = 2 AND status = 1
+				GROUP BY
+					use_house_id
+			) AS a2 ON g.id = a2.use_house_id
+			LEFT JOIN (
+				SELECT
+					use_house_id,
+					COUNT(*) AS count_member
+				FROM
+					members
+				WHERE status = 1
+				GROUP BY
+					use_house_id
+			) AS b ON g.id = b.use_house_id
+			ORDER BY
+				g.id');
+        return $query;  
+	}
+	
+	public function get_att_report($group_id = null, $from_date = null, $to_date = null){
+		if($from_date != null && $to_date != null){
+			$where_date = " AND date between '$from_date' AND '$to_date' ";
+		}else{
+			$where_date = "";
+		}
+		$query = $this -> db -> query("
+				 	SELECT
+					m.id,
+					m. username,
+					houses.name as house_name,
+					IFNULL(a.count_morning_has, 0) AS morning_has,
+					IFNULL(b.count_morning_no, 0) AS morning_no,
+					IFNULL(c.count_evening_has, 0) AS evening_has,
+					IFNULL(d.count_evening_no, 0) AS evening_no,
+					IFNULL(e.count_present, 0) AS total_present,
+					IFNULL(f.count_absent, 0) AS total_absent
+				FROM
+					monks AS m
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						COUNT('times') AS count_morning_has
+					FROM
+						attendants
+					WHERE times ='morning' AND is_take_leave=1 
+					AND use_programme_id = 1 $where_date
+					GROUP BY
+						use_monk_id
+				) AS a ON m.id = a.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						COUNT('times') AS count_morning_no
+					FROM
+						attendants
+					WHERE times ='morning' and is_take_leave=0 and present =0 
+					AND use_programme_id = 1 $where_date
+					GROUP BY
+						use_monk_id
+				) AS b ON m.id = b.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						COUNT('times') AS count_evening_has
+					FROM
+						attendants
+					WHERE times ='evening' and is_take_leave=1 
+					AND use_programme_id = 1 $where_date
+					GROUP BY
+						use_monk_id
+				) AS c ON m.id = c.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						COUNT('times') AS count_evening_no
+					FROM
+						attendants
+					WHERE times ='evening' and is_take_leave=0 and present =0 
+					AND use_programme_id = 1 $where_date
+					GROUP BY
+						use_monk_id
+				) AS d ON m.id = d.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id, 
+						count('*') AS count_present
+					FROM
+						attendants
+					WHERE  present = 1
+					AND use_programme_id = 1 $where_date
+					GROUP BY
+						use_monk_id
+				) AS e ON m.id = e.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						count('*') AS count_absent
+					FROM
+						attendants
+					WHERE  present = 0
+					AND use_programme_id = 1 $where_date
+					GROUP BY
+						use_monk_id
+				) AS f ON m.id = f.use_monk_id
+				INNER JOIN monk_groups on monk_groups.use_monk_id = m.id
+				INNER JOIN houses on houses.id = m.use_house_id
+				WHERE monk_groups.use_group_id = $group_id
+				AND m.status = 1
+				ORDER BY
+					m.id");
+        return $query; 
+	}
+	public function get_att_report_programme($group_id = null, $programme_id = null, $from_date = null, $to_date = null){
+		if($from_date != null && $to_date != null){
+			$where_date = " AND date between '$from_date' AND '$to_date' ";
+		}else{
+			$where_date = "";
+		}
+		$query = $this -> db -> query("
+				 	SELECT
+					m.id,
+					m. username,
+					houses.name as house_name,
+					IFNULL(a.count_fullday_has, 0) AS fullday_has,
+					IFNULL(b.count_fullday_no, 0) AS fullday_no,
+					IFNULL(c.count_present, 0) AS total_present,
+					IFNULL(d.count_absent, 0) AS total_absent
+				FROM
+					monks AS m
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						COUNT('times') AS count_fullday_has
+					FROM
+						attendants
+					WHERE times ='full day' and is_take_leave=1
+					AND use_programme_id = $programme_id $where_date
+					GROUP BY
+						use_monk_id
+				) AS a ON m.id = a.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						COUNT('times') AS count_fullday_no
+					FROM
+						attendants
+					WHERE times ='full day' and is_take_leave=0 and present =0 
+					AND use_programme_id = $programme_id $where_date
+					GROUP BY
+						use_monk_id
+				) AS b ON m.id = b.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id, 
+						count('*') AS count_present
+					FROM
+						attendants
+					WHERE  present = 1
+					AND use_programme_id = $programme_id $where_date
+					GROUP BY
+						use_monk_id
+				) AS c ON m.id = c.use_monk_id
+				LEFT JOIN (
+					SELECT
+						use_monk_id,
+						count('*') AS count_absent
+					FROM
+						attendants
+					WHERE  present = 0
+					AND use_programme_id = $programme_id $where_date
+					GROUP BY
+						use_monk_id
+				) AS d ON m.id = d.use_monk_id
+				INNER JOIN monk_groups on monk_groups.use_monk_id = m.id
+				INNER JOIN houses on houses.id = m.use_house_id
+				WHERE monk_groups.use_group_id = $group_id
+				AND m.status = 1 
+				ORDER BY
+					m.id");
+        return $query; 
+	}
+	public function get_att_report_programme_detail($id = null, $type = null, $programme_id = null, $from_date = null, $to_date = null){
+		if($from_date != null && $to_date != null){
+			$where_date = " AND date between '$from_date' AND '$to_date' ";
+		}else{
+			$where_date = "";
+		}
+		if($type == "has"){
+			$where_type_has = " and is_take_leave=1 ";
+		}else{
+			$where_type_has = " and is_take_leave=0 and present =0 ";
+		}
+
+		$query = $this -> db -> query("
+			SELECT
+						attendants.*,monks.username as mon_name,programmes.name as pro_name,houses.name as house_name
+					FROM
+						attendants
+					INNER JOIN monks ON monks.id = attendants.use_monk_id
+					INNER JOIN programmes ON programmes.id = attendants.use_programme_id
+					INNER JOIN houses ON houses.id = monks.use_house_id
+					WHERE times = 'full day' $where_type_has 
+					AND use_programme_id = $programme_id 
+					AND use_monk_id = $id $where_date
+					GROUP BY
+						use_monk_id
+					ORDER BY attendants.created_at DESC
+		");
+		return $query; 
+	}
+
+	public function get_all_people_in_house_by($house_id = NULL){
+		 $query = $this -> db -> query("SELECT
+			username,houses.name as house_name,nation, phone_number, date_of_birth
+			FROM
+			monks
+			INNER JOIN houses ON houses.id = monks.use_house_id
+			WHERE
+			use_house_id = $house_id
+			AND monks.status = 1
+			UNION ALL
+			SELECT
+				username,houses.`name` as house_name,nation, phone_number, date_of_birth
+			FROM
+				members
+			INNER JOIN houses ON houses.id = members.use_house_id
+			WHERE
+				use_house_id = $house_id
+			AND members.status = 1"
+		 	);
+        return $query;  
+	}
+	public function get_all_people_in_house(){
+		 $query = $this -> db -> query("SELECT
+			username,houses.name as house_name,nation, phone_number, date_of_birth
+			FROM
+			monks
+			INNER JOIN houses ON houses.id = monks.use_house_id
+			WHERE
+			 	monks.status = 1
+			UNION ALL
+			SELECT
+				username,houses.`name` as house_name,nation, phone_number, date_of_birth
+			FROM
+				members
+			INNER JOIN houses ON houses.id = members.use_house_id
+			WHERE
+				members.status = 1"
+		 	);
+        return $query;  
+	}
+	public function get_attendant_where($monk_id) {
+		
+		$this -> db -> select('att.*,mon.username as mon_name,pro.name as pro_name,hou.name as house_name');
+		$this -> db -> from('attendants AS att');
+		$this -> db -> join('monks AS mon', 'mon.id = att.use_monk_id');
+		$this -> db -> join('programmes AS pro', 'pro.id = att.use_programme_id');
+		$this -> db -> join('houses AS hou', 'hou.id= mon.use_house_id');
+		$this -> db -> where('use_monk_id',$monk_id);		
+		$this -> db -> order_by('att.created_at',' DESC');
+		$query = $this -> db -> get();
+		return $query;
+	}
+	public function get_attendant_where_member($member_id) {
+		
+		$this -> db -> select('att.*,mem.username as mon_name,pro.name as pro_name,hou.name as house_name');
+		$this -> db -> from('attendants AS att');
+		$this -> db -> join('members AS mem', 'mem.id = att.use_member_id');
+		$this -> db -> join('programmes AS pro', 'pro.id = att.use_programme_id');
+		$this -> db -> join('houses AS hou', 'hou.id= mon.use_house_id');
+		$this -> db -> where('use_member_id',$member_id);		
+		$this -> db -> order_by('att.created_at',' DESC');
+		$query = $this -> db -> get();
+		return $query;
+	}
+        public function get_monk_group_member($group_id){
+		$query = $this -> db -> query("SELECT `monks`.*,`mem_types`.`name` AS `vegetarian_name`, `houses`.`name` as `house_name` FROM `monks` INNER JOIN `houses` ON `monks`.`use_house_id`=`houses`.`id` 
+		JOIN `member_types` AS `mem_types` ON `mem_types`.`id` = `monks`.`vegetarian_types`
+		WHERE `monks`.`status` = 1 AND `monks`.`use_group_id` = '$group_id' ORDER BY	FIELD(vegetarian_name, 'ភិក្ខុ', 'សាមណេរ'),`monks`.`vegetarian_year` DESC");
+		return $query;
+		
+	}
+}

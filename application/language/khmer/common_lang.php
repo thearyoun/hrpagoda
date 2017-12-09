@@ -1,0 +1,42 @@
+<?php
+$lang['common_schedule_payment'] = 'Schedule Payment';
+$lang['common_company_info'] = 'Company Info';
+$lang['common_customer_info'] = 'Customer Info';
+$lang['common_company_name'] = 'Company Name';
+$lang['common_phone_number'] = 'Phone Number';
+$lang['common_address'] = 'Address';
+$lang['common_customer_number'] = 'Customer Number';
+$lang['common_customer_name'] = 'Customer Name';
+$lang['common_customer_khmer'] = 'Name Khmer';
+$lang['common_loan_info'] = 'Loan Information';
+$lang['common_contact_info'] = 'Contact Information';
+$lang['common_employee_code'] = 'Employee Code';
+$lang['common_employee'] = 'Employee';
+$lang['common_employee_phone'] = 'Employee Phone';
+$lang['common_loan_amount'] = 'Loan Amount';
+$lang['common_cirlce'] = 'Circle';
+$lang['common_time_payment'] = 'Time Payment';
+$lang['common_release_date'] = 'Release Date';
+$lang['common_payment_info'] = 'Payment Information';
+$lang['common_interest_type'] = 'Interest Type';
+$lang['common_interest'] = 'Interest';
+$lang['common_payment_date'] = 'Date Payment';
+$lang['common_total_loan'] = 'Total Loan';
+$lang['common_principle_payment'] = 'Principle Payment';
+$lang['common_amount_payment'] = 'Amount Payment';
+$lang['common_total_amount_payment'] = 'Total Payment';
+$lang['common_other'] = 'Other';
+$lang['common_purpose'] = 'Purpose';
+$lang['common_total_amount'] = 'Total Amount';
+$lang['common_extra_info'] = 'Extra Information';
+$lang['common_email'] = 'Email';
+$lang['common_order'] = '#';
+$lang['common_Monday'] = 'Monday';
+$lang['common_Tuesday'] = 'Tuesday';
+$lang['common_Wednesday'] = 'Wednesday';
+$lang['common_Thursday'] = 'Thursday';
+$lang['common_Friday'] = 'Friday';
+$lang['common_Saturday'] = 'Saturday';
+$lang['common_Sunday'] = 'Sunday';
+
+?>
