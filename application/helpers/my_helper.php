@@ -62,6 +62,25 @@ if( ! function_exists("job_category")){
 	}
 }
 
+if( ! function_exists("job_category_return")){
+	function job_category_return($id){
+		switch ($id) {
+			case 1:
+				return "មន្រ្តីរាជការ";
+				break;
+			case 2:
+				return "ស្ថាប័នឯកជន";
+				break;
+			case 3:
+				return "សិស្សឬនិស្សិត";
+				break;
+			default:
+				return "";
+				break;
+		}
+	}
+}
+
 if(! function_exists("monk_knowledge")){
 	function monk_knowledge(){
 		$monk_class = array(
@@ -76,6 +95,83 @@ if(! function_exists("monk_knowledge")){
 	}
 }
 
+if(! function_exists("monk_knowledge")){
+	function monk_knowledge($id){
+		switch ($id) {
+			case 1:
+				return "បឋមភូមិ";
+				break;
+			case 2:
+				return "ទុតិយភូមិ";
+				break;
+			case 3:
+				return "បរិញ្ញាបត្ររង";
+				break;
+			case 4:
+				return "បរិញ្ញាបត្រ";
+				break;
+			case 5:
+				return "អនុបណ្ឌិត";
+				break;
+			case 6:
+				return "បណ្ឌិត";
+				break;
+			default:
+				return "";
+				break;
+		}
+	}
+}
+
+if(! function_exists("grade")){
+	function grade($id){
+		if(($id==1) || ($id==2) || ($id==3)){
+			$array = array(
+				1=> "ថ្នាកទី១",
+				2=> "ថ្នាក់ទី២",
+				3=> "ថ្នាក់ទី៣",
+				4=> "បញ្ចប់ថ្នាក់",
+			);
+			return $array;
+		}else if(($id==5) || ($id==6)){
+			$array = array(
+				5=> "ឆ្នាំទី១",
+				6=> "ឆ្នាំទី២",
+				4=> "បញ្ចប់ឆ្នាំ",
+			);
+			return $array;
+		}
+	}
+}
+
+if(! function_exists("grade_return")){
+	function grade_return($id){
+		switch ($id) {
+			case 1:
+				return "ថ្នាក់ទី១";
+				break;
+			case 2:
+				return "ថ្នាក់ទី២";
+				break;
+			case 3:
+				return "ថ្នាក់ទី៣";
+				break;
+			case 4:
+				return "បញ្ចប់ថ្នាក់";
+				break;
+			case 5:
+				return "ឆ្នាំទី១";
+				break;
+			case 6:
+				return "ឆ្នាំទី២";
+				break;
+			default:
+				return '';
+				break;
+		}
+	}
+}
+
 if(! function_exists("lavel_language")){
 	function lavel_language(){
 		$lavel = array(
@@ -86,5 +182,30 @@ if(! function_exists("lavel_language")){
 			5=>"ល្អប្រសើរ",
 		);
 		return $lavel;
+	}
+}
+
+if(! function_exists("lavel_language")){
+	function lavel_language($id){
+		switch ($id) {
+			case 1:
+				return "ខ្សោយ";
+				break;
+			case 2:
+				return "មធ្យម";
+				break;
+			case 3:
+				return "ល្អបង្គួរ";
+				break;
+			case 4:
+				return "ល្អ";
+				break;
+			case 5:
+				return "ល្អប្រសើរ";
+				break;
+			default:
+				return '';
+				break;
+		}
 	}
 }

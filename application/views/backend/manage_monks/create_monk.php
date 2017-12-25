@@ -26,6 +26,16 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="eng_name">
+                                                ឈ្មោះជាអក្សរឡាតាំង :<span class="required">*</span></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="eng_name" name="eng_name" required
+                                                       class="col-xs-10 col-sm-9"
+                                                       value="<?php echo set_value('eng_name'); ?>"/>
+                                                <?php echo form_error('eng_name'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="nick_name">
                                                 នាមបញ្ញត្តិ :<span class="required">*</span></label>
                                             <div class="col-sm-8">
@@ -47,6 +57,32 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="nation"> ជនជាតិ
+                                                :<span class="required">*</span></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="nation" name="nation" required
+                                                       class="col-xs-10 col-sm-9"
+                                                       value="<?php echo set_value('nation'); ?>"/>
+                                                <?php echo form_error('nation'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="date_of_birth"> ថ្ងៃ
+                                                ខែ ឆ្នាំកំណើត :<span class="required">*</span></label>
+                                            <div class="col-sm-7">
+                                                <div class="input-group">
+                                                    <input class="form-control date-picker" id="id-date-picker-1" required
+                                                           type="text" data-date-format="dd-mm-yyyy" name="date_of_birth"
+                                                           class="col-xs-10 col-sm-9"
+                                                           value="<?php echo set_value('date_of_birth'); ?>"/>
+                                                    <span class="input-group-addon">
+    							                                      <i class="fa fa-calendar bigger-110"></i>
+    													                     </span>
+                                                </div>
+                                                <?php echo form_error('date_of_birth'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="place_of_birth">
                                                 ទីកន្លែងកំណើត :<span class="required">*</span></label>
 
@@ -61,11 +97,8 @@
                                             <label class="col-sm-4 control-label no-padding-right"
                                                    for="current_address"> អាសយដ្ឋានបច្ចុប្បន្ន :<span
                                                         class="required">*</span></label>
-
                                             <div class="col-sm-8">
-                                                <input type="text" id="current_address" name="current_address"
-                                                       required class="col-xs-10 col-sm-9"
-                                                       value="<?php echo set_value('current_address'); ?>"/>
+                                                <textarea name="current_address" id="current_address" rows="2" cols="80" required class="col-xs-10 col-sm-9"><?php echo set_value('current_address'); ?></textarea>
                                                 <?php echo form_error('current_address'); ?>
                                             </div>
                                         </div>
@@ -80,74 +113,29 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label no-padding-right"
-                                                   for="vegetarian_date"> ថ្ងៃ ខែ ឆ្នាំបួស :<span
-                                                        class="required">*</span></label>
-
+                                            <label class="col-sm-4 control-label no-padding-right" for="education">
+                                                កំរិតវប្បធម៌ :</label>
                                             <div class="col-sm-7">
-                                                <div class="input-group">
-                                                    <input class="form-control date-picker" id="id-date-picker-1" required
-                                                           type="text" data-date-format="dd-mm-yyyy"
-                                                           name="vegetarian_date" class="col-xs-10 col-sm-9"
-                                                           value="<?php echo set_value('vegetarian_date'); ?>"/>
-                                                    <span class="input-group-addon">
-                          														<i class="fa fa-calendar bigger-110"></i>
-                          													</span>
-                                                </div>
-                                                <?php echo form_error('vegetarian_date'); ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label no-padding-right"
-                                                   for="vegetarian_year"> បួសបាន :<span
-                                                        class="required">*</span></label>
-
-                                            <div class="col-sm-8">
-                                                <input type="text" id="vegetarian_year" name="vegetarian_year"
-                                                       required class="col-xs-10 col-sm-9"
-                                                       value="<?php echo set_value('vegetarian_year'); ?>"/>
-                                                <?php echo form_error('vegetarian_year'); ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label no-padding-right"
-                                                   for="vegetarian_types"> ភិក្ខុ ឬ សាមណេរ :<span
-                                                        class="required">*</span></label>
-
-                                            <div class="col-sm-7">
-                                                <select class="chosen-select" id="vegetarian_types" required
-                                                        data-placeholder="ជ្រើសរើសប្រភេទ..." name="vegetarian_types">
-
+                                                <select class="col-xs-10 col-sm-9 knowledge chosen-select" name="education" id="education" data-placeholder="កំរិតវប្បធម៌...">
                                                     <option value=""></option>
                                                     <?php
-                                                    foreach ($member_types->result() as $row) {
-                                                        ?>
-                                                        <option value="<?php echo $row->id; ?>" <?php echo set_select('vegetarian_types', $row->id); ?>><?php echo $row->name; ?></option>
-                                                        <?php
-                                                    }
+                                                      foreach (monk_knowledge() as $key_edu => $val_edu) {
+                                                        echo "<option value='".$key_edu."'>".$val_edu."</option>";
+                                                      }
                                                     ?>
                                                 </select>
-                                                <?php echo form_error('vegetarian_types'); ?>
+                                                <?php echo form_error('education'); ?>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label no-padding-right" for="monk_number">
-                                                លេខឆាយា :</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" id="monk_number" name="monk_number"
-                                                       class="col-xs-10 col-sm-9"
-                                                       value="<?php echo set_value('monk_number'); ?>"/>
-                                                <?php echo form_error('monk_number'); ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label no-padding-right" for="user_account">
-                                                ឈ្មោះគណនី:<span class="required">*</span></label>
-                                            <div class="col-sm-8">
-                                                <input type="text" id="user_account" name="user_account" required
-                                                       class="col-xs-10 col-sm-9"
-                                                       value="<?php echo set_value('user_account'); ?>"/>
-                                                <?php echo form_error('user_account'); ?>
+                                        <div class="form-group grade">
+                                            <label class="col-sm-4 control-label no-padding-right" for="grade">
+                                                ថ្នាក់ :</label>
+                                            <div class="col-sm-7">
+                                                <select class="col-xs-10 col-sm-9 chosen-select grade-data" name="grade" id="grade" data-placeholder="ថ្នាក់...">
+                                                    <option value=""></option>
+
+                                                </select>
+                                                <?php echo form_error('grade'); ?>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -166,6 +154,15 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="work_position">
+                                                មុខតំណែងក្នុងការងារ :<span class="required">*</span></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="work_position" name="work_position"
+                                                       class="col-xs-10 col-sm-9" required/>
+                                                <?php echo form_error('work_position'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="workplace">
                                                 ឈ្មោះកន្លែងការងារ :<span class="required">*</span></label>
                                             <div class="col-sm-8">
@@ -178,49 +175,154 @@
                                             <label class="col-sm-4 control-label no-padding-right" for="work_address">
                                                 អាសយដ្ឋាននៃការងារ :<span class="required">*</span></label>
                                             <div class="col-sm-8">
-                                              <textarea name="work_address" rows="2" id="work_address" class="col-xs-10 col-sm-9" required></textarea>
+                                              <textarea name="work_address" rows="3" id="work_address" class="col-xs-10 col-sm-9" required></textarea>
                                                 <?php echo form_error('work_address'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="user_account">
+                                                ឈ្មោះគណនី:<span class="required">*</span></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="user_account" name="user_account" required
+                                                       class="col-xs-10 col-sm-9"
+                                                       value="<?php echo set_value('user_account'); ?>"/>
+                                                <?php echo form_error('user_account'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="user_password">
+                                                លេខកូដសម្ងាត់ :<span class="required">*</span></label>
+                                            <div class="col-sm-8">
+                                                <input type="password" id="user_password" name="user_password"
+                                                       required class="col-xs-10 col-sm-9" value=""/>
+                                                <?php echo form_error('user_password'); ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="eng_name">
-                                            ឈ្មោះជាអក្សរឡាតាំង :<span class="required">*</span></label>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="eng_name" name="eng_name" required
-                                                   class="col-xs-10 col-sm-9"
-                                                   value="<?php echo set_value('eng_name'); ?>"/>
-                                            <?php echo form_error('eng_name'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="nation"> ជនជាតិ
-                                            :<span class="required">*</span></label>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="nation" name="nation" required
-                                                   class="col-xs-10 col-sm-9"
-                                                   value="<?php echo set_value('nation'); ?>"/>
-                                            <?php echo form_error('nation'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="date_of_birth"> ថ្ងៃ
-                                            ខែ ឆ្នាំកំណើត :<span class="required">*</span></label>
-                                        <div class="col-sm-7">
-                                            <div class="input-group">
-                                                <input class="form-control date-picker" id="id-date-picker-1" required
-                                                       type="text" data-date-format="dd-mm-yyyy" name="date_of_birth"
-                                                       class="col-xs-10 col-sm-9"
-                                                       value="<?php echo set_value('date_of_birth'); ?>"/>
-                                                <span class="input-group-addon">
-							                                      <i class="fa fa-calendar bigger-110"></i>
-													                     </span>
-                                            </div>
-                                            <?php echo form_error('date_of_birth'); ?>
-                                        </div>
-                                    </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="vegetarian_place">
+                                          គង់នៅវត្ត :<span class="required">*</span></label>
+                                      <div class="col-sm-8">
+                                          <input type="text" id="vegetarian_place" name="vegetarian_place"
+                                                 required class="col-xs-10 col-sm-9"
+                                                 value="<?php echo set_value('vegetarian_place'); ?>"/>
+                                          <?php echo form_error('vegetarian_place'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="current_provice">
+                                          នៅខេត្ត :<span class="required">*</span></label>
+                                      <div class="col-sm-7">
+                                          <select class="chosen-select form-control" id="current_provice"
+                                                  data-placeholder="ជ្រើសរើសខេត្ត..." name="current_provice" required>
+                                              <option value=""></option>
+                                              <?php
+                                              foreach ($locations->result() as $row) {
+                                                  ?>
+                                                  <option value="<?php echo $row->id; ?>" <?php echo set_select('use_location_id', $row->id); ?>><?php echo $row->name; ?></option>
+                                                  <?php
+                                              }
+                                              ?>
+                                          </select>
+                                          <?php echo form_error('current_provice'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="current_district">
+                                          នៅស្រុក :</label>
+                                      <div class="col-sm-7">
+                                          <select class="chosen-select form-control" id="current_district"
+                                                  data-placeholder="ជ្រើសរើសស្រុក..." name="current_district">
+                                              <option value=""></option>
+                                          </select>
+                                          <?php echo form_error('current_district'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="current_commune">
+                                          នៅឃុំ :</label>
+                                      <div class="col-sm-7">
+                                          <select class="chosen-select form-control" id="current_commune"
+                                                  data-placeholder="ជ្រើសរើសឃុំ..." name="current_commune">
+                                              <option value=""></option>
+                                          </select>
+                                          <?php echo form_error('current_commune'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="current_village">
+                                          នៅភូមិ :</label>
+                                      <div class="col-sm-7">
+                                          <select class="chosen-select form-control" id="current_village"
+                                                  data-placeholder="ជ្រើសរើសភូមិ..." name="current_village">
+                                              <option value=""></option>
+                                          </select>
+                                          <?php echo form_error('village_id'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right"
+                                             for="vegetarian_date"> ថ្ងៃ ខែ ឆ្នាំបួស :<span
+                                                  class="required">*</span></label>
+
+                                      <div class="col-sm-7">
+                                          <div class="input-group">
+                                              <input class="form-control date-picker" id="id-date-picker-1" required
+                                                     type="text" data-date-format="dd-mm-yyyy"
+                                                     name="vegetarian_date" class="col-xs-10 col-sm-9"
+                                                     value="<?php echo set_value('vegetarian_date'); ?>"/>
+                                              <span class="input-group-addon">
+                                                <i class="fa fa-calendar bigger-110"></i>
+                                              </span>
+                                          </div>
+                                          <?php echo form_error('vegetarian_date'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right"
+                                             for="vegetarian_year"> បួសបាន :<span
+                                                  class="required">*</span></label>
+
+                                      <div class="col-sm-8">
+                                          <input type="text" id="vegetarian_year" name="vegetarian_year"
+                                                 required class="col-xs-10 col-sm-9"
+                                                 value="<?php echo set_value('vegetarian_year'); ?>"/>
+                                          <?php echo form_error('vegetarian_year'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right"
+                                             for="vegetarian_types"> ភិក្ខុ ឬ សាមណេរ :<span
+                                                  class="required">*</span></label>
+
+                                      <div class="col-sm-7">
+                                          <select class="chosen-select" id="vegetarian_types" required
+                                                  data-placeholder="ជ្រើសរើសប្រភេទ..." name="vegetarian_types">
+
+                                              <option value=""></option>
+                                              <?php
+                                              foreach ($member_types->result() as $row) {
+                                                  ?>
+                                                  <option value="<?php echo $row->id; ?>" <?php echo set_select('vegetarian_types', $row->id); ?>><?php echo $row->name; ?></option>
+                                                  <?php
+                                              }
+                                              ?>
+                                          </select>
+                                          <?php echo form_error('vegetarian_types'); ?>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="monk_number">
+                                          លេខឆាយា :</label>
+                                      <div class="col-sm-8">
+                                          <input type="text" id="monk_number" name="monk_number"
+                                                 class="col-xs-10 col-sm-9"
+                                                 value="<?php echo set_value('monk_number'); ?>"/>
+                                          <?php echo form_error('monk_number'); ?>
+                                      </div>
+                                  </div>
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label no-padding-right" for="use_position_id">
                                             មុខងារ :<span class="required">*</span></label>
@@ -240,39 +342,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="education">
-                                            កំរិតវប្បធម៌ :</label>
-                                        <div class="col-sm-7">
-                                            <select class="col-xs-10 col-sm-9 knowledge chosen-select" name="education" id="education" data-placeholder="កំរិតវប្បធម៌...">
-                                                <option value=""></option>
-                                                <?php
-                                                  foreach (monk_knowledge() as $key_edu => $val_edu) {
-                                                    echo "<option value='".$key_edu."'>".$val_edu."</option>";
-                                                  }
-                                                ?>
-                                            </select>
-                                            <?php echo form_error('education'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group grade">
-                                        <label class="col-sm-4 control-label no-padding-right" for="grade">
-                                            ថ្នាក់ :</label>
-                                        <div class="col-sm-7">
-                                            <select class="col-xs-10 col-sm-9 chosen-select grade-data" name="grade" id="grade" data-placeholder="ថ្នាក់...">
-                                                <option value=""></option>
-
-                                            </select>
-                                            <?php echo form_error('grade'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="vegetarian_place">
-                                            វត្ត :<span class="required">*</span></label>
+                                        <label class="col-sm-4 control-label no-padding-right"
+                                               for="from_pagoda"> និមន្ដមកពីវត្ត :<span
+                                                    class="required">*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" id="vegetarian_place" name="vegetarian_place"
-                                                   required class="col-xs-10 col-sm-9"
-                                                   value="<?php echo set_value('vegetarian_place'); ?>"/>
-                                            <?php echo form_error('vegetarian_place'); ?>
+                                            <input type="text" id="from_pagoda" name="from_pagoda"
+                                                   class="col-xs-10 col-sm-9"
+                                                   required="required"
+                                                   value="<?php echo set_value('from_pagoda'); ?>"/>
+                                            <?php echo form_error('from_pagoda'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -291,6 +369,39 @@
                                                 ?>
                                             </select>
                                             <?php echo form_error('use_location_id'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="district_id">
+                                            មកពីស្រុក :</label>
+                                        <div class="col-sm-7">
+                                            <select class="chosen-select form-control" id="district_id"
+                                                    data-placeholder="ជ្រើសរើសស្រុក..." name="district_id">
+                                                <option value=""></option>
+                                            </select>
+                                            <?php echo form_error('district_id'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="commune_id">
+                                            មកពីឃុំ :</label>
+                                        <div class="col-sm-7">
+                                            <select class="chosen-select form-control" id="commune_id"
+                                                    data-placeholder="ជ្រើសរើសឃុំ..." name="commune_id">
+                                                <option value=""></option>
+                                            </select>
+                                            <?php echo form_error('commune_id'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="village_id">
+                                            មកពីភូមិ :</label>
+                                        <div class="col-sm-7">
+                                            <select class="chosen-select form-control" id="village_id"
+                                                    data-placeholder="ជ្រើសរើសភូមិ..." name="village_id">
+                                                <option value=""></option>
+                                            </select>
+                                            <?php echo form_error('village_id'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -345,40 +456,29 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="user_password">
-                                            លេខកូដសម្ងាត់ :<span class="required">*</span></label>
-                                        <div class="col-sm-8">
-                                            <input type="password" id="user_password" name="user_password"
-                                                   required class="col-xs-10 col-sm-9" value=""/>
-                                            <?php echo form_error('user_password'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="work_position">
-                                            មុខតំណែងក្នុងការងារ :<span class="required">*</span></label>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="work_position" name="work_position"
-                                                   class="col-xs-10 col-sm-9" required/>
-                                            <?php echo form_error('work_position'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label no-padding-right" for="photo">
-                                            ជ្រើសរើសរូបភាព :</label>
-                                        <div class="col-sm-8">
-                                            <input type="file" id="userfile" name="userfile"
-                                                   class="col-xs-10 col-sm-9"
-                                                   value="<?php echo set_value('photo'); ?>"/>
-                                            <?php if (isset($errors)) {
-                                                foreach ($errors as $error) {
-                                                    echo $error;
-                                                }
-                                            }; ?>
-                                        </div>
-                                    </div>
+  																			<label class="col-sm-4 control-label no-padding-right" for="photo">
+  																					ជ្រើសរើសរូបភាព :</label>
+  																			<div class="col-sm-7">
+  																					<input type="file" id="userfile" name="userfile"
+  																								 class="col-xs-10 col-sm-9"/>
+  																					<?php if (isset($errors)) {
+  																							foreach ($errors as $error) {
+  																									echo $error;
+  																							}
+  																					} ?>
+  																			</div>
+  																			<br/><br/>
+  																			<div class="col-sm-3">
+  																				<img src="#"
+  																				title="Monk Photo"
+  																				alt="Monk Photo"
+                                          style="width: 130px;margin-left: 347%;margin-top: -47%;" id="image_result"/>
+  																			</div>
+  																	</div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-left:3%;">
+                            <div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language">បន្ថែមភាសាៈ</a></div>
+                            <div class="row data_language" style="margin-left:3%;">
                               <div class="col-xs-12 col-sm-9 col-md-3">
                                 <div class="form-group">
                                   <label for="language" class="control-label"><strong>ភាសា:</strong></label>
@@ -621,19 +721,6 @@
                                                                class="col-xs-10 col-sm-9"
                                                                value="<?php echo set_value('mother_phone'); ?>"/>
                                                         <?php echo form_error('mother_phone'); ?>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-4 control-label no-padding-right"
-                                                           for="from_pagoda"> និមន្ដមកពីវត្ត :<span
-                                                                class="required">*</span></label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" id="from_pagoda" name="from_pagoda"
-                                                               class="col-xs-10 col-sm-9"
-                                                               required="required"
-                                                               value="<?php echo set_value('from_pagoda'); ?>"/>
-                                                        <?php echo form_error('from_pagoda'); ?>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

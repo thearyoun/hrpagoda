@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="<?php echo base_url();?>dist/css/datepicker.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>dist/css/bootstrap-editable.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url();?>dist/css/chosen.min.css" />
-
+		<link rel="stylesheet" href="<?php echo base_url();?>ftemplate/css/jquery.timepicker.min.css" />
 		<!-- text fonts -->
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 		<link href="https://fonts.googleapis.com/css?family=Khmer|Siemreap" rel="stylesheet">
@@ -82,6 +82,9 @@
 .table-borderless > thead > tr > th {
     border: none;
 }
+.ui-corner-all a{
+	text-align: left;
+}
 		</style>
 	</head>
 
@@ -121,26 +124,17 @@
 													$this -> load -> view('backend/'.$uri1 . '/' . (($uri2 == '') ? 'index' : $uri2));
 												}
 								?>
-
-
-
-
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
 			<?php include 'themes/footer.php'; ?>
-
-
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
-
-
 	</body>
-
 <!-- Mirrored from responsiweb.com/themes/preview/ace/1.3.2/tables.html by HTTrack Website Copier/3.x [XR&CO'2008], Mon, 17 Nov 2014 14:59:17 GMT -->
 </html>
 <!-- basic scripts -->
@@ -203,6 +197,7 @@
 		<!-- ace scripts -->
 		<script src="<?php echo base_url();?>dist/js/ace-elements.min.js"></script>
 		<script src="<?php echo base_url();?>dist/js/ace.min.js"></script>
+		<script src="<?php echo base_url();?>ftemplate/js/jquery.timepicker.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -254,38 +249,40 @@
 
 					"iDisplayLength": 50
 			    } );
+
 				$('#sample-table-9')
-				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-				.dataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,null,null,
-					  { "bSortable": false }
-					],
-					"aaSorting": [7],
+					.dataTable( {
+						bAutoWidth: false,
+						"aoColumns": [
+						  { "bSortable": false },
+						  null, null,null, null, null,null,null,null,null,null,
+						  { "bSortable": false }
+						],
+						"aaSorting": [10],
+						"iDisplayLength": 50
+				    } );
 
-					//,
-					//"sScrollY": "200px",
-					//"bPaginate": false,
+						$('#member-table')
+							.dataTable( {
+								bAutoWidth: false,
+								"aoColumns": [
+								  { "bSortable": false },
+								  null, null,null, null, null,null,null,
+								  { "bSortable": false }
+								],
+								"aaSorting": [7],
+								"iDisplayLength": 50
+						    } );
 
-					//"sScrollX": "100%",
-					//"sScrollXInner": "120%",
-					//"bScrollCollapse": true,
-					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
-					"iDisplayLength": 50
-			    } );
 			    $('#sample-table-8')
-				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-				.dataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,null,
-					  { "bSortable": false }
-					],
+						.dataTable( {
+							bAutoWidth: false,
+							"aoColumns": [
+							  { "bSortable": false },
+							  null, null,null, null, null,null,
+							  { "bSortable": false }
+							],
 					"aaSorting": [6],
 
 					//,
@@ -706,8 +703,6 @@
 					$(this).prev().focus();
 				});
 
-
-
 				if(!ace.vars['touch']) {
 					$('.chosen-select').chosen({allow_single_deselect:true});
 					//resize the chosen on window resize
@@ -729,7 +724,6 @@
 						})
 					});
 
-
 					$('#chosen-multiple-style .btn').on('click', function(e){
 						var target = $(this).find('input[type=radio]');
 						var which = parseInt(target.val());
@@ -743,521 +737,8 @@
 			    window.history.back();
 			}
 		</script>
-		<script type="text/javascript">
-		$(document).ready(function() {
-			//alert("tes");
-
-			$('#loan_id').change(function() {
-
-	                    // assign the value to a variable, so you can test to see if it is working
-	                    var loanVal = $('#loan_id :selected').val();
-	                    $.ajax({
-							type: "POST",
-							async: false,
-							url: "<?php echo base_url() ; ?>welcome/get_payment_trans_no",
-							data: {
-									trans_no:loanVal,
-								 },
-							success: function(data){
-
-										data=String(data).split('#');
-
-										//alert(data);
-										$('#transaction').val(data[1]);
-										$('.req_date').val(data[2]);
-										$('#revision').val(data[3]);
-
-
-
-										var using_customer_id=data[5];
-
-
-										var sel_customer = document.getElementById('customer');
-									    var opts_customer = sel_customer.options;
-									    for(var opt1, i = 0; opt1 = opts_customer[i]; i++) {
-									        if(opt1.value == using_customer_id) {
-									            sel_customer.selectedIndex = i;
-									            break;
-									        }
-									    }
-
-
-										var using_loan_type_id=data[4];
-
-
-										var sel_loan_type = document.getElementById('loan_type');
-									    var opts_loan_type = sel_loan_type.options;
-									    for(var opt1, i = 0; opt1 = opts_loan_type[i]; i++) {
-									        if(opt1.value == using_loan_type_id) {
-									            sel_loan_type.selectedIndex = i;
-									            break;
-									        }
-									    }
-
-
-							}
-						});
-
-					});
-		});
-
-	</script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			$("#btn-approve").on('click', function(e) {
-				//alert("test");
-                    e.preventDefault();
-                    var checkValues = $('.checkbox_approved1:checked').map(function()
-                    {
-                        return $(this).val();
-                    }).get();
-                    console.log(checkValues);
-
-                    $.each( checkValues, function( i, val ) {
-                        $("#"+val).remove();
-                        });
-//                    return  false;
-                    $.ajax({
-                        url: '<?php echo base_url() ?>welcome/approved_loan',
-                        type: 'post',
-                        data: 'ids=' + checkValues
-                    }).done(function(data) {
-                        $("#respose").html(data);
-                        $('#selectall').attr('checked', false);
-                    });
-                });
-              $("#btn-cancel-approve").on('click', function(e) {
-				//alert("test");
-                    e.preventDefault();
-                    var checkValues = $('.checkbox_approved1:checked').map(function()
-                    {
-                        return $(this).val();
-                    }).get();
-                    console.log(checkValues);
-
-                    $.each( checkValues, function( i, val ) {
-                        $("#"+val).remove();
-                        });
-//                    return  false;
-                    $.ajax({
-                        url: '<?php echo base_url() ?>welcome/cancel_approved_loan',
-                        type: 'post',
-                        data: 'ids=' + checkValues
-                    }).done(function(data) {
-                        $("#respose").html(data);
-                        $('#selectall').attr('checked', false);
-                    });
-                });
-             $("#btn-issue").on('click', function(e) {
-				//alert("test");
-                    e.preventDefault();
-                    var checkValues = $('.checkbox_issued1:checked').map(function()
-                    {
-                        return $(this).val();
-                    }).get();
-                    console.log(checkValues);
-
-                    $.each( checkValues, function( i, val ) {
-                        $("#"+val).remove();
-                        });
-//                    return  false;
-                    $.ajax({
-                        url: '<?php echo base_url() ?>welcome/issued_loan',
-                        type: 'post',
-                        data: 'ids=' + checkValues
-                    }).done(function(data) {
-                        $("#respose").html(data);
-                        $('#selectall').attr('checked', false);
-                    });
-                });
-               $("#btn-cancel-issue").on('click', function(e) {
-				//alert("test");
-                    e.preventDefault();
-                    var checkValues = $('.checkbox_issued1:checked').map(function()
-                    {
-                        return $(this).val();
-                    }).get();
-                    console.log(checkValues);
-
-                    $.each( checkValues, function( i, val ) {
-                        $("#"+val).remove();
-                        });
-//                    return  false;
-                    $.ajax({
-                        url: '<?php echo base_url() ?>welcome/cancel_issued_loan',
-                        type: 'post',
-                        data: 'ids=' + checkValues
-                    }).done(function(data) {
-                        $("#respose").html(data);
-                        $('#selectall').attr('checked', false);
-                    });
-                });
-              $("#btn-close").on('click', function(e) {
-				//alert("test");
-                    e.preventDefault();
-                    var checkValues = $('.checkbox_closed1:checked').map(function()
-                    {
-                        return $(this).val();
-                    }).get();
-                    console.log(checkValues);
-
-                    $.each( checkValues, function( i, val ) {
-                        $("#"+val).remove();
-                        });
-//                    return  false;
-                    $.ajax({
-                        url: '<?php echo base_url() ?>welcome/closed_loan',
-                        type: 'post',
-                        data: 'ids=' + checkValues
-                    }).done(function(data) {
-                        $("#respose").html(data);
-                        $('#selectall').attr('checked', false);
-                    });
-                });
-
-                $("#btn-cancel-close").on('click', function(e) {
-				//alert("test");
-                    e.preventDefault();
-                    var checkValues = $('.checkbox_closed1:checked').map(function()
-                    {
-                        return $(this).val();
-                    }).get();
-                    console.log(checkValues);
-
-                    $.each( checkValues, function( i, val ) {
-                        $("#"+val).remove();
-                        });
-//                    return  false;
-                    $.ajax({
-                        url: '<?php echo base_url() ?>welcome/cancel_closed_loan',
-                        type: 'post',
-                        data: 'ids=' + checkValues
-                    }).done(function(data) {
-                        $("#respose").html(data);
-                        $('#selectall').attr('checked', false);
-                    });
-                });
-			//alert("tes");
-			$('#emp_code').change(function() {
-
-	                    // assign the value to a variable, so you can test to see if it is working
-	                    var empVal = $('#emp_code :selected').val();
-	                    $.ajax({
-							type: "POST",
-							async: false,
-							url: "<?php echo base_url() ; ?>welcome/get_employee_info",
-							data: {
-									employee_id:empVal,
-								 },
-							success: function(data){
-
-										data=String(data).split('#');
-
-										//alert(data);
-										$('#emp_name').val(data[1]);
-
-
-
-										var using_department_id=data[2];
-
-
-										var sel_department = document.getElementById('department');
-									    var opts_department = sel_department.options;
-									    for(var opt1, i = 0; opt1 = opts_department[i]; i++) {
-									        if(opt1.value == using_department_id) {
-									            sel_department.selectedIndex = i;
-									            break;
-									        }
-									    }
-							}
-						});
-
-					});
-
-					$('#customer').change(function() {
-
-	                    // assign the value to a variable, so you can test to see if it is working
-	                    var cusVal = $('#customer :selected').val();
-
-	                    $.ajax({
-							type: "POST",
-							async: false,
-							url: "<?php echo base_url() ; ?>welcome/get_customer_loan_circle",
-							data: {
-									customer_id:cusVal,
-								 },
-							success: function(data){
-
-										$('#revision').val(data);
-
-							}
-						});
-
-					});
-		});
-
-	</script>
-	<script>
-	$(document).ready(function() {
-		$("#amount_en").keyup(function() {
-			var amount_en=$("#amount_en").val();
-			var amount_kh=$("#amount_kh").val();
-			var exchange_rate=$("#exc_rate").val();
-			var total_amount=$("#amount_total").val();
-			var total_transf=$("#amount_trans").val();
-
-			if(amount_kh=="" || isNaN(amount_kh) || amount_kh==0){
-				$("#amount_total").val(amount_en);
-				$("#amount_trans").val(0);
-			}else{
-
-				var exchange=amount_kh/exchange_rate;
-
-				var total=parseFloat(exchange)+parseFloat(amount_en);
-				var s_total=parseFloat(total.toFixed(2));
-				var s_exchange=parseFloat(exchange.toFixed(2));
-				$("#amount_total").val(s_total);
-				$("#amount_trans").val(s_exchange);
-			}
-		});
-
-		$("#amount_kh").keyup(function() {
-			var amount_en=$("#amount_en").val();
-			var amount_kh=$("#amount_kh").val();
-			var exchange_rate=$("#exc_rate").val();
-			var total_amount=$("#amount_total").val();
-			var total_transf=$("#amount_trans").val();
-
-			if(amount_en=="" || isNaN(amount_en) || amount_en==0){
-				var exchange=amount_kh/exchange_rate;
-
-				var total=parseFloat(exchange)
-				var s_total=parseFloat(total.toFixed(2));
-				var s_exchange=parseFloat(total.toFixed(2));
-				$("#amount_total").val(s_total);
-				$("#amount_trans").val(s_exchange);
-			}else{
-
-				var exchange=parseFloat(amount_kh/exchange_rate);
-
-				var total_v=parseFloat(amount_en)+exchange;
-
-				var s_total=parseFloat(total_v.toFixed(2));
-				var s_exchange=parseFloat(exchange.toFixed(2));
-				$("#amount_total").val(s_total);
-				$("#amount_trans").val(s_exchange);
-			}
-		});
-	});
-	</script>
 	<script type="text/javascript">
     $(document).ready(function () {
-
-    	addProduct();
-    	function addProduct(){
-    		//alert("test");
-    		var my_i=($("#customFields tr").size())-0+1;
-    		$.ajax({
-							type: "POST",
-							async: false,
-							url: "<?php echo base_url() ; ?>products/add_product_quotation",
-							data: {
-									req:1,
-									inc:my_i,
-								 },
-							success: function(data){
-								//alert(data);
-								 $("#customFields").append(data);
-
-								 if(!ace.vars['touch']) {
-					$('.chosen-select').chosen({allow_single_deselect:true});
-					//resize the chosen on window resize
-
-					$(window)
-					.off('resize.chosen')
-					.on('resize.chosen', function() {
-						$('.chosen-select').each(function() {
-							 var $this = $(this);
-							 $this.next().css({'width': $this.parent().width()});
-						})
-					}).trigger('resize.chosen');
-					//resize chosen on sidebar collapse/expand
-					$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
-						if(event_name != 'sidebar_collapsed') return;
-						$('.chosen-select').each(function() {
-							 var $this = $(this);
-							 $this.next().css({'width': $this.parent().width()});
-						})
-					});
-
-
-					$('#chosen-multiple-style .btn').on('click', function(e){
-						var target = $(this).find('input[type=radio]');
-						var which = parseInt(target.val());
-						if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
-						 else $('#form-field-select-4').removeClass('tag-input-style');
-					});
-				}
-							}
-			});
-    	}
-
-    	$(document).on('keyup','.quantity_row , .price_row , .discount_row, .size_row,.quo_discount,.quo_vat',function(e) {
-    		e.preventDefault();
-    		var tr=$(this).parent().parent();
-    		var product_code =tr.find('.product_code').val();
-    		if(product_code==""){
-    			alert("Product code can not be blank !");
-    			return false;
-    		}
-			var PriceEnter =tr.find('.price_row').val()-0;
-			var Quantity =tr.find('.quantity_row').val()-0;
-			var discount =tr.find('.discount_row').val()-0;
-			var size =tr.find('.size_row').val()-0;
-			var rate=size*PriceEnter;
-			/*var proBlankItem = tr.find('.product_code').val();
-				if(proBlankItem == ""){
-					alert("Please select item before you enter quantity or cost.");
-					tr.find('.Quantity').val(0);
-					tr.find('.PriceEnter').val(0);
-					TotalLine = 0;
-				}*/
-			if(isNaN(PriceEnter)){
-				PriceEnter=0;
-			}
-			if(isNaN(size)){
-				size=0;
-			}
-			if(isNaN(Quantity)){
-				Quantity=0;
-			}
-			if(isNaN(discount)){
-				discount=0;
-			}
-			if(discount>0){
-				var amount_row = Math.round(((PriceEnter*size)*Quantity)* (1-(discount/100))*10000)/10000;
-			}else{
-				var amount_row=Quantity*(PriceEnter*size);
-			}
-
-			tr.find('.amount_row').val(amount_row);
-			tr.find('.rate_row').val(rate);
-			var total_amount=0;
-			$('#quotation_tbl').find('tbody').find('tr').each(function() {
-
-					total_amount += $(this).find(".amount_row").val()-0;
-
-			}); //END .each
-			$('.total').html(total_amount);
-
-			$('.total_label').html(total_amount+"$");
-								$('.total').val(total_amount);
-
-								var discount_per=$('.quo_discount').val();
-								var total_dis = (total_amount-Math.round((total_amount)* (1-(discount_per/100))*10000)/10000);
-								//alert(total_dis);
-								var vat_per=$('.quo_vat').val()-0;
-								if(vat_per>0){
-									var vat=(total_amount-total_dis)-(Math.round((total_amount-total_dis)* (1-(vat_per/100))*10000)/10000);
-
-								}else{
-									var vat=0;
-								}
-
-								var gtotal=(total_amount-total_dis+vat);
-
-
-								$('.g_total_label').html(gtotal+"$");
-								$('.g_total').val(gtotal);
-
-    	});
-    	$(document).on('change', '.product_code',function(e) {
-
-    	 	if(e.handled !== true) // This will prevent event triggering more then once
-	        {
-    	 	 var tr=$(this).parent().parent();
-    	 	 var product_code = tr.find('.product_code :selected').val();
-        	//tr.find('.quantity_row').val(5);
-        	//row.find('.hiddenName').val("Set value");
-
-        	$.ajax({
-							type: "POST",
-							async: false,
-							dataType: 'json',
-							url: "<?php echo base_url() ; ?>products/get_product_info_by_code",
-							data: {
-									req_code:product_code,
-
-								 },
-							success: function(data){
-								var qty=tr.find('.quantity_row').val();
-								var price=data.price;
-								var desc=data.description;
-								var amount_row=price*qty;
-
-								tr.find('.description_row').val(desc);
-								tr.find('.amount_row').val(amount_row);
-								tr.find('.rate_row').val(amount_row);
-								tr.find('.price_row').val(price);
-
-								//alert(a);
-								//alert("good");
-				    			/*addProduct();*/
-
-								//alert(my_i);
-					            e.handled = true;
-					            var total_amount=0;
-					            $('#quotation_tbl').find('tbody').find('tr').each(function() {
-
-										total_amount += $(this).find(".amount_row").val()-0;
-
-								}); //END .each
-								$('.total_label').html(total_amount+"$");
-								$('.total').val(total_amount);
-
-								var discount_per=$('.quo_discount').val();
-								var total_dis = (total_amount-Math.round((total_amount)* (1-(discount_per/100))*10000)/10000);
-								//alert(total_dis);
-								var vat_per=$('.quo_vat').val()-0;
-								if(vat_per>0){
-									var vat=(total_amount-total_dis)-(Math.round((total_amount-total_dis)* (1-(vat_per/100))*10000)/10000);
-
-								}else{
-									var vat=0;
-								}
-
-								var gtotal=(total_amount-total_dis+vat);
-
-
-								$('.g_total_label').html(gtotal+"$");
-								$('.g_total').val(gtotal);
-
-							}
-			});
-
-
-
-
-
-	        }
-
-    	});
-    	/*$('.product_code').change(function() {
-
-    		 var product_code = $('.product_code :selected').val();
-    		 alert(product_code);
-    		 addProduct();
-
-    	});*/
-    	$('#btn_add_product').click(function() {
-
-    		 //var product_code = $('.product_code :selected').val();
-    		 //alert(product_code);
-    		 addProduct();
-
-    	});
-
 
 		$('.customFields').delegate("a#btnRemove", "click", function() {
 			if ($("#quotation_tbl tbody.customFields tr").size() == 1) return;
@@ -1265,14 +746,13 @@
 				$(this).parents("tr:first").remove();
 
 			}
-		});//end remove
+		});
+
+		//end remove
 		$(document).on('click', '.delete',function(e) {
 	        $(this).parent().parent().remove();
 	    });
-		/*$(".delete").click(function(event) {
-			alert("test");
-			$(this).parent().parent().remove();
-		});*/
+
 			$("body").on("change",".knowledge",function(){
 				var edu = $(this).val();
 				var parent_class = $("#grade_chosen").find(".chosen-drop").find(".chosen-results");
@@ -1282,12 +762,14 @@
 						html += "<option value='1'>ថ្នាក់ទី១</option>";
 						html += "<option value='2'>ថ្នាក់ទី២</option>";
 						html += "<option value='3'>ថ្នាក់ទី៣</option>";
+						html += "<option value='4'>បញ្ចប់ថ្នាក់</option>";
 						$(".grade-data").html(html);
 						$('.grade-data').trigger('chosen:updated');
 					}else{
 						var html='<option value="">ឆ្នាំ...</option>';
-						html += "<option value='1'>ឆ្នាំទី១</option>";
-						html += "<option value='2'>ឆ្នាំទី២</option>";
+						html += "<option value='5'>ឆ្នាំទី១</option>";
+						html += "<option value='6'>ឆ្នាំទី២</option>";
+						html += "<option value='4'>បញ្ចប់ថ្នាក់</option>";
 						$(".grade-data").html(html);
 						$('.grade-data').trigger('chosen:updated');
 					}
@@ -1295,6 +777,256 @@
 					// $(".grade-data").attr("required",true);
 					// $('.grade-data').trigger("chosen:updated");
 			});
+
+			//function for location on Change
+			$("body").on("change","#use_location_id",function(){
+				var location_id = $(this).val();
+					$.ajax({
+						type:"post",
+						dataType:"json",
+						url:"<?php echo base_url().'manage_monks/get_location_data';?>",
+						data:{'location_id':location_id},
+						success:function(response){
+							//set data for district
+							 var html_dis='<option value=""></option>';
+							 $.each(response.district,function(district_id,val_district){
+								 	html_dis +='<option value="'+val_district.id+'">'+val_district.name+'</option>';
+							 });
+							 $("#district_id").html(html_dis);
+	 						 $('#district_id').trigger('chosen:updated');
+
+							 //set data for communes
+							 var html_com='<option value=""></option>';
+							 $.each(response.commune,function(commune_id,val_commune){
+								 	html_com +='<option value="'+val_commune.id+'">'+val_commune.name+'</option>';
+							 });
+							 $("#commune_id").html(html_com);
+	 						 $('#commune_id').trigger('chosen:updated');
+
+							 //set data for villages
+							 var html_vil='<option value=""></option>';
+							 $.each(response.village,function(village_id,val_village){
+								 	html_vil +='<option value="'+val_village.id+'">'+val_village.name+'</option>';
+							 });
+							 $("#village_id").html(html_vil);
+	 						 $('#village_id').trigger('chosen:updated');
+						}
+					});
+			});
+
+				//function for get commune and village
+				$("body").on("change","#district_id",function(){
+					var district_id = $(this).val();
+						$.ajax({
+							type:"post",
+							dataType:"json",
+							url:"<?php echo base_url().'manage_monks/get_commune';?>",
+							data:{'dinstrict_id':district_id},
+							success:function(response){
+									//set data for communes
+								 var html_com='<option value=""></option>';
+								 $.each(response.commune,function(commune_id,val_commune){
+										html_com +='<option value="'+val_commune.id+'">'+val_commune.name+'</option>';
+								 });
+								 $("#commune_id").html(html_com);
+								 $('#commune_id').trigger('chosen:updated');
+
+								 //set data for villages
+								 var html_vil='<option value=""></option>';
+								 $.each(response.village,function(village_id,val_village){
+										html_vil +='<option value="'+val_village.id+'">'+val_village.name+'</option>';
+								 });
+								 $("#village_id").html(html_vil);
+								 $('#village_id').trigger('chosen:updated');
+							}
+						});
+				});
+
+				//function for get data villages
+				$("body").on("change","#commune_id",function(){
+					var commune_id = $(this).val();
+						$.ajax({
+							type:"post",
+							dataType:"json",
+							url:"<?php echo base_url().'manage_monks/get_village';?>",
+							data:{'commune_id':commune_id},
+							success:function(response){
+								 //set data for villages
+								 var html_vil='<option value=""></option>';
+								 $.each(response.village,function(village_id,val_village){
+										html_vil +='<option value="'+val_village.id+'">'+val_village.name+'</option>';
+								 });
+								 $("#village_id").html(html_vil);
+								 $('#village_id').trigger('chosen:updated');
+							}
+						});
+				});
+
+				//function for add more rows of langauge and level
+				$("body").on("click",".add_language",function(){
+					// alert("hi");
+					$.ajax({
+						type:"post",
+						url:"<?php echo base_url().'manage_monks/get_more_language';?>",
+						data:{},
+						success:function(response){
+							$(".data_language").append(response);
+							$('#language').trigger('chosen:updated');
+							$('#read').trigger('chosen:updated');
+							$('#writing').trigger('chosen:updated');
+							$('#listening').trigger('chosen:updated');
+							$('#speaking').trigger('chosen:updated');
+						}
+					});
+				});
+
+				//add query for current living
+				$("body").on("change","#current_provice",function(){
+					var location_id = $(this).val();
+						$.ajax({
+							type:"post",
+							dataType:"json",
+							url:"<?php echo base_url().'manage_monks/get_location_data';?>",
+							data:{'location_id':location_id},
+							success:function(response){
+								//set data for district
+								 var html_dis='<option value=""></option>';
+								 $.each(response.district,function(district_id,val_district){
+									 	html_dis +='<option value="'+val_district.id+'">'+val_district.name+'</option>';
+								 });
+								 $("#current_district").html(html_dis);
+		 						 $('#current_district').trigger('chosen:updated');
+
+								 //set data for communes
+								 var html_com='<option value=""></option>';
+								 $.each(response.commune,function(commune_id,val_commune){
+									 	html_com +='<option value="'+val_commune.id+'">'+val_commune.name+'</option>';
+								 });
+								 $("#current_commune").html(html_com);
+		 						 $('#current_commune').trigger('chosen:updated');
+
+								 //set data for villages
+								 var html_vil='<option value=""></option>';
+								 $.each(response.village,function(village_id,val_village){
+									 	html_vil +='<option value="'+val_village.id+'">'+val_village.name+'</option>';
+								 });
+								 $("#current_village").html(html_vil);
+		 						 $('#current_village').trigger('chosen:updated');
+							}
+						});
+				});
+
+					//function for get commune and village
+					$("body").on("change","#current_district",function(){
+						var district_id = $(this).val();
+							$.ajax({
+								type:"post",
+								dataType:"json",
+								url:"<?php echo base_url().'manage_monks/get_commune';?>",
+								data:{'dinstrict_id':district_id},
+								success:function(response){
+										//set data for communes
+									 var html_com='<option value=""></option>';
+									 $.each(response.commune,function(commune_id,val_commune){
+											html_com +='<option value="'+val_commune.id+'">'+val_commune.name+'</option>';
+									 });
+									 $("#current_commune").html(html_com);
+									 $('#current_commune').trigger('chosen:updated');
+
+									 //set data for villages
+									 var html_vil='<option value=""></option>';
+									 $.each(response.village,function(village_id,val_village){
+											html_vil +='<option value="'+val_village.id+'">'+val_village.name+'</option>';
+									 });
+									 $("#current_village").html(html_vil);
+									 $('#current_village').trigger('chosen:updated');
+								}
+							});
+					});
+
+					//function for get data villages
+					$("body").on("change","#current_commune",function(){
+						var commune_id = $(this).val();
+						alert(commune_id);
+							$.ajax({
+								type:"post",
+								dataType:"json",
+								url:"<?php echo base_url().'manage_monks/get_village';?>",
+								data:{'commune_id':commune_id},
+								success:function(response){
+									 //set data for villages
+									 var html_vil='<option value=""></option>';
+									 $.each(response.village,function(village_id,val_village){
+											html_vil +='<option value="'+val_village.id+'">'+val_village.name+'</option>';
+									 });
+									 $("#current_village").html(html_vil);
+									 $('#current_village').trigger('chosen:updated');
+								}
+							});
+					});
+
+					//function for delete row
+					$("body").on("click",".remove_lang",function(){
+						 var monk_id = $(this).data("monk");
+						 var lang_id = $(this).data("lang");
+						 var id = $(this).data("id");
+						 if(lang_id !=""){
+							 	$.ajax({
+									type:"post",
+									url:"<?php echo base_url().'manage_monks/remove_lang'?>",
+									data:{
+										'monk_id':monk_id,
+										'lang_id':lang_id,
+										'id':id,
+									},
+									success:function(){
+
+									}
+								});
+						 }
+						$(this).parents('div.parent-row').fadeOut();
+					});
+
+
+					function readURL(input) {
+					  if (input.files && input.files[0]) {
+					    var reader = new FileReader();
+					    reader.onload = function(e) {
+					      $('#image_result').attr('src', e.target.result);
+					    }
+
+					    reader.readAsDataURL(input.files[0]);
+					  }
+					}
+					$("#userfile").change(function() {
+					  readURL(this);
+					});
+
+					$("body").on("change",".education_human",function(){
+						var value = $(this).val();
+						if(value !=""){
+							$.ajax({
+								type:"post",
+								dataType:"json",
+								url:"<?php echo base_url().'manage_members/get_education'?>",
+								data:{'parent_id':value},
+								success:function(response){
+									var html ='<option value="">--ថ្នាក់--</option>';
+									$.each(response.result,function(key,value){
+										html +='<option value="'+value.id+'">'+value.name+'</option>';
+									});
+									$("#grade").html(html);
+								}
+							});
+						}
+					});
+
+					$('.timepicker-default').timepicker({
+						hourGrid: 4,
+					 minuteGrid: 10,
+					 timeFormat: 'hh:mm p',
+					 scrollbar:true
+			    });
     });
 
 </script>

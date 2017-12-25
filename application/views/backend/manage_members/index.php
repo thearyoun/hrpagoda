@@ -1,14 +1,14 @@
-<a href="<?php echo base_url();?>manage_members/create_member"><input type="button" class="btn btn-primary" value="Add New" /><br /><br /></a>
+<a href="<?php echo base_url();?>manage_members/create_member">
+	<input type="button" class="btn btn-primary" value="បន្ថែមពុទ្ធបរិស័ទ្ធថ្មី" /><br /><br /></a>
 <div class="row">
 	<div class="col-xs-12">
 		<?php
 			$this->load->view('backend/notification/index.php');
 		?>
-		<table id="sample-table-9" class="table table-striped table-bordered table-hover">
+		<table id="member-table" class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
 					<th class="center">#</th>
-					
 					<th><?php echo $this->lang->line('');?>សមាជិកឈ្មោះ</th>
 					<th><?php echo $this->lang->line('');?>ភេទ</th>
 					<th><?php echo $this->lang->line('');?>ជនជាតិ</th>
@@ -16,7 +16,6 @@
 					<th><?php echo $this->lang->line('tb_dob');?></th>
 					<th><?php echo $this->lang->line('');?>ស្ថានភាព</th>
 					<th><?php echo $this->lang->line('tb_created_date');?></th>
-					
 					<th></th>
 				</tr>
 			</thead>
@@ -25,7 +24,6 @@
 				<?php
 					$i=0;
 					foreach($members->result() as $row){
-						
 						if($row->status==1){
 							$class="success";
 							$status="Active";
@@ -36,22 +34,15 @@
 				?>
 						<tr>
 							<td class="center"><?php echo ++$i;?></td>
-		
-							
 							<td><?php echo $row->username;?></td>
-							<td><?php echo ($row->gender=='M')? 'Male':'Female';?></td>
+							<td><?php echo ($row->gender=='M')? 'ប្រុស':'ស្រី';?></td>
 							<td><?php echo $row->nation;?></td>
 							<td><?php echo $row->phone_number;?></td>
 							<td><?php echo $row->date_of_birth;?></td>
 							<td><span class="label label-sm label-<?php echo $class;?>"><?php echo $status;?></span></td>
-							<td><?php echo $row->created_at;?></td>							
-		
-							
-		
+							<td><?php echo $row->created_at;?></td>
 							<td>
-								
 								<div class="hidden-sm hidden-xs action-buttons">
-					
 									<!--<a class="green" href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" title="Edit member"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
 									<?php
 										if($row->name!="Admin"){
@@ -68,14 +59,10 @@
 										<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 											<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
 										</button>
-					
 										<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-											
-					
 											<li>
 												<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
 											</li>
-					
 											<li>
 												<a href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
 											</li>
@@ -87,7 +74,6 @@
 				<?php
 					}
 				?>
-				
 			</tbody>
 		</table>
 	</div><!-- /.span -->

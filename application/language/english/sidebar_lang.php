@@ -2,7 +2,7 @@
 $lang['sidebar_dashboard'] = 'Dashboard';
 $lang['sidebar_user_account'] = 'User Accounts';
 $lang['sidebar_users'] = 'Users';
-$lang['sidebar_add_new'] = 'Add New';
+$lang['sidebar_add_new'] = 'បន្ថែមពុទ្ធបរិស័ទ្ធ';
 $lang['sidebar_users_list'] = 'Users List';
 $lang['sidebar_user_roles'] = 'User Roles';
 $lang['sidebar_user_role_list'] = 'User Role List';

@@ -42,7 +42,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
@@ -56,7 +56,7 @@ class Globals extends CI_Model {
 	 * @example select_all('tbl_users',10)
 	 */
 	public function select_all($table, $limit = NULL,$sort=NULL) {
-		
+
 		if ($limit != NULL) {
 			if (strpos($limit, ',')) {
 				$arr_limit = explode(',', $limit);
@@ -74,7 +74,7 @@ class Globals extends CI_Model {
 		}
 		return $this -> db -> get($table);
 	}
-	
+
 	/**
 	 * Function select all from table
 	 * @param $table the string parameter to select (required)
@@ -85,13 +85,13 @@ class Globals extends CI_Model {
 	 * @example select_all('tbl_users',10)
 	 */
 	public function select_all_like($table, $arr_item_like=array(),$limit = NULL,$sort=NULL) {
-		
+
 		if (!is_array($arr_item_like) || count($arr_item_where) <= 0)
 			return FALSE;
 		foreach ($arr_item_like as $field => $value) {
 			$this -> db -> like($field, $value);
 		}
-		
+
 		if ($limit != NULL) {
 			if (strpos($limit, ',')) {
 				$arr_limit = explode(',', $limit);
@@ -109,9 +109,9 @@ class Globals extends CI_Model {
 		}
 		return $this -> db -> get($table);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Function select to get custom field from table
 	 * @param $table the string parameter to select (required)
@@ -126,13 +126,13 @@ class Globals extends CI_Model {
 		if (!is_array($arr_fields) || count($arr_fields) <= 0)
 			return FALSE;
 		$this -> db -> select(join(',', $arr_fields));
-		
+
 		if (!is_array($arr_item_like) || count($arr_item_where) <= 0)
 			return FALSE;
 		foreach ($arr_item_like as $field => $value) {
 			$this -> db -> like($field, $value);
 		}
-		
+
 		if ($limit != NULL) {
 			if (strpos($limit, ',')) {
 				$arr_limit = explode(',', $limit);
@@ -146,12 +146,12 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
-	
-	
+
+
 	/**
 	 * Function select join with inner, left, right
 	 * @param $table the string parameter to select (required)
@@ -188,7 +188,7 @@ class Globals extends CI_Model {
 		foreach ($arr_item_like as $field => $value) {
 			$this -> db -> like($field, $value);
 		}
-		
+
 		if ($arr_where != NULL && is_array($arr_where)) {
 			foreach ($arr_where as $fields => $value) {
 				$this -> db -> where($fields, $value);
@@ -207,12 +207,12 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get();
 		//return $this->db->last_query();
 	}
-	
+
 	/**
 	 * Function select join with inner, left, right
 	 * @param $table the string parameter to select (required)
@@ -226,11 +226,11 @@ class Globals extends CI_Model {
 	 * @example select_join('tbl_contacts', array('tbl_users' => array('con_use_id' => 'use_id')),'inner',array('tbl_users.use_id' => 2),'30')
 	 */
 	public function select_join_like_get_only_fields($table, $arr_fields = array(),$arr_join = array(), $join_type = NULL, $arr_item_like = array(),$arr_where=NULL, $limit = NULL,$sort=NULL) {
-		
+
 		if (!is_array($arr_fields) || count($arr_fields) <= 0)
 			return FALSE;
 		$this -> db -> select(join(',', $arr_fields));
-		
+
 		if (!is_array($arr_join) || count($arr_join) <= 0)
 			return FALSE;
 		$this -> db -> from($table);
@@ -255,13 +255,13 @@ class Globals extends CI_Model {
 		foreach ($arr_item_like as $field => $value) {
 			$this -> db -> like($field, $value);
 		}
-		
+
 		if ($arr_where != NULL && is_array($arr_where)) {
 			foreach ($arr_where as $fields => $value) {
 				$this -> db -> where($fields, $value);
 			}
 		}
-		
+
 		if ($limit != NULL) {
 			if (strpos($limit, ',')) {
 				$arr_limit = explode(',', $limit);
@@ -275,7 +275,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get();
 		//return $this->db->last_query();
@@ -285,14 +285,14 @@ class Globals extends CI_Model {
 	 * @param $table the string parameter to select (required)
 	 * @return table number record of tables
 	 * @example select_count_all('tbl_users')
-	 * 
+	 *
 	 */
 	public function select_count($table) {
 		$query= $this -> db -> get($table);
 		return $query->num_rows();
 	}
-	
-	
+
+
 
 	/**
 	 * Function select all from table with status
@@ -318,11 +318,11 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
-	
+
 	/**
 	 * Function select all from table with status
 	 * @param $table the string parameter to select (required)
@@ -337,7 +337,7 @@ class Globals extends CI_Model {
 		if (!is_array($arr_fields) || count($arr_fields) <= 0)
 			return FALSE;
 		$this -> db -> select(join(',', $arr_fields));
-		
+
 		$this -> db -> where('status', $status);
 		if ($limit != NULL) {
 			if (strpos($limit, ',')) {
@@ -352,7 +352,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
@@ -385,12 +385,12 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
-	
-	
+
+
 	/**
 	 * Function select Where / Where And
 	 * @param $table the string parameter to select (required)
@@ -402,11 +402,11 @@ class Globals extends CI_Model {
 	 * @example select_where('tbl_users',array('use_name' => 'vannak','use_password' => '12345'))
 	 */
 	public function select_field_where($table,  $arr_fields = array(),$arr_item_where = array(), $limit = NULL,$sort=NULL,$group_by=NULL) {
-		
+
 		if (!is_array($arr_fields) || count($arr_fields) <= 0)
 			return FALSE;
 		$this -> db -> select(join(',', $arr_fields));
-		
+
 		if (!is_array($arr_item_where) || count($arr_item_where) <= 0)
 			return FALSE;
 		foreach ($arr_item_where as $field => $value) {
@@ -425,10 +425,10 @@ class Globals extends CI_Model {
 			}
 		}
 		if($group_by!=NULL){
-			$this->db->group_by($group_by); 
+			$this->db->group_by($group_by);
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
@@ -475,7 +475,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
@@ -516,7 +516,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
@@ -557,7 +557,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get($table);
 	}
@@ -611,7 +611,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get();
 		//return $this->db->last_query();
@@ -631,11 +631,11 @@ class Globals extends CI_Model {
 	 * @example select_join('tbl_contacts', array('tbl_users' => array('con_use_id' => 'use_id')),'inner',array('tbl_users.use_id' => 2),'30')
 	 */
 	public function select_join_get_only_fields($table, $arr_fields = array(),$arr_join = array(), $join_type = NULL, $arr_where = NULL, $limit = NULL,$sort=NULL) {
-		
+
 		if (!is_array($arr_fields) || count($arr_fields) <= 0)
 			return FALSE;
 		$this -> db -> select(join(',', $arr_fields));
-		
+
 		if (!is_array($arr_join) || count($arr_join) <= 0)
 			return FALSE;
 		$this -> db -> from($table);
@@ -673,7 +673,7 @@ class Globals extends CI_Model {
 			}
 		}
 		if($sort!=NULL){
-			$this->db->order_by($sort); 
+			$this->db->order_by($sort);
 		}
 		return $this -> db -> get();
 		//return $this->db->last_query();
@@ -715,7 +715,7 @@ class Globals extends CI_Model {
 				$this -> db -> where($fields, $value);
 			}
 		}
-		
+
 		if ($limit != NULL) {
 			if (strpos($limit, ',')) {
 				$arr_limit = explode(',', $limit);
@@ -728,12 +728,12 @@ class Globals extends CI_Model {
 				}
 			}
 		}
-		
+
 		$query= $this -> db -> get();
 		return $query->num_rows();
 		//return $this->db->last_query();
 	}
-	
+
 	//GROUP OF FUNCTIONS QUERY TO INSERT//
 
 	/**
@@ -746,15 +746,15 @@ class Globals extends CI_Model {
 	public function insert($table, $arr_data = array()) {
 		if (!is_array($arr_data) || count($arr_data) <= 0)
 			return FALSE;
-		
+
 		$this -> db -> insert($table, $arr_data);
 		$isSaved=$this->db->affected_rows();
 		if($isSaved){
 			return TRUE;
 		}else{
-			return FALSE;	
+			return FALSE;
 		}
-		
+
 	}
 
 	/**
@@ -797,7 +797,7 @@ class Globals extends CI_Model {
 		if($isSaved){
 			return TRUE;
 		}else{
-			return FALSE;	
+			return FALSE;
 		}
 	}
 
@@ -821,7 +821,7 @@ class Globals extends CI_Model {
 		if($isSaved){
 			return TRUE;
 		}else{
-			return FALSE;	
+			return FALSE;
 		}
 	}
 
@@ -844,11 +844,11 @@ class Globals extends CI_Model {
 		$this -> db -> update($table, $arr_data);
 		$isUpdated=$this->db->affected_rows();
 		if($isUpdated){
-			return TRUE;	
+			return TRUE;
 		}else{
 			return FALSE;
 		}
-		
+
 	}
 
 	/**
@@ -890,9 +890,9 @@ class Globals extends CI_Model {
 		if($isDeleted){
 			return TRUE;
 		}else{
-			return FALSE;	
+			return FALSE;
 		}
-		
+
 	}
 
 	/**
@@ -913,7 +913,7 @@ class Globals extends CI_Model {
 		if($isDeleted){
 			return TRUE;
 		}else{
-			return FALSE;	
+			return FALSE;
 		}
 	}
 
@@ -1028,4 +1028,56 @@ class Globals extends CI_Model {
 		}
 	}
 
+	//get data view by monk
+	public function get_monk_view($id){
+		$this->db->select("monks.*,groups.name");
+
+		$this->db->join("monk_groups","monk_groups.use_monk_id=monks.id","left");
+		$this->db->join("groups"," groups.id=monk_groups.use_group_id","left");
+
+		$this->db->where("monks.id",$id);
+
+		$result = $this->db->get("monks");
+		if($result->num_rows()>0){
+				return $result->row();
+		}
+		return false;
+	}
+
+	//get data languages
+	public function get_language_by_monk($id,$name=null){
+
+		$this->db->select("monk_languages.*,languages.name");
+
+		$this->db->join("languages","languages.id=monk_languages.lang_id");
+		if($name ==NULL){
+			$this->db->where("monk_languages.monk_id",$id);
+		}else{
+			$this->db->where("monk_languages.member_id",$id);
+		}
+
+		$this->db->order_by("lang_id","asc");
+
+		$result = $this->db->get("monk_languages");
+		if($result->num_rows()>0){
+			return $result;
+		}
+		return FALSE;
+	}
+
+	public function get_dayworking($type_working,$id,$type=NULL){
+		$this->db->select("fromday.name,today.name,fromday.id as fromid,today.id as todayid,from_time,to_time,member_id,monk_id");
+
+		$this->db->join("dayofweek as fromday","fromday.id=workingday.from_day");
+		$this->db->join("dayofweek as today","today.id=workingday.to_day");
+
+		$this->db->where('"'.$type.'"',$id);
+		$this->db->where("workingday.type_job",$type_working);
+
+		$result = $this->db->get("workingday");
+		if($result->num_rows()>0){
+				return $result;
+		}
+		return false;
+	}
 }
