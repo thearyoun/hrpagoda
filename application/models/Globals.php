@@ -1066,12 +1066,13 @@ class Globals extends CI_Model {
 	}
 
 	public function get_dayworking($type_working,$id,$type=NULL){
-		$this->db->select("fromday.name,today.name,fromday.id as fromid,today.id as todayid,from_time,to_time,member_id,monk_id");
+		$this->db->select("fromday.name as fromdayname,today.name as todayname,fromday.id as fromid,
+		today.id as todayid,from_time,to_time,member_id,monk_id");
 
 		$this->db->join("dayofweek as fromday","fromday.id=workingday.from_day");
 		$this->db->join("dayofweek as today","today.id=workingday.to_day");
 
-		$this->db->where('"'.$type.'"',$id);
+		$this->db->where($type,$id);
 		$this->db->where("workingday.type_job",$type_working);
 
 		$result = $this->db->get("workingday");

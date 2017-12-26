@@ -36,7 +36,7 @@ class Manage_members extends Security {
 		$this -> form_validation -> set_rules('mother_phone', 'mother phone', 'required');
 		$this -> form_validation -> set_rules('mother_address', 'mother address', 'required');
 		$this -> form_validation -> set_rules('monk_response_id', 'monk response', 'required');
-		$this -> form_validation -> set_rules('position', 'Positon', 'required');
+		// $this -> form_validation -> set_rules('position', 'Positon', 'required');
 		$this -> form_validation -> set_rules('identify_card', 'identify card', 'required');
 
 		$this -> form_validation -> set_rules('student_type', 'student type', '');
@@ -217,7 +217,7 @@ class Manage_members extends Security {
 		$this -> form_validation -> set_rules('monk_response_id', 'monk response', 'required');
 		$this -> form_validation -> set_rules('identify_card', 'identify card', 'required');
 
-		$this -> form_validation -> set_rules('position', 'Positon', 'required');
+		// $this -> form_validation -> set_rules('position', 'Positon', 'required');
 
 		$this -> form_validation -> set_rules('student_type', 'student type', '');
 		$this -> form_validation -> set_rules('study_at', 'study at', '');
@@ -241,8 +241,11 @@ class Manage_members extends Security {
 			$data['member_lang'] = $this->Globals->get_language_by_monk($member_id,'member_id');
 			$data['get_daytime_stu'] = $this->Globals->get_dayworking(1,$member_id,'member_id');
 			$data['get_daytime_working'] = $this->Globals->get_dayworking(2,$member_id,'member_id');
+			$data['member_id'] = $member_id;
+			#var_dump($data['get_daytime_working']->result());
+			#exit;
 			if($data['member']->row()->grade !=null){
-				$data['grade'] = $this->Globals->select_where("knowledges",array("parent_id"=>$data['member']->row()->grade));
+				$data['grade'] = $this->Globals->select_where("knowledges",array("parent_id"=>$data['member']->row()->education));
 			}else{
 				$data['grade']=false;
 			}
@@ -309,7 +312,9 @@ class Manage_members extends Security {
 					'company_name' => $this -> input -> post('company_name', TRUE),
 					'company_address' => $this -> input -> post('company_address', TRUE),
 					'identify_card' => $this -> input -> post('identify_card', TRUE),
-					'use_house_id' =>$use_house_id->row()->use_house_id
+					'use_house_id' =>$use_house_id->row()->use_house_id,
+					'eng_name' => $this->input->post("eng_name"),
+					'grade' => $this->input->post("grade")
 				);
 				if($image_name!=""){
 					$data['photo'] = $image_name;
@@ -317,12 +322,71 @@ class Manage_members extends Security {
 				$isUpdated = $this -> Globals -> update('members', $data, array('id'=> $member_id));
 				if ($isUpdated) {
 
+					$language = $this->input->post("language");
+					$read = $this->input->post("read");
+					$writing = $this->input->post("writing");
+					$listening = $this->input->post("listening");
+					$speaking = $this->input->post("speaking");
+					$this->Globals->delete("monk_languages",array("member_id"=>$member_id));
+					for($i=0;$i<count($language);$i++){
+							if($language[$i] !=""){
+								$data_lanauge = array(
+									'lang_id' => $language[$i],
+									'member_id' => $member_id,
+									'reading' => $read[$i],
+									'listening' => $listening[$i],
+									'speaking' => $speaking[$i],
+									'writing' => $writing[$i]
+								);
+								$this->Globals->insert('monk_languages', $data_lanauge);
+							}
+					}
+
+					//insert data into timeworkingday
+					$fdw_stu = $this->input->post("fromdayworking_study");
+					$tdw_stu = $this->input->post("todayworking_study");
+					$ftw_stu = $this->input->post("from_timeworking_study");
+					$ttw_stu = $this->input->post("to_timeworking_study");
+					$this->Globals->delete("workingday",array("member_id"=>$member_id,"type_job"=>1));
+					for($i=0;$i<count($fdw_stu);$i++){
+							if($fdw_stu[$i] !=""){
+								$data_stu = array(
+									'member_id'=>$member_id,
+									'from_day' => $fdw_stu[$i],
+									'to_day' => $tdw_stu[$i],
+									'from_time' => $ftw_stu[$i],
+									'to_time' =>$ttw_stu[$i],
+									'type_job' =>1
+								);
+								$this->Globals->insert('workingday', $data_stu);
+							}
+					}
+
+					$fdw_w = $this->input->post("fromdayworking_working");
+					$tdw_w = $this->input->post("todayworking_working");
+					$ftw_w = $this->input->post("from_timeworking_working");
+					$ttw_w = $this->input->post("to_timeworking_working");
+					$this->Globals->delete("workingday",array("member_id"=>$member_id,"type_job"=>2));
+					for($i=0;$i<count($fdw_w);$i++){
+							if($fdw_w[$i] !=""){
+									$data_work = array(
+										'member_id'=>$member_id,
+										'from_day' => $fdw_w[$i],
+										'to_day' => $tdw_w[$i],
+										'from_time' => $ftw_w[$i],
+										'to_time' =>$ttw_w[$i],
+										'type_job' =>2
+									);
+									$this->Globals->insert('workingday', $data_work);
+							}
+					}
+
 					$this -> session -> set_flashdata('success', "Member account was updated successfully.");
-					redirect('manage_members');
+					redirect('manage_members/update_member/'.$member_id);
 				} else {
 
 					$this -> session -> set_flashdata('error', 'Member account  was updated fail.');
-					redirect('manage_members');
+					redirect('manage_members/update_member/'.$member_id);
 				}
 			}
 
@@ -346,7 +410,7 @@ class Manage_members extends Security {
 	public function get_education()
 	{
 		$parent_id = $this->input->post("parent_id");
-		$education = $this->Globals->select_where("knowledges",array("status"=>1,"parent_id"=>$parent_id,"parent_id"=> 'is null'));
+		$education = $this->Globals->select_where("knowledges",array("status"=>1,"parent_id"=>$parent_id));
 		echo json_encode(array('result'=>$education->result()));
 	}
 

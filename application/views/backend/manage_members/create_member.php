@@ -1,3 +1,6 @@
+<label>
+  <a href="<?php echo base_url();?>manage_members" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>បញ្ជីពុទ្ធបរិស័ទ្ទ</a>
+</label>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_members/create_member" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-sm-12">
@@ -163,7 +166,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language">បន្ថែមភាសាៈ</a></div>
+							<div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language"><i class="fa fa-plus"></i>បន្ថែមភាសាៈ</a></div>
 							<div class="row data_language" style="margin-left:3%;">
 								<div class="col-xs-12 col-sm-9 col-md-3">
 									<div class="form-group">
@@ -417,7 +420,7 @@
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="position"> មុខងារបច្ចុប្បន្ន :<span class="required">*</span></label>
 													<div class="col-sm-8">
-														<input type="text" id="position" name="position" placeholder="" class="col-xs-10 col-sm-9" required="required" value="<?php echo set_value('position'); ?>"/>
+														<input type="text" id="position" name="position" class="col-xs-10 col-sm-9" value="<?php echo set_value('position'); ?>"/>
 														<?php echo form_error('position'); ?>
 													</div>
 												</div>

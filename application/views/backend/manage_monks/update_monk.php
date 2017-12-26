@@ -1,5 +1,5 @@
 <label>
-  <a href="<?php echo base_url();?>manage_monks/manage_monks"  class="btn btn-primary btn-sm"><i class="fa fa-backward"></i>ត្រលប់ក្រោយ</a>
+  <a href="<?php echo base_url();?>manage_monks"  class="btn btn-primary btn-sm"><i class="fa fa-backward"></i>ត្រលប់ក្រោយ</a>
   <a href="<?php echo base_url();?>manage_monks/create_monk" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>បន្ថែមថ្មី</a>
 </label>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_monks/update_monk/<?php echo $this -> uri -> segment(3); ?>" enctype="multipart/form-data">
@@ -155,52 +155,73 @@
 																							<?php echo form_error('grade'); ?>
 																					</div>
 																			</div>
-																			<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="job">
-																							ការងារបច្ចុប្បន្ន:<span class="required">*</span></label>
-																					<div class="col-sm-7">
-																							<select name="jop" id="job" class="col-xs-10 col-sm-9 chosen-select" data-placeholder="ប្រភេទការងារ" required>
-																									<option value=""></option>
-																									<?php
-																									foreach (job_category() as $job_id =>$value) {
-																										if($monk->row()->jop_type==$job_id){
-																											$job_select = "selected";
-																										}else{
-																											$job_select="";
-																										}
-																											echo "<option value='" . $job_id . "' ".$job_select.">" . $value . "</option>";
-																									}
-																									?>
-																							</select>
-																							<?php echo form_error('job'); ?>
-																					</div>
-																			</div>
-																			<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="work_position">
-																							មុខតំណែងក្នុងការងារ :<span class="required">*</span></label>
-																					<div class="col-sm-8">
-																							<input type="text" id="work_position" name="work_position"
-																										 class="col-xs-10 col-sm-9" required value="<?php echo $monk->row()->job_position;?>"/>
-																							<?php echo form_error('work_position'); ?>
-																					</div>
-																			</div>
-																			<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="workplace">
-																							ឈ្មោះកន្លែងការងារ :<span class="required">*</span></label>
-																					<div class="col-sm-8">
-																							<input type="text" id="workplace" name="workplace"
-																										 class="col-xs-10 col-sm-9" required value="<?php echo $monk->row()->company_name;?>"/>
-																							<?php echo form_error('workplace'); ?>
-																					</div>
-																			</div>
-																			<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="work_address">
-																							អាសយដ្ឋាននៃការងារ :<span class="required">*</span></label>
-																					<div class="col-sm-8">
-																						<textarea name="work_address" rows="3" id="work_address" class="col-xs-10 col-sm-9" required><?php echo $monk->row()->company_address;?></textarea>
-																							<?php echo form_error('work_address'); ?>
-																					</div>
-																			</div>
+                                      <div class="form-group">
+    																			<label class="col-sm-4 control-label no-padding-right" for="acknow_by">
+    																					ទទួលស្គាល់ដោយ :</label>
+    																			<div class="col-sm-8">
+    																					<input type="text" id="acknow_by" name="acknow_by" placeholder=""
+    																								 class="col-xs-10 col-sm-9"
+    																								 value="<?php echo $monk->row()->acknow_by; ?>"/>
+    																					<?php echo form_error('acknow_by'); ?>
+    																			</div>
+    																	</div>
+    																	<div class="form-group">
+    																			<label class="col-sm-4 control-label no-padding-right" for="use_house_id">
+    																					កុដិលេខ :<span class="required">*</span></label>
+    																			<div class="col-sm-7">
+    																					<select class="chosen-select form-control" id="use_house_id"
+    																									data-placeholder="ជ្រើសរើសកុដិ..." name="use_house_id" required>
+    																							<option value=""></option>
+    																							<?php
+    																							foreach ($houses->result() as $row) {
+    																									if($row->id==$monk->row()->use_house_id){
+    																											$house_se='selected';
+    																									}else{
+    																											$house_se='';
+    																									}
+    																									?>
+    																									<option value="<?php echo $row->id; ?>" <?php echo set_select('use_house_id', $row->id); ?> <?php echo $house_se;?>><?php echo $row->name; ?></option>
+    																									<?php
+    																							}
+    																							?>
+    																					</select>
+    																					<?php echo form_error('use_house_id'); ?>
+    																			</div>
+    																	</div>
+    																	<div class="form-group">
+    																			<label class="col-sm-4 control-label no-padding-right" for="group"> ក្រុម :<span
+    																									class="required">*</span></label>
+    																			<div class="col-sm-5">
+    																					<select class="chosen-select form-control" id="group"
+    																									data-placeholder="ជ្រើសរើសក្រុម..." name="group" required>
+    																							<option value=""></option>
+    																							<?php
+    																							foreach ($groups->result() as $row) {
+    																								if($monk_group_info->row()->use_group_id==$row->id){
+    																									$group_se ="selected";
+    																								}else{
+    																									$group_se="";
+    																								}
+    																							?>
+    																							<option value="<?php echo $row->id; ?>" <?php echo set_select('group', $row->id); ?> <?php echo $group_se;?>><?php echo $row->name; ?></option>
+    																							<?php
+    																							}
+    																							?>
+    																					</select>
+    																					<?php echo form_error('group'); ?>
+    																			</div>
+    																			<div class="col-sm-3">
+    																				 <?php
+    																				 		if($monk->row()->maser==1){
+    																							$checked="checked";
+    																						}else{
+    																							$checked="";
+    																						}
+    																				 ?>
+    																					<input type="checkbox" name="maser" id="maser" value="1" <?php echo $checked;?>>
+    																					<label>ប្រធានក្រុម</label>
+    																			</div>
+    																	</div>
 																			<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="user_account">
 																							ឈ្មោះគណនី:<span class="required">*</span></label>
@@ -504,73 +525,6 @@
 																			</div>
 																	</div>
 																	<div class="form-group">
-																			<label class="col-sm-4 control-label no-padding-right" for="acknow_by">
-																					ទទួលស្គាល់ដោយ :</label>
-																			<div class="col-sm-8">
-																					<input type="text" id="acknow_by" name="acknow_by" placeholder=""
-																								 class="col-xs-10 col-sm-9"
-																								 value="<?php echo $monk->row()->acknow_by; ?>"/>
-																					<?php echo form_error('acknow_by'); ?>
-																			</div>
-																	</div>
-																	<div class="form-group">
-																			<label class="col-sm-4 control-label no-padding-right" for="use_house_id">
-																					កុដិលេខ :<span class="required">*</span></label>
-																			<div class="col-sm-7">
-																					<select class="chosen-select form-control" id="use_house_id"
-																									data-placeholder="ជ្រើសរើសកុដិ..." name="use_house_id" required>
-																							<option value=""></option>
-																							<?php
-																							foreach ($houses->result() as $row) {
-																									if($row->id==$monk->row()->use_house_id){
-																											$house_se='selected';
-																									}else{
-																											$house_se='';
-																									}
-																									?>
-																									<option value="<?php echo $row->id; ?>" <?php echo set_select('use_house_id', $row->id); ?> <?php echo $house_se;?>><?php echo $row->name; ?></option>
-																									<?php
-																							}
-																							?>
-																					</select>
-																					<?php echo form_error('use_house_id'); ?>
-																			</div>
-																	</div>
-																	<div class="form-group">
-																			<label class="col-sm-4 control-label no-padding-right" for="group"> ក្រុម :<span
-																									class="required">*</span></label>
-																			<div class="col-sm-5">
-																					<select class="chosen-select form-control" id="group"
-																									data-placeholder="ជ្រើសរើសក្រុម..." name="group" required>
-																							<option value=""></option>
-																							<?php
-																							foreach ($groups->result() as $row) {
-																								if($monk_group_info->row()->use_group_id==$row->id){
-																									$group_se ="selected";
-																								}else{
-																									$group_se="";
-																								}
-																							?>
-																							<option value="<?php echo $row->id; ?>" <?php echo set_select('group', $row->id); ?> <?php echo $group_se;?>><?php echo $row->name; ?></option>
-																							<?php
-																							}
-																							?>
-																					</select>
-																					<?php echo form_error('group'); ?>
-																			</div>
-																			<div class="col-sm-3">
-																				 <?php
-																				 		if($monk->row()->maser==1){
-																							$checked="checked";
-																						}else{
-																							$checked="";
-																						}
-																				 ?>
-																					<input type="checkbox" name="maser" id="maser" value="1" <?php echo $checked;?>>
-																					<label>ប្រធានក្រុម</label>
-																			</div>
-																	</div>
-																	<div class="form-group">
 																			<label class="col-sm-4 control-label no-padding-right" for="photo">
 																					ជ្រើសរើសរូបភាព :</label>
 																			<div class="col-sm-7">
@@ -682,7 +636,7 @@
 															</div>
 															<div class="col-xs-12 col-sm-4 col-md-2">
 																<div class="form-group">
-																	<label for="speaking" class="control-label"><strong>និយាយ:</strong><a href="javascript:void(0)" class="btn btn-danger btn-xs pull-right remove_lang" title="Remove" data-monk="<?php echo $monk_id;?>" data-lang="<?php echo $lang_val->lang_id;?>" data-id="<?php echo $lang_val->id?>" style="margin-left: 94px;margin-top: -8px;"><i class="ace-icon fa fa-trash-o bigger-130"></i></a></label>
+																	<label for="speaking" class="control-label"><strong>និយាយ:</strong><a href="javascript:void(0)" class="btn btn-danger btn-xs pull-right remove_lang" title="Remove" data-monk="<?php echo $monk_id;?>" data-member="" data-lang="<?php echo $lang_val->lang_id;?>" data-id="<?php echo $lang_val->id?>" style="margin-left: 94px;margin-top: -8px;"><i class="ace-icon fa fa-trash-o bigger-130"></i></a></label>
 																	<div class="input-group col-sm-12">
 																		<select name="speaking[]" class="form-control chosen-select" data-placeholder="និយាយ...">
 																			<option value=""></option>
@@ -769,7 +723,7 @@
 													<div class="col-xs-12 col-sm-4 col-md-2">
 													<div class="form-group">
 														<label for="speaking" class="control-label"><strong>និយាយ:</strong>
-															<a href="javascript:void(0)" class="btn btn-danger btn-xs pull-right remove_lang" title="Remove" data-monk="" data-lang="" style="margin-left: 94px;margin-top: -8px;"><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
+															<a href="javascript:void(0)" class="btn btn-danger btn-xs pull-right remove_lang" title="Remove" data-monk="" data-member="" data-lang="" style="margin-left: 94px;margin-top: -8px;"><i class="ace-icon fa fa-trash-o bigger-130"></i></a>
 														</label>
 														<div class="input-group col-sm-12">
 															<select name="speaking[]" class="form-control chosen-select" data-placeholder="និយាយ...">
@@ -794,6 +748,476 @@
 					</div>
 			</div><!-- /.col -->
 
+	</div><!-- /.row -->
+	<hr/>
+  <div class="row">
+		<div class="col-sm-12">
+			<div class="tabbable">
+				<ul class="nav nav-tabs" id="myTab">
+					<li class="active">
+						<a data-toggle="tab" href="#home"> <i class="green ace-icon fa fa-home bigger-120"></i> ព័ត៌មានអំពីការងារបច្ចុប្បន្ន </a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div id="home" class="tab-pane fade in active">
+						<div class="widget-body">
+							<div class="widget-main">
+								<div class="widget-body">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="widget-main no-padding">
+											<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="student_type"> ជាសិស្ស ឬ និស្សិត:</label>
+													<div class="col-sm-8">
+														<select id="student_type" name="student_type"class="col-xs-10 col-sm-9">
+															<option value="">--ប្រភេទនៃសិស្ស--</option>
+															<option value="1" <?php echo ($monk->row()->student_type==1?"selected":""); ?>>សិស្ស</option>
+															<option value="2" <?php echo ($monk->row()->student_type==2?"selected":""); ?>>និស្សិត</option>
+														</select>
+													</div>
+													<?php echo form_error('student_type'); ?>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="study_at"> រៀននៅ :</label>
+													<div class="col-sm-8">
+														<input type="text" id="study_at" name="study_at"
+														class="col-xs-10 col-sm-9"  value="<?php echo $monk->row()->study_at; ?>"/>
+														<?php echo form_error('study_at'); ?>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="school_group"> ក្រុមទី :</label>
+													<div class="col-sm-8">
+														<input type="text" id="school_group" name="school_group"
+														class="col-xs-10 col-sm-9" value="<?php echo $monk->row()->school_group; ?>"/>
+														<?php echo form_error('school_group'); ?>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="generation"> ជំនាន់ទី :</label>
+													<div class="col-sm-8">
+														<input type="text" id="generation" name="generation" placeholder="" class="col-xs-10 col-sm-9"
+                            value="<?php echo $monk->row()->generation; ?>"/>
+														<?php echo form_error('generation'); ?>
+													</div>
+												</div>
+												<?php if($get_daytime_stu !=false){
+														foreach ($get_daytime_stu->result() as $stu_val) {
+													?>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_study"> ពីថ្ងៃ:</label>
+													<div class="col-sm-4">
+															<select name="fromdayworking_study[]" id="fromdayworking_study" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			$stu_fr_se="";
+																			if($stu_val->fromid==$dayworking->id){
+																				$stu_fr_se="selected";
+																			}
+																			echo "<option value='".$dayworking->id."' ".$stu_fr_se.">".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+													<label class="col-sm-2 control-label no-padding-right" for="todayworking_study" style="margin-left: -17%;"> ដល់:</label>
+													<div class="col-sm-4">
+															<select name="todayworking_study[]" id="todayworking_study" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			$stu_to_se="";
+																			if($stu_val->todayid==$dayworking->id){
+																				$stu_to_se="selected";
+																			}
+																			echo "<option value='".$dayworking->id."' ".$stu_to_se.">".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_study">ពីម៉ោង:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="from_timeworking_study[]"
+															class="col-xs-10 col-sm-9 timepicker-default from_timeworking_study"
+															id="from_timeworking_study" value="<?php echo $stu_val->from_time;?>"/>
+														</div>
+													</div>
+													<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_study" style="margin-left: -9%;">ដល់:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="to_timeworking_study[]"
+															class="col-xs-10 col-sm-9 timepicker-default to_timeworking_study"
+															id="to_timeworking_study" value="<?php echo $stu_val->to_time;?>"/>
+														</div>
+													</div>
+												</div>
+												<?php if(count($get_daytime_stu->result())==1):?>
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_study"> ពីថ្ងៃ:</label>
+														<div class="col-sm-4">
+																<select name="fromdayworking_study[]" id="fromdayworking_study" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+														<label class="col-sm-2 control-label no-padding-right" for="todayworking_study" style="margin-left: -17%;"> ដល់:</label>
+														<div class="col-sm-4">
+																<select name="todayworking_study[]" id="todayworking_study" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+													</div>
+													<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_study">ពីម៉ោង:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="from_timeworking_study[]" class="col-xs-10 col-sm-9 timepicker-default from_timeworking_study" id="from_timeworking_study"/>
+														</div>
+													</div>
+													<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_study" style="margin-left: -9%;">ដល់:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="to_timeworking_study[]" class="col-xs-10 col-sm-9 timepicker-default to_timeworking_study" id="to_timeworking_study"/>
+														</div>
+													</div>
+												</div>
+												<?php endif;?>
+												<?php }
+											}else{?>
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_study"> ពីថ្ងៃ:</label>
+														<div class="col-sm-4">
+																<select name="fromdayworking_study[]" id="fromdayworking_study" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+														<label class="col-sm-2 control-label no-padding-right" for="todayworking_study" style="margin-left: -17%;"> ដល់:</label>
+														<div class="col-sm-4">
+																<select name="todayworking_study[]" id="todayworking_study" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_study">ពីម៉ោង:</label>
+														<div class="col-sm-4">
+															<div class="input-append bootstrap-timepicker-component">
+																<input type="text" name="from_timeworking_study[]" class="col-xs-10 col-sm-9 timepicker-default from_timeworking_study" id="from_timeworking_study"/>
+															</div>
+														</div>
+														<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_study" style="margin-left: -9%;">ដល់:</label>
+														<div class="col-sm-4">
+															<div class="input-append bootstrap-timepicker-component">
+																<input type="text" name="to_timeworking_study[]" class="col-xs-10 col-sm-9 timepicker-default to_timeworking_study" id="to_timeworking_study"/>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_study"> ពីថ្ងៃ:</label>
+														<div class="col-sm-4">
+																<select name="fromdayworking_study[]" id="fromdayworking_study" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+														<label class="col-sm-2 control-label no-padding-right" for="todayworking_study" style="margin-left: -17%;"> ដល់:</label>
+														<div class="col-sm-4">
+																<select name="todayworking_study[]" id="todayworking_study" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_study">ពីម៉ោង:</label>
+														<div class="col-sm-4">
+															<div class="input-append bootstrap-timepicker-component">
+																<input type="text" name="from_timeworking_study[]" class="col-xs-10 col-sm-9 timepicker-default from_timeworking_study" id="from_timeworking_study"/>
+															</div>
+														</div>
+														<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_study" style="margin-left: -9%;">ដល់:</label>
+														<div class="col-sm-4">
+															<div class="input-append bootstrap-timepicker-component">
+																<input type="text" name="to_timeworking_study[]" class="col-xs-10 col-sm-9 timepicker-default to_timeworking_study" id="to_timeworking_study"/>
+															</div>
+														</div>
+													</div>
+												<?php }?>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="school_address"> អាសយដ្ឋានសាលារៀន :</label>
+													<div class="col-sm-8">
+														<textarea id="school_address" name="school_address" rows="2"
+														class="col-xs-10 col-sm-9"><?php echo $monk->row()->school_address; ?></textarea>
+														<?php echo form_error('school_address'); ?>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="work_type"> មន្រ្ដីរាជការ ឬ បុគ្គលិក :</label>
+													<div class="col-sm-8">
+														<select id="work_type" name="work_type"class="col-xs-10 col-sm-9">
+															<option value="">--ប្រភេទនៃការងារ--</option>
+															<?php
+																$type_s="";
+																$gov="";
+																if($monk->row()->jop==1){
+																	$type_s="selected";
+																}
+																if($monk->row()->jop==2){
+																	$gov="selected";
+																}
+															?>
+															<option value="1" <?php echo $type_s;?>>បុគ្គលិក</option>
+															<option value="2" <?php echo $gov;?>>មន្ត្រីរាជការ</option>
+														</select>
+													</div>
+													<?php echo form_error('work_type'); ?>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="workplace"> ឈ្មោះស្ថាប័ន :</label>
+													<div class="col-sm-8">
+														<input type="text" id="workplace" name="workplace"
+														class="col-xs-10 col-sm-9" value="<?php echo $monk->row()->company_name; ?>"/>
+														<?php echo form_error('workplace'); ?>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="work_position"> មុខងារបច្ចុប្បន្ន :</label>
+													<div class="col-sm-8">
+														<input type="text" id="work_position" name="work_position"
+														 class="col-xs-10 col-sm-9" value="<?php echo $monk->row()->job_position; ?>"/>
+														<?php echo form_error('work_position'); ?>
+													</div>
+												</div>
+												<?php
+												if($get_daytime_working !=false){
+													foreach ($get_daytime_working->result() as $working_val) {
+													?>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_working"> ពីថ្ងៃ:</label>
+													<div class="col-sm-4">
+															<select name="fromdayworking_working[]" id="fromdayworking_working" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			if($working_val->fromid==$dayworking->id){
+																				$from_se="selected";
+																			}else{
+																				$from_se="";
+																			}
+																			echo "<option value='".$dayworking->id."' ".$from_se.">".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+													<label class="col-sm-2 control-label no-padding-right" for="todayworking_working" style="margin-left: -17%;"> ដល់:</label>
+													<div class="col-sm-4">
+															<select name="todayworking_working[]" id="todayworking_working" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			if($working_val->todayid==$dayworking->id){
+																				$to_se="selected";
+																			}else{
+																				$to_se="";
+																			}
+																			echo "<option value='".$dayworking->id."'".$to_se.">".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_working">ពីម៉ោង:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="from_timeworking_working[]"
+															class="col-xs-10 col-sm-9 timepicker-default from_timeworking_working"
+															id="from_timeworking_working"  value="<?php echo $working_val->from_time;?>"/>
+														</div>
+													</div>
+													<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_working[]" style="margin-left: -9%;">ដល់:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="to_timeworking_working[]"
+															class="col-xs-10 col-sm-9 timepicker-default to_timeworking_working"
+															id="to_timeworking_working"  value="<?php echo $working_val->to_time;?>"/>
+														</div>
+													</div>
+												</div>
+												<?php if(count($get_daytime_working->result())==1){?>
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_working"> ពីថ្ងៃ:</label>
+														<div class="col-sm-4">
+																<select name="fromdayworking_working[]" id="fromdayworking_working" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+														<label class="col-sm-2 control-label no-padding-right" for="todayworking_working" style="margin-left: -17%;"> ដល់:</label>
+														<div class="col-sm-4">
+																<select name="todayworking_working[]" id="todayworking_working" class="col-xs-10 col-sm-9">
+																	<option value="">--ជ្រើសរើស--</option>
+																		<?php
+																			foreach ($days->result() as $dayworking) {
+																				echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																			}
+																		?>
+																</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_working">ពីម៉ោង:</label>
+														<div class="col-sm-4">
+															<div class="input-append bootstrap-timepicker-component">
+																<input type="text" name="from_timeworking_working[]" class="col-xs-10 col-sm-9 timepicker-default from_timeworking_working" id="from_timeworking_working"/>
+															</div>
+														</div>
+														<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_working" style="margin-left: -9%;">ដល់:</label>
+														<div class="col-sm-4">
+															<div class="input-append bootstrap-timepicker-component">
+																<input type="text" name="to_timeworking_working[]"
+																class="col-xs-10 col-sm-9 timepicker-default to_timeworking_working"
+																id="to_timeworking_working"/>
+															</div>
+														</div>
+													</div>
+												<?php }?>
+											<?php }
+													}else{
+												?>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_working"> ពីថ្ងៃ:</label>
+													<div class="col-sm-4">
+															<select name="fromdayworking_working[]" id="fromdayworking_working" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+													<label class="col-sm-2 control-label no-padding-right" for="todayworking_working" style="margin-left: -17%;"> ដល់:</label>
+													<div class="col-sm-4">
+															<select name="todayworking_working[]" id="todayworking_working" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_working">ពីម៉ោង:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="from_timeworking_working[]" class="col-xs-10 col-sm-9 timepicker-default from_timeworking_working" id="from_timeworking_working"/>
+														</div>
+													</div>
+													<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_working[]" style="margin-left: -9%;">ដល់:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="to_timeworking_working[]" class="col-xs-10 col-sm-9 timepicker-default to_timeworking_working" id="to_timeworking_working"/>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="fromdayworking_working"> ពីថ្ងៃ:</label>
+													<div class="col-sm-4">
+															<select name="fromdayworking_working[]" id="fromdayworking_working" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+													<label class="col-sm-2 control-label no-padding-right" for="todayworking_working" style="margin-left: -17%;"> ដល់:</label>
+													<div class="col-sm-4">
+															<select name="todayworking_working[]" id="todayworking_working" class="col-xs-10 col-sm-9">
+																<option value="">--ជ្រើសរើស--</option>
+																	<?php
+																		foreach ($days->result() as $dayworking) {
+																			echo "<option value='".$dayworking->id."'>".$dayworking->name."</option>";
+																		}
+																	?>
+															</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="from_timeworking_working">ពីម៉ោង:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="from_timeworking_working[]" class="col-xs-10 col-sm-9 timepicker-default from_timeworking_working" id="from_timeworking_working"/>
+														</div>
+													</div>
+													<label class="col-sm-1 control-label no-padding-right" for="to_timeworking_working" style="margin-left: -9%;">ដល់:</label>
+													<div class="col-sm-4">
+														<div class="input-append bootstrap-timepicker-component">
+															<input type="text" name="to_timeworking_working[]" class="col-xs-10 col-sm-9 timepicker-default to_timeworking_working" id="to_timeworking_working"/>
+														</div>
+													</div>
+												</div>
+												<?php
+											}?>
+												<div class="form-group">
+													<label class="col-sm-4 control-label no-padding-right" for="work_address">  អាសយដ្ឋានស្ថាប័នធ្វើការ:</label>
+													<div class="col-sm-8">
+														<textarea id="work_address"
+														name="work_address" class="col-xs-10 col-sm-9"
+														rows="2"><?php echo $monk->row()->company_address?></textarea>
+														<?php echo form_error('work_address'); ?>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.col -->
 	</div><!-- /.row -->
 	<hr/>
 	<div class="row">

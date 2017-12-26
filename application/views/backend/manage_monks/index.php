@@ -1,5 +1,6 @@
-<a href="<?php echo base_url();?>manage_monks/create_monk"><input type="button" class="btn btn-primary" value="បន្ថែមថ្មី" /><br /><br /></a>
-<div class="row">
+<label>
+	<a href="<?php echo base_url();?>manage_monks/create_monk" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>បន្ថែមថ្មី</a>
+</label>
 	<div class="col-xs-12">
 		<?php
 			$this->load->view('backend/notification/index.php');

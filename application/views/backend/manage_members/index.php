@@ -1,5 +1,6 @@
-<a href="<?php echo base_url();?>manage_members/create_member">
-	<input type="button" class="btn btn-primary" value="បន្ថែមពុទ្ធបរិស័ទ្ធថ្មី" /><br /><br /></a>
+<label>
+	<a href="<?php echo base_url();?>manage_members/create_member" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>បន្ថែមថ្មី</a>
+</label>
 <div class="row">
 	<div class="col-xs-12">
 		<?php

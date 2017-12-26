@@ -61,7 +61,7 @@
   </div>
   <div class="col-xs-12 col-sm-4 col-md-2">
     <div class="form-group">
-      <label for="speaking" class="control-label"><strong>និយាយ:</strong><a href="javascript:void(0)" class="btn btn-danger btn-xs pull-right remove_lang" title="Remove" data-monk="" data-lang="" style="margin-left: 94px;margin-top: -8px;"><i class="ace-icon fa fa-trash-o bigger-130"></i></a></label>
+      <label for="speaking" class="control-label"><strong>និយាយ:</strong><a href="javascript:void(0)" class="btn btn-danger btn-xs pull-right remove_lang" title="Remove" data-monk="" data-member="" data-lang="" style="margin-left: 94px;margin-top: -8px;"><i class="ace-icon fa fa-trash-o bigger-130"></i></a></label>
       <div class="input-group col-sm-12">
         <select name="speaking[]" id="speaking" class="form-control chosen-select" data-placeholder="និយាយ...">
           <option value="">និយាយ....</option>

@@ -947,7 +947,7 @@
 					//function for get data villages
 					$("body").on("change","#current_commune",function(){
 						var commune_id = $(this).val();
-						alert(commune_id);
+						// alert(commune_id);
 							$.ajax({
 								type:"post",
 								dataType:"json",
@@ -968,6 +968,7 @@
 					//function for delete row
 					$("body").on("click",".remove_lang",function(){
 						 var monk_id = $(this).data("monk");
+						 var member_id = $(this).data("member");
 						 var lang_id = $(this).data("lang");
 						 var id = $(this).data("id");
 						 if(lang_id !=""){
@@ -976,6 +977,7 @@
 									url:"<?php echo base_url().'manage_monks/remove_lang'?>",
 									data:{
 										'monk_id':monk_id,
+										'member_id':member_id,
 										'lang_id':lang_id,
 										'id':id,
 									},

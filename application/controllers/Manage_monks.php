@@ -83,6 +83,7 @@ class Manage_monks extends Security {
 			$data['locations'] = $this -> Globals -> select_all('locations');
 			$data['member_types'] = $this -> Globals -> select_all('member_types');
 			$data['langauges'] = $this -> Globals -> select_all('languages');
+			$data['days'] = $this -> Globals -> select_all('dayofweek');
 			$this -> load -> view('backend/index', $data);
 		} else {
 
@@ -167,6 +168,11 @@ class Manage_monks extends Security {
 								'current_district' => $this->input->post("current_district"),
 								'current_commune' => $this->input->post("current_commune"),
 								'current_village' => $this->input->post("current_commune"),
+								'student_type' => $this->input->post("student_type"),
+								'study_at' => $this->input->post("study_at"),
+								'generation' => $this->input->post("generation"),
+								'school_group' => $this->input->post("school_group"),
+								'school_address' => $this->input->post("school_address"),
 							);
 
 							$is_last_id = $this -> Globals -> insert_get_last_id('monks', $data);
@@ -179,6 +185,7 @@ class Manage_monks extends Security {
 								'status'=>1,
 								'created_at'=>null
 								);
+
 								$this -> Globals -> insert('monk_groups', $group_data);
 								$language_name = $this->input->post("language");
 								$read = $this->input->post("read");
@@ -196,6 +203,43 @@ class Manage_monks extends Security {
 												'writing' => $writing[$i]
 											);
 											$this -> Globals -> insert('monk_languages', $data_lanauge);
+										}
+								}
+
+								//insert data into timeworkingday
+								$fdw_stu = $this->input->post("fromdayworking_study");
+								$tdw_stu = $this->input->post("todayworking_study");
+								$ftw_stu = $this->input->post("from_timeworking_study");
+								$ttw_stu = $this->input->post("to_timeworking_study");
+								for($i=0;$i<count($fdw_stu);$i++){
+										if($fdw_stu[$i] !=""){
+											$data_stu = array(
+												'monk_id'=>$is_last_id,
+												'from_day' => $fdw_stu[$i],
+												'to_day' => $tdw_stu[$i],
+												'from_time' => $ftw_stu[$i],
+												'to_time' =>$ttw_stu[$i],
+												'type_job' =>1
+											);
+											$this->Globals->insert('workingday', $data_stu);
+										}
+								}
+
+								$fdw_w = $this->input->post("fromdayworking_working");
+								$tdw_w = $this->input->post("todayworking_working");
+								$ftw_w = $this->input->post("from_timeworking_working");
+								$ttw_w = $this->input->post("to_timeworking_working");
+								for($i=0;$i<count($fdw_w);$i++){
+										if($fdw_w[$i] !=""){
+												$data_work = array(
+													'monk_id'=>$is_last_id,
+													'from_day' => $fdw_w[$i],
+													'to_day' => $tdw_w[$i],
+													'from_time' => $ftw_w[$i],
+													'to_time' =>$ttw_w[$i],
+													'type_job' =>2
+												);
+												$this->Globals->insert('workingday', $data_work);
 										}
 								}
 
@@ -251,14 +295,14 @@ class Manage_monks extends Security {
 		$this -> form_validation -> set_rules('user_account', 'user account', 'required');
 		// $this -> form_validation -> set_rules('user_password', 'user password', 'required');
 
-		$this -> form_validation -> set_rules('jop', 'Current Job', 'required');
-		$this -> form_validation -> set_rules('workplace', 'Name of Workplace', 'required');
-		$this -> form_validation -> set_rules('work_address', 'Address of Workplace', 'required');
+		// $this -> form_validation -> set_rules('jop', 'Current Job', 'required');
+		// $this -> form_validation -> set_rules('workplace', 'Name of Workplace', 'required');
+		// $this -> form_validation -> set_rules('work_address', 'Address of Workplace', 'required');
 		$this -> form_validation -> set_rules('eng_name', 'English Name', 'required');
 
 		$this -> form_validation -> set_rules('current_provice', 'Current Province', 'required');
 		$this -> form_validation -> set_rules('group', 'Group', 'required');
-		$this -> form_validation -> set_rules('work_position', 'Position in Workplace', 'required');
+		// $this -> form_validation -> set_rules('work_position', 'Position in Workplace', 'required');
 
 		if ($this -> form_validation -> run() === FALSE) {
 			$data['groups'] = $this -> Globals -> select_all('groups');
@@ -277,6 +321,9 @@ class Manage_monks extends Security {
 			$data['from_district'] = $this -> Globals -> select_where('districts',array('location_id'=>$data['monk']->row()->use_location_id));
 			$data['from_communes'] = $this -> Globals -> select_where('communes',array('district_id'=>$data['monk']->row()->distrinct_id));
 			$data['from_villages'] = $this -> Globals -> select_where('villages',array('commune_id'=>$data['monk']->row()->commune_id));
+			$data['get_daytime_stu'] = $this->Globals->get_dayworking(1,$monk_id,'monk_id');
+			$data['get_daytime_working'] = $this->Globals->get_dayworking(2,$monk_id,'monk_id');
+			$data['days'] = $this -> Globals -> select_all('dayofweek');
 			$data['monk_id'] =$monk_id;
 			$this -> load -> view('backend/index', $data);
 		} else {
@@ -363,6 +410,11 @@ class Manage_monks extends Security {
 							'current_district' => $this->input->post("current_district"),
 							'current_commune' => $this->input->post("current_commune"),
 							'current_village' => $this->input->post("current_commune"),
+							'student_type' => $this->input->post("student_type"),
+							'study_at' => $this->input->post("study_at"),
+							'generation' => $this->input->post("generation"),
+							'school_group' => $this->input->post("school_group"),
+							'school_address' => $this->input->post("school_address"),
 						);
 				if($this -> input -> post('user_password', TRUE) !=""){
 					$data['user_password'] = sha1($this -> input -> post('user_password', TRUE));
@@ -404,6 +456,45 @@ class Manage_monks extends Security {
 									'writing' => $writing[$i]
 								);
 								$this -> Globals -> insert('monk_languages', $data_lanauge);
+							}
+					}
+
+					//insert data into timeworkingday
+					$fdw_stu = $this->input->post("fromdayworking_study");
+					$tdw_stu = $this->input->post("todayworking_study");
+					$ftw_stu = $this->input->post("from_timeworking_study");
+					$ttw_stu = $this->input->post("to_timeworking_study");
+					$this->Globals->delete("workingday",array('monk_id' => $monk_id,"type_job"=>1));
+					for($i=0;$i<count($fdw_stu);$i++){
+							if($fdw_stu[$i] !=""){
+								$data_stu = array(
+									'monk_id' => $monk_id,
+									'from_day' => $fdw_stu[$i],
+									'to_day' => $tdw_stu[$i],
+									'from_time' => $ftw_stu[$i],
+									'to_time' =>$ttw_stu[$i],
+									'type_job' =>1
+								);
+								$this->Globals->insert('workingday', $data_stu);
+							}
+					}
+
+					$fdw_w = $this->input->post("fromdayworking_working");
+					$tdw_w = $this->input->post("todayworking_working");
+					$ftw_w = $this->input->post("from_timeworking_working");
+					$ttw_w = $this->input->post("to_timeworking_working");
+					$this->Globals->delete("workingday",array('monk_id' => $monk_id,"type_job"=>2));
+					for($i=0;$i<count($fdw_w);$i++){
+							if($fdw_w[$i] !=""){
+									$data_work = array(
+										'monk_id' => $monk_id,
+										'from_day' => $fdw_w[$i],
+										'to_day' => $tdw_w[$i],
+										'from_time' => $ftw_w[$i],
+										'to_time' =>$ttw_w[$i],
+										'type_job' =>2
+									);
+									$this->Globals->insert('workingday', $data_work);
 							}
 					}
 
@@ -491,9 +582,15 @@ class Manage_monks extends Security {
 
 	public function remove_lang(){
 		$monk_id = $this->input->post("monk_id");
+		$member_id = $this->input->post("member_id");
 		$lang_id = $this->input->post("lang_id");
 		$id = $this->input->post("id");
-		$this->Globals->delete("monk_languages",array("monk_id"=>$monk_id,"lang_id"=>$lang_id,"id"=>$id));
+		if($monk_id !=""){
+			$this->Globals->delete("monk_languages",array("monk_id"=>$monk_id,"lang_id"=>$lang_id,"id"=>$id));
+		}else{
+			$this->Globals->delete("monk_languages",array("member_id"=>$member_id,"lang_id"=>$lang_id,"id"=>$id));
+		}
+
 		echo json_encode("come true");
 	}
 
