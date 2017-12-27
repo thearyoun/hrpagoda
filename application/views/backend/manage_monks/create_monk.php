@@ -30,9 +30,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="eng_name">
-                                                ឈ្មោះជាអក្សរឡាតាំង :<span class="required">*</span></label>
+                                                ឈ្មោះជាអក្សរឡាតាំង :</label>
                                             <div class="col-sm-8">
-                                                <input type="text" id="eng_name" name="eng_name" required
+                                                <input type="text" id="eng_name" name="eng_name"
                                                        class="col-xs-10 col-sm-9"
                                                        value="<?php echo set_value('eng_name'); ?>"/>
                                                 <?php echo form_error('eng_name'); ?>
@@ -40,9 +40,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="nick_name">
-                                                នាមបញ្ញត្តិ :<span class="required">*</span></label>
+                                                នាមបញ្ញត្តិ :</label>
                                             <div class="col-sm-8">
-                                                <input type="text" id="nick_name" name="nick_name" required
+                                                <input type="text" id="nick_name" name="nick_name"
                                                        class="col-xs-10 col-sm-9"
                                                        value="<?php echo set_value('nick_name'); ?>"/>
                                                 <?php echo form_error('nick_name'); ?>
@@ -51,7 +51,6 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="nationality">
                                                 សញ្ជាតិ :<span class="required">*</span></label>
-
                                             <div class="col-sm-8">
                                                 <input type="text" id="nationality" name="nationality" required
                                                        class="col-xs-10 col-sm-9"
@@ -88,7 +87,6 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="place_of_birth">
                                                 ទីកន្លែងកំណើត :<span class="required">*</span></label>
-
                                             <div class="col-sm-8">
                                                 <input type="text" id="place_of_birth" name="place_of_birth"
                                                        required class="col-xs-10 col-sm-9"
@@ -107,9 +105,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label no-padding-right" for="phone_number">
-                                                លេខទូរស័ព្ទ :<span class="required">*</span></label>
+                                                លេខទូរស័ព្ទ :</label>
                                             <div class="col-sm-8">
-                                                <input type="text" id="phone_number" name="phone_number" required
+                                                <input type="text" id="phone_number" name="phone_number"
                                                        class="col-xs-10 col-sm-9"
                                                        value="<?php echo set_value('phone_number'); ?>"/>
                                                 <?php echo form_error('phone_number'); ?>
@@ -279,7 +277,6 @@
                                       <label class="col-sm-4 control-label no-padding-right"
                                              for="vegetarian_date"> ថ្ងៃ ខែ ឆ្នាំបួស :<span
                                                   class="required">*</span></label>
-
                                       <div class="col-sm-7">
                                           <div class="input-group">
                                               <input class="form-control date-picker" id="id-date-picker-1" required
@@ -352,6 +349,22 @@
                                                 ?>
                                             </select>
                                             <?php echo form_error('use_position_id'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="stay_date">​ស្នាក់នៅថ្ងៃ
+                                            :<span class="required">*</span></label>
+                                        <div class="col-sm-7">
+                                            <div class="input-group">
+                                                <input class="form-control date-picker" id="id-date-picker-1" required
+                                                       type="text" data-date-format="dd-mm-yyyy"
+                                                       name="stay_date" class="col-xs-10 col-sm-9"
+                                                       value="<?php echo set_value('stay_date'); ?>"/>
+                                                <span class="input-group-addon">
+                                                  <i class="fa fa-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                            <?php echo form_error('stay_date'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -759,24 +772,10 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label no-padding-right"
-                                                           for="monk_reference_position"> មុខងារ :<span
-                                                                class="required">*</span></label>
-
-                                                    <div class="col-sm-8">
-                                                        <input type="text" id="monk_reference_position"
-                                                               name="monk_reference_position" required
-                                                               class="col-xs-10 col-sm-9"
-                                                               value="<?php echo set_value('monk_reference_position'); ?>"/>
-                                                        <?php echo form_error('monk_reference_position'); ?>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-4 control-label no-padding-right"
                                                            for="monk_current_address"> អាសយដ្ឋានបច្ចុប្បន្ន :<span
                                                                 class="required">*</span></label>
                                                     <div class="col-sm-8">
-                              														<textarea id="monk_current_address" name="monk_current_address"
-                                                                                                required class="col-xs-10 col-sm-9">
+                              														<textarea id="monk_current_address" name="monk_current_address" required class="col-xs-10 col-sm-9">
                               															<?php echo set_value('monk_current_address'); ?>
                               														</textarea>
                                                         <?php echo form_error('monk_current_address'); ?>
@@ -789,7 +788,6 @@
                                                 <label class="col-sm-4 control-label no-padding-right"
                                                        for="monk_reference_phone"> លេខទូរស័ព្ទ :<span
                                                             class="required">*</span></label>
-
                                                 <div class="col-sm-8">
                                                     <input type="text" id="monk_reference_phone"
                                                            name="monk_reference_phone" required
@@ -799,19 +797,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label no-padding-right" for="stay_date">​ស្នាក់នៅថ្ងៃ
-                                                    :<span class="required">*</span></label>
-                                                <div class="col-sm-7">
-                                                    <div class="input-group">
-                                                        <input class="form-control date-picker" id="id-date-picker-1" required
-                                                               type="text" data-date-format="dd-mm-yyyy"
-                                                               name="stay_date" class="col-xs-10 col-sm-9"
-                                                               value="<?php echo set_value('stay_date'); ?>"/>
-                                                        <span class="input-group-addon">
-                            															<i class="fa fa-calendar bigger-110"></i>
-                            														</span>
-                                                    </div>
-                                                    <?php echo form_error('stay_date'); ?>
+                                                <label class="col-sm-4 control-label no-padding-right"
+                                                       for="monk_reference_position"> មុខងារ :<span
+                                                            class="required">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="monk_reference_position"
+                                                           name="monk_reference_position" required
+                                                           class="col-xs-10 col-sm-9"
+                                                           value="<?php echo set_value('monk_reference_position'); ?>"/>
+                                                    <?php echo form_error('monk_reference_position'); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -857,7 +851,6 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label no-padding-right"
                                                            for="father_phone"> លេខទូរស័ព្ទ :</label>
-
                                                     <div class="col-sm-8">
                                                         <input type="text" id="father_phone" name="father_phone"
                                                                class="col-xs-10 col-sm-9"
@@ -881,7 +874,6 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label no-padding-right"
                                                            for="mother_phone"> លេខទូរស័ព្ទ :</label>
-
                                                     <div class="col-sm-8">
                                                         <input type="text" id="mother_phone" name="mother_phone"
                                                                class="col-xs-10 col-sm-9"

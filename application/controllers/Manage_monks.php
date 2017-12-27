@@ -26,9 +26,8 @@ class Manage_monks extends Security {
 	public function create_monk() {
 
 		$data['title'] = "Create monk";
-
 		$this -> form_validation -> set_rules('username', 'username', 'required');
-		$this -> form_validation -> set_rules('nick_name', 'NickName', 'required');
+		// $this -> form_validation -> set_rules('nick_name', 'NickName', 'required');
 		$this -> form_validation -> set_rules('nation', 'nation', 'required');
 		$this -> form_validation -> set_rules('nationality', 'nationality', 'required');
 		$this -> form_validation -> set_rules('date_of_birth', 'date of birth', 'required');
@@ -36,7 +35,7 @@ class Manage_monks extends Security {
 
 		$this -> form_validation -> set_rules('place_of_birth', 'place of birth', 'required');
 		$this -> form_validation -> set_rules('current_address', 'current_address', 'required');
-		$this -> form_validation -> set_rules('phone_number', 'phone number', 'required');
+		// $this -> form_validation -> set_rules('phone_number', 'phone number', 'required');
 
 		$this -> form_validation -> set_rules('vegetarian_date', 'vegetarian date', 'required');
 		$this -> form_validation -> set_rules('vegetarian_place', 'vegetarian place', 'required');
@@ -65,14 +64,14 @@ class Manage_monks extends Security {
 		$this -> form_validation -> set_rules('user_account', 'user account', 'required');
 		$this -> form_validation -> set_rules('user_password', 'user password', 'required');
 
-		$this -> form_validation -> set_rules('jop', 'Current Job', 'required');
-		$this -> form_validation -> set_rules('workplace', 'Name of Workplace', 'required');
-		$this -> form_validation -> set_rules('work_address', 'Address of Workplace', 'required');
-		$this -> form_validation -> set_rules('eng_name', 'English Name', 'required');
+		// $this -> form_validation -> set_rules('jop', 'Current Job', 'required');
+		// $this -> form_validation -> set_rules('workplace', 'Name of Workplace', 'required');
+		// $this -> form_validation -> set_rules('work_address', 'Address of Workplace', 'required');
+		// $this -> form_validation -> set_rules('eng_name', 'English Name', 'required');
+		// $this -> form_validation -> set_rules('work_position', 'Position in Workplace', 'required');
 
 		$this -> form_validation -> set_rules('current_provice', 'Current Province', 'required');
 		$this -> form_validation -> set_rules('group', 'Group', 'required');
-		$this -> form_validation -> set_rules('work_position', 'Position in Workplace', 'required');
 
 		if ($this -> form_validation -> run() === FALSE) {
 			$this->load->helper("my");
@@ -258,7 +257,7 @@ class Manage_monks extends Security {
 		$data['title'] = "Update monk";
 
 		$this -> form_validation -> set_rules('username', 'username', 'required');
-		$this -> form_validation -> set_rules('nick_name', 'NickName', 'required');
+		// $this -> form_validation -> set_rules('nick_name', 'NickName', 'required');
 		$this -> form_validation -> set_rules('nation', 'nation', 'required');
 		$this -> form_validation -> set_rules('nationality', 'nationality', 'required');
 		$this -> form_validation -> set_rules('date_of_birth', 'date of birth', 'required');
@@ -266,7 +265,7 @@ class Manage_monks extends Security {
 
 		$this -> form_validation -> set_rules('place_of_birth', 'place of birth', 'required');
 		$this -> form_validation -> set_rules('current_address', 'current_address', 'required');
-		$this -> form_validation -> set_rules('phone_number', 'phone number', 'required');
+		// $this -> form_validation -> set_rules('phone_number', 'phone number', 'required');
 
 		$this -> form_validation -> set_rules('vegetarian_date', 'vegetarian date', 'required');
 		$this -> form_validation -> set_rules('vegetarian_place', 'vegetarian place', 'required');
@@ -291,18 +290,16 @@ class Manage_monks extends Security {
 		$this -> form_validation -> set_rules('mother_occupation', 'mother occupation', 'required');
 		$this -> form_validation -> set_rules('mother_address', 'mother address', 'required');
 		$this -> form_validation -> set_rules('stay_date', 'stay date', 'required');
-
 		$this -> form_validation -> set_rules('user_account', 'user account', 'required');
 		// $this -> form_validation -> set_rules('user_password', 'user password', 'required');
-
 		// $this -> form_validation -> set_rules('jop', 'Current Job', 'required');
 		// $this -> form_validation -> set_rules('workplace', 'Name of Workplace', 'required');
 		// $this -> form_validation -> set_rules('work_address', 'Address of Workplace', 'required');
-		$this -> form_validation -> set_rules('eng_name', 'English Name', 'required');
-
+		// $this -> form_validation -> set_rules('work_position', 'Position in Workplace', 'required');
+		// $this -> form_validation -> set_rules('eng_name', 'English Name', 'required');
 		$this -> form_validation -> set_rules('current_provice', 'Current Province', 'required');
 		$this -> form_validation -> set_rules('group', 'Group', 'required');
-		// $this -> form_validation -> set_rules('work_position', 'Position in Workplace', 'required');
+
 
 		if ($this -> form_validation -> run() === FALSE) {
 			$data['groups'] = $this -> Globals -> select_all('groups');

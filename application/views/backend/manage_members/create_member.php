@@ -164,6 +164,22 @@
 												<?php echo form_error('identify_card'); ?>
 											</div>
 									</div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ភិក្ខុទទួលខុសត្រូវ :<span class="required">*</span></label>
+                    <div class="col-sm-7">
+                      <select class="chosen-select form-control" id="monk_response_id" data-placeholder="ជ្រើសរើសព្រះសង្ឃ..." name="monk_response_id">
+                        <option value="">  </option>
+                        <?php
+                          foreach($monks->result() as $row){
+                        ?>
+                        <option value="<?php echo $row->id;?>" <?php echo set_select('monk_response_id', $row -> id); ?>><?php echo $row->username;?></option>
+                        <?php
+                          }
+                        ?>
+                      </select>
+                      <?php echo form_error('monk_response_id'); ?>
+                    </div>
+                  </div>
 								</div>
 							</div>
 							<div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language"><i class="fa fa-plus"></i>បន្ថែមភាសាៈ</a></div>
@@ -560,22 +576,6 @@
 													<div class="col-sm-8">
 														<input type="text" id="mother_phone" name="mother_phone" placeholder="" class="col-xs-10 col-sm-9" required="required" value="<?php echo set_value('mother_phone'); ?>"/>
 														<?php echo form_error('mother_phone'); ?>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ភិក្ខុទទួលខុសត្រូវ :<span class="required">*</span></label>
-													<div class="col-sm-7">
-														<select class="chosen-select form-control" id="monk_response_id" data-placeholder="ជ្រើសរើសព្រះសង្ឃ..." name="monk_response_id">
-															<option value="">  </option>
-															<?php
-																foreach($monks->result() as $row){
-															?>
-															<option value="<?php echo $row->id;?>" <?php echo set_select('monk_response_id', $row -> id); ?>><?php echo $row->username;?></option>
-															<?php
-																}
-															?>
-														</select>
-														<?php echo form_error('monk_response_id'); ?>
 													</div>
 												</div>
 											</div>

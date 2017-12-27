@@ -95,8 +95,8 @@ if(! function_exists("monk_knowledge")){
 	}
 }
 
-if(! function_exists("monk_knowledge")){
-	function monk_knowledge($id){
+if(! function_exists("monk_knowledge_return")){
+	function monk_knowledge_return($id){
 		switch ($id) {
 			case 1:
 				return "បឋមភូមិ";
@@ -117,7 +117,7 @@ if(! function_exists("monk_knowledge")){
 				return "បណ្ឌិត";
 				break;
 			default:
-				return "";
+				return $id;
 				break;
 		}
 	}
@@ -166,7 +166,7 @@ if(! function_exists("grade_return")){
 				return "ឆ្នាំទី២";
 				break;
 			default:
-				return '';
+				return $id;
 				break;
 		}
 	}
