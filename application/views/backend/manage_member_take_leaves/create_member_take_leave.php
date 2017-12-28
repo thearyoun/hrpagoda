@@ -18,10 +18,15 @@
 
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ពុទ្ធបរិស័ទ្ធឈ្មោះ :<span class="required">*</span></label>
-	
+
 											<div class="col-sm-7">
+												<?php if($this->session->userdata("user_type")=="member"):?>
+													<input type="text" class="col-sm-12" name="member_name" value="<?php echo $this->session->userdata("username");?>">
+													<input type="hidden" name="use_member_id" value="<?php echo $this->session->userdata("member_id")?>">
+											  <?php endif;?>
+												<?php if($this->session->userdata("user_type")=="admin"):?>
 												<select class="chosen-select form-control" id="use_member_id" data-placeholder="សូមជ្រើសរើស..." name="use_member_id">
-												
+
 													<option value="">  </option>
 													<?php
 														foreach($members->result() as $row){
@@ -31,15 +36,16 @@
 														}
 													?>
 												</select>
+											  <?php endif;?>
 												<?php echo form_error('use_member_id'); ?>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="use_leave_type_id"> ប្រភេទនៃការឈប់ :<span class="required">*</span></label>
-	
+
 											<div class="col-sm-7">
 												<select class="chosen-select form-control" id="use_leave_type_id" data-placeholder="សូមជ្រើសរើស..." name="use_leave_type_id">
-												
+
 													<option value="">  </option>
 													<?php
 														foreach($leave_types->result() as $row){
@@ -70,20 +76,20 @@
 
 										<div class="col-sm-8">
 											<textarea name="reason" class="col-xs-10 col-sm-10" rows="5"><?php echo set_value('reason'); ?></textarea>
-											
-											
+
+
 										</div>
-									</div>																				
+									</div>
 									</div>
 								</div>
 								<div class="col-sm-6">
-									
+
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="use_handle_by_id"> ទទួលស្គាល់ដោយ :<span class="required">*</span></label>
 
 										<div class="col-sm-7">
 											<select class="chosen-select form-control" id="use_handle_by_id" data-placeholder="សូមជ្រើសរើស..." name="use_handle_by_id">
-											
+
 												<option value="">  </option>
 												<?php
 													foreach($monks->result() as $row){
@@ -127,10 +133,10 @@
 
 										<div class="col-sm-8">
 											<textarea name="notes" class="col-xs-10 col-sm-10" rows="5"><?php echo set_value('notes'); ?></textarea>
-											
-											
+
+
 										</div>
-									</div>	
+									</div>
 
 								</div>
 							</div>

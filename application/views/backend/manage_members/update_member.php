@@ -1,7 +1,15 @@
+<?php if($this->session->userdata("user_type")=="admin"){?>
 <label>
   <a href="<?php echo base_url();?>manage_members"  class="btn btn-primary btn-sm"><i class="fa fa-backward"></i>ត្រលប់ក្រោយ</a>
   <a href="<?php echo base_url();?>manage_members/create_member" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>បន្ថែមថ្មី</a>
 </label>
+<?php }
+if($this->session->userdata("user_type")=="member"){
+  ?>
+  <a href="<?php echo base_url();?>manage_member_account" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>ត្រលប់ក្រោយ</a>
+  <?php
+}
+?>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_members/update_member/<?php echo $this->uri->segment(3);?>" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-sm-12">
@@ -437,6 +445,7 @@
 			</div>
 		</div><!-- /.col -->
 	</div><!-- /.row -->
+</div>
 	<hr />
 	<div class="row">
 		<div class="col-sm-12">
@@ -473,20 +482,6 @@
 														<?php echo form_error('study_at'); ?>
 													</div>
 												</div>
-												<!-- <div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="level_at"> កម្រិត :</label>
-													<div class="col-sm-8">
-														<input type="text" id="level_at" name="level_at" placeholder="" class="col-xs-10 col-sm-9"  value="<?php echo set_value('level_at'); ?>"/>
-														<?php echo form_error('study_at'); ?>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-4 control-label no-padding-right" for="year"> ឆ្នាំទី :</label>
-													<div class="col-sm-8">
-														<input type="text" id="year" name="year" placeholder="" class="col-xs-10 col-sm-9"  value="<?php echo set_value('year'); ?>"/>
-														<?php echo form_error('year'); ?>
-													</div>
-												</div> -->
 												<div class="form-group">
 													<label class="col-sm-4 control-label no-padding-right" for="group"> ក្រុមទី :</label>
 													<div class="col-sm-8">

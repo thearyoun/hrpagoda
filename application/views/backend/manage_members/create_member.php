@@ -1,8 +1,14 @@
-<?php if($this->session->userdata("user_type")=="admin"){ ?>
 <label>
+  <?php if($this->session->userdata("user_type")=="admin"){ ?>
   <a href="<?php echo base_url();?>manage_members" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>បញ្ជីពុទ្ធបរិស័ទ្ទ</a>
+  <?php }
+    if($this->session->userdata("user_type")=="member"){
+      ?>
+      <a href="<?php echo base_url();?>manage_member_account" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>ត្រលប់ក្រោយ</a>
+      <?php
+    }
+  ?>
 </label>
-<?php }?>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_members/create_member" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-sm-12">

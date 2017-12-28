@@ -185,8 +185,8 @@ if(! function_exists("lavel_language")){
 	}
 }
 
-if(! function_exists("lavel_language")){
-	function lavel_language($id){
+if(! function_exists("lavel_language_return")){
+	function lavel_language_return($id){
 		switch ($id) {
 			case 1:
 				return "ខ្សោយ";
@@ -204,7 +204,7 @@ if(! function_exists("lavel_language")){
 				return "ល្អប្រសើរ";
 				break;
 			default:
-				return '';
+				return $id;
 				break;
 		}
 	}

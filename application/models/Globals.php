@@ -1074,6 +1074,7 @@ class Globals extends CI_Model {
 
 		$this->db->where($type,$id);
 		$this->db->where("workingday.type_job",$type_working);
+		$this->db->order_by("workingday.id","asc");
 
 		$result = $this->db->get("workingday");
 		if($result->num_rows()>0){

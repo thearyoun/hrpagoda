@@ -464,6 +464,57 @@ ORDER BY
 			return $result->row()->Number;
 		}
 		return false;
+	}
 
+	public function get_data_member($member_id)
+	{
+		$this->db->select("`members`.*, `houses`.`name` as `house_name`, `monks`.`username` as `monk_name`,
+											ed.name as edname,gd.name as gradename");
+	  $this->db->join("houses","`members`.`use_house_id`=`houses`.`id`","inner");
+		$this->db->join("monks","`members`.`monk_response_id`=`monks`.`id`","inner");
+		$this->db->join("knowledges as ed","ed.id=members.education or ed.name=members.education","left");
+		$this->db->join("knowledges as gd","gd.id=members.grade","left");
+
+		$this->db->where("members.id",$member_id);
+
+		return $this->db->get("members")->row();
+	}
+
+	public function get_language($id,$type)
+	{
+		$this->db->select("monk_languages.*,languages.name as langname");
+
+		$this->db->join("languages"," languages.id=monk_languages.lang_id","inner");
+
+		$this->db->where("monk_languages.".$type,$id);
+
+		$this->db->order_by("languages.id","asc");
+
+		$return = $this->db->get("monk_languages");
+		if($return->num_rows()>0){
+			return $return;
+		}
+		return false;
+	}
+
+	public function get_timeworing($id,$type,$job=null)
+	{
+		$this->db->select(" GROUP_CONCAT(concat(f.name,'-',workingday.from_time) ORDER by workingday.id SEPARATOR ',') as daynametime,
+GROUP_CONCAT(concat(workingday.from_time,'-',workingday.to_time) ORDER by workingday.id SEPARATOR ','),
+workingday.type_job");
+
+		$this->db->join("dayofweek as f","f.id=workingday.from_day and workingday.type_job=1");
+		$this->db->join("dayofweek as t","t.id=workingday.to_day and workingday.type_job=1");
+
+		// $this->db->where("workingday.type_job",$job);
+		$this->db->where("workingday.".$type,$id);
+		// $this->db->group_by("workingday.type_job");
+		$this->db->order_by("workingday.id");
+
+		$return = $this->db->get("workingday");
+		if($return->num_rows()>0){
+			return $return;
+		}
+		return false;
 	}
 }

@@ -6,6 +6,18 @@
 		}
 	</script>
 	<ul class="nav nav-list">
+		<?php if($this->session->userdata("user_type")=="member"){ ?>
+			<li <?php echo (str_replace('-', '_', $this -> uri ->
+				segment(1)) == '')? 'class="active open"' : 'class=""' ?>> <a href="<?php echo base_url(); ?>manage_member_account">
+					<i class="menu-icon fa fa-user"></i>
+					<span class="menu-text">
+						<!-- <?php echo $this->lang->line('sidebar_dashboard');?> -->
+						គណនីផ្ទាល់ខ្លួន
+					</span> </a>
+				<b class="arrow"></b>
+			</li>
+		<?php }?>
+		<?php if($this->session->userdata("sidebar_users")){ ?>
 		<li <?php echo (str_replace('-', '_', $this -> uri ->
 			segment(1)) == '')? 'class="active open"' : 'class=""' ?>> <a href="<?php echo base_url(); ?>admindev">
 				<i class="menu-icon fa fa-tachometer"></i>
@@ -15,7 +27,7 @@
 				</span> </a>
 			<b class="arrow"></b>
 		</li>
-		<?php if($this->session->userdata("sidebar_users")){ ?>
+
 		<li <?php echo (str_replace('-', '_', $this -> uri ->
 			segment(1)) == 'manage_users' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-users"></i> <span class="menu-text">
 				<!-- <?php echo $this->lang->line('sidebar_user_account');?> -->
@@ -81,8 +93,8 @@
 				segment(1)) == 'manage_members' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> <?php echo $this->lang->line('');?>ពុទ្ធបរិស័ទ្ទ</span> <b class="arrow fa fa-angle-down"></b> </a>
 				<b class="arrow"></b>
 				<ul class="submenu">
-					<li class="">
-						<a href="<?php echo base_url(); ?>manage_members"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?> បញ្ជីពុទ្ធបរិស័ទ្ទ</a>
+					<li class="active">
+						<a href="<?php echo base_url(); ?>manage_members/create_member"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('sidebar_add_new');?> </a>
 						<b class="arrow"></b>
 					</li>
 				</ul>

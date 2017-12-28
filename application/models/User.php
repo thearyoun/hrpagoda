@@ -6,9 +6,9 @@ class User extends CI_Model {
 		$query = $this -> db -> get_where('users', array('username' => $username, 'password' => sha1($password), 'status' => 1), 1);
 		if ($query -> num_rows() == 1) {
 			$row = $query -> row();
-			
+
 			$role_id=$this->Globals->select_string('user_roles','using_role_id',array('using_user_id'=>$row->user_id));
-			
+
 			$this->db->select("permissions.name,role_id");
 			$this->db->from("user_roles");
 			$this->db->join("roles","roles.role_id=user_roles.using_role_id");
@@ -23,7 +23,7 @@ class User extends CI_Model {
 			}
 			$this -> session -> set_userdata("role",$query_role->row()->role_id);
 			$this -> session -> set_userdata("perm_num",$query_role->num_rows());
-			
+
 			$this -> session -> set_userdata('user_login_access', $row -> user_id);
 			$this -> session -> set_userdata('user_login_username', $row -> username);
 			$this -> session -> set_userdata('use_branch_id', $row -> use_branch_id);
@@ -38,6 +38,7 @@ class User extends CI_Model {
 			$row = $query -> row();
 			$this -> session -> set_userdata("monk_id",$row->id);
 			$this -> session -> set_userdata("username",$row->username);
+			$this -> session -> set_userdata('user_login_access', $row -> id);
 			return true;
 		}
 		return false;
@@ -48,6 +49,7 @@ class User extends CI_Model {
 			$row = $query -> row();
 			$this -> session -> set_userdata("member_id",$row->id);
 			$this -> session -> set_userdata("username",$row->username);
+			$this -> session -> set_userdata('user_login_access', $row -> id);
 			return true;
 		}
 		return false;
@@ -69,13 +71,13 @@ class User extends CI_Model {
 	}
 	public function get_saving_downline($member_code=0,$level=0,$from_date=null,$to_date=null,$emp_code=null){
 		$wehre_data="";
-		
+
 		if($emp_code!=null){
 			$wehre_data .= " AND s.use_user_id = ".$emp_code;
 		}
-		
+
 		if($from_date!=null && $to_date!=null){
-			
+
 			$query = $this->db->query("
 			SELECT
 				p.member_id AS id,
@@ -83,10 +85,10 @@ class User extends CI_Model {
 				p.full_name AS full_name,
 				s.saving_date,
 				s.amount,
-				s.remarks,	
+				s.remarks,
 				DATEDIFF(s.available_date,s.saving_date) AS day_num,
 				 (p.user_level - $level) AS levels,
-				parent.member_id AS parent,	 
+				parent.member_id AS parent,
 				grandparent.member_id AS grandparent,
 				grandparent1.member_id AS grandparent1,
 				grandparent2.member_id AS grandparent2,
@@ -115,7 +117,7 @@ class User extends CI_Model {
 			LEFT JOIN members grandparent10 ON grandparent9.referral_code = grandparent10.member_code
 			WHERE
 			 $member_code IN(
-				
+
 					parent.member_code,
 					grandparent.member_code,
 					grandparent1.member_code,
@@ -140,10 +142,10 @@ class User extends CI_Model {
 				p.full_name AS full_name,
 				s.saving_date,
 				s.amount,
-				s.remarks,	
+				s.remarks,
 				DATEDIFF(s.available_date,s.saving_date) AS day_num,
 				 (p.user_level - $level) AS levels,
-				parent.member_id AS parent,	 
+				parent.member_id AS parent,
 				grandparent.member_id AS grandparent,
 				grandparent1.member_id AS grandparent1,
 				grandparent2.member_id AS grandparent2,
@@ -155,7 +157,7 @@ class User extends CI_Model {
 				grandparent6.member_id AS grandparent8,
 				grandparent6.member_id AS grandparent9,
 				grandparent6.member_id AS grandparent10
-				
+
 			FROM
 				members p
 			INNER JOIN savings s ON s.use_member_id = p.member_id
@@ -173,7 +175,7 @@ class User extends CI_Model {
 			LEFT JOIN members grandparent10 ON grandparent9.referral_code = grandparent10.member_code
 			WHERE
 			 $member_code IN(
-				
+
 					parent.member_code,
 					grandparent.member_code,
 					grandparent1.member_code,
@@ -187,17 +189,17 @@ class User extends CI_Model {
 					grandparent8.member_code,
 					grandparent9.member_code,
 					grandparent10.member_code
-			) 
+			)
 			ORDER BY parent,grandparent,grandparent1
-		");	
+		");
 		}
 		return $query;
 	}
 	public function get_tree($member_code=0,$level=0,$from_date=null,$to_date=null){
 		$wehre_data="";
-		
+
 		if($from_date!=null && $to_date!=null){
-			
+
 			$query = $this->db->query("
 			SELECT
 				p.member_id AS id,
@@ -209,7 +211,7 @@ class User extends CI_Model {
 				p.status,
 				p.referral_code,
 				 (p.user_level - $level) AS levels,
-				parent.member_id AS parent,	 
+				parent.member_id AS parent,
 				grandparent.member_id AS grandparent,
 				grandparent1.member_id AS grandparent1,
 				grandparent2.member_id AS grandparent2,
@@ -237,7 +239,7 @@ class User extends CI_Model {
 			LEFT JOIN members grandparent10 ON grandparent9.referral_code = grandparent10.member_code
 			WHERE
 			 $member_code IN(
-				
+
 					parent.member_code,
 					grandparent.member_code,
 					grandparent1.member_code,
@@ -251,7 +253,7 @@ class User extends CI_Model {
 					grandparent9.member_code,
 					grandparent10.member_code
 			)
-			AND created_at BETWEEN '$from_date' and '$to_date' 
+			AND created_at BETWEEN '$from_date' and '$to_date'
 			ORDER levels ASC
 		");
 		}else{
@@ -266,7 +268,7 @@ class User extends CI_Model {
 				p.created_at,
 				p.referral_code,
 				 (p.user_level - $level) AS levels,
-				parent.member_id AS parent,	 
+				parent.member_id AS parent,
 				grandparent.member_id AS grandparent,
 				grandparent1.member_id AS grandparent1,
 				grandparent2.member_id AS grandparent2,
@@ -278,10 +280,10 @@ class User extends CI_Model {
 				grandparent6.member_id AS grandparent8,
 				grandparent6.member_id AS grandparent9,
 				grandparent6.member_id AS grandparent10
-				
+
 			FROM
 				members p
-			
+
 			LEFT JOIN members parent ON p.referral_code = parent.member_code
 			LEFT JOIN members grandparent ON parent.referral_code = grandparent.member_code
 			LEFT JOIN members grandparent1 ON grandparent.referral_code = grandparent1.member_code
@@ -296,7 +298,7 @@ class User extends CI_Model {
 			LEFT JOIN members grandparent10 ON grandparent9.referral_code = grandparent10.member_code
 			WHERE
 			 $member_code IN(
-				
+
 					parent.member_code,
 					grandparent.member_code,
 					grandparent1.member_code,
@@ -310,9 +312,9 @@ class User extends CI_Model {
 					grandparent8.member_code,
 					grandparent9.member_code,
 					grandparent10.member_code
-			) 
+			)
 			ORDER BY levels ASC
-		");	
+		");
 		}
 		return $query;
 	}
