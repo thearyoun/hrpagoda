@@ -95,12 +95,9 @@
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<select name="language" class="form-control">
-																
 																<option value="en">English</option>
 																<option value="kh">Khmer</option>
-																
 															</select>
-															
 														</span>
 													</label>
 

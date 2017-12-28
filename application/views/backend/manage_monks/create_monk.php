@@ -1,6 +1,8 @@
+<?php if($this->session->userdata("user_type")=="admin"){ ?>
 <label>
   <a href="<?php echo base_url();?>manage_monks" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>បញ្ជីព្រះសង្ឃ</a>
 </label>
+<?php }?>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_monks/create_monk"
       enctype="multipart/form-data">
     <div class="row">

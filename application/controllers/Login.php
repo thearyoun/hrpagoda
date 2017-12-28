@@ -16,6 +16,7 @@ class Login extends CI_Controller {
 				$lang = $this -> input -> post("language");
 				$user_type = $this -> input -> post("user_type");
 				$this->session->set_userdata('language',$lang);
+				$this->session->set_userdata('user_type',$user_type);
 				if($user_type == "admin"){
 					redirect('manage_monks');
 				}else if($user_type == "monk"){

@@ -1,6 +1,8 @@
+<?php if($this->session->userdata("user_type")=="admin"){ ?>
 <label>
   <a href="<?php echo base_url();?>manage_members" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>បញ្ជីពុទ្ធបរិស័ទ្ទ</a>
 </label>
+<?php }?>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_members/create_member" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-sm-12">
