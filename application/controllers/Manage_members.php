@@ -120,7 +120,9 @@ class Manage_members extends Security {
 						'status' => 1,
 						'created_at' => null,
 						'eng_name' => $this->input->post("eng_name"),
-						'grade' => $this->input->post("grade")
+						'grade' => $this->input->post("grade"),
+						'user_account' => $this -> input -> post('username', TRUE),
+						'user_password'=>sha1($this -> input -> post(123, TRUE))
 					);
 
 					$last_id = $this -> Globals -> insert_get_last_id('members', $data);
