@@ -134,6 +134,17 @@
 												style="width: 130px;margin-left: 347%;margin-top: -47%;" id="image_result"/>
 											</div>
 										</div>
+										<div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="user_account">
+													ឈ្មោះគណនី:<span class="required">*</span>
+											</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="user_account" name="user_account" required
+                                                       class="col-xs-10 col-sm-9"
+                                                       value="<?php echo $data->user_account; ?>"/>
+                                                <?php echo form_error('user_account'); ?>
+                                            </div>
+                                        </div>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -214,6 +225,16 @@
 											<?php echo form_error('monk_response_id'); ?>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-sm-4 control-label no-padding-right" for="user_password">
+											លេខកូដសម្ងាត់ :</label>
+										<div class="col-sm-8">
+											<input type="password" id="user_password" name="user_password"
+												   class="col-xs-10 col-sm-9"/>
+											<input type="hidden" id="old_pass" name="old_pass" value="<?php echo $data->user_password;?>"/>
+											<?php echo form_error('user_password'); ?>
+										</div>
+                                    </div>
 								</div>
 							</div>
 							<div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language"><i class="fa fa-plus"></i>បន្ថែមភាសាៈ</a></div>

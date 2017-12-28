@@ -108,6 +108,17 @@
 												style="width: 130px;margin-left: 347%;margin-top: -47%;" id="image_result"/>
 											</div>
 										</div>
+										<div class="form-group">
+                                            <label class="col-sm-4 control-label no-padding-right" for="user_account">
+													ឈ្មោះគណនី:<span class="required">*</span>
+											</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="user_account" name="user_account" required
+                                                       class="col-xs-10 col-sm-9"
+                                                       value="<?php echo set_value('user_account'); ?>"/>
+                                                <?php echo form_error('user_account'); ?>
+                                            </div>
+                                        </div>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -158,28 +169,37 @@
 											</div>
 									</div>
 									<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="identify_card"> អត្តសញ្ញាណប័ណ្ណ  :<span class="required">*</span></label>
-											<div class="col-sm-8">
-												<input type="text" id="identify_card" name="identify_card" placeholder="" class="col-xs-10 col-sm-9" value="<?php echo set_value('identify_card'); ?>"/>
-												<?php echo form_error('identify_card'); ?>
-											</div>
+										<label class="col-sm-4 control-label no-padding-right" for="identify_card"> អត្តសញ្ញាណប័ណ្ណ  :<span class="required">*</span></label>
+										<div class="col-sm-8">
+											<input type="text" id="identify_card" name="identify_card" placeholder="" class="col-xs-10 col-sm-9" value="<?php echo set_value('identify_card'); ?>"/>
+											<?php echo form_error('identify_card'); ?>
+										</div>
 									</div>
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ភិក្ខុទទួលខុសត្រូវ :<span class="required">*</span></label>
-                    <div class="col-sm-7">
-                      <select class="chosen-select form-control" id="monk_response_id" data-placeholder="ជ្រើសរើសព្រះសង្ឃ..." name="monk_response_id">
-                        <option value="">  </option>
-                        <?php
-                          foreach($monks->result() as $row){
-                        ?>
-                        <option value="<?php echo $row->id;?>" <?php echo set_select('monk_response_id', $row -> id); ?>><?php echo $row->username;?></option>
-                        <?php
-                          }
-                        ?>
-                      </select>
-                      <?php echo form_error('monk_response_id'); ?>
-                    </div>
-                  </div>
+									<div class="form-group">
+										<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ភិក្ខុទទួលខុសត្រូវ :<span class="required">*</span></label>
+										<div class="col-sm-7">
+										  <select class="chosen-select form-control" id="monk_response_id" data-placeholder="ជ្រើសរើសព្រះសង្ឃ..." name="monk_response_id">
+											<option value="">  </option>
+											<?php
+											  foreach($monks->result() as $row){
+											?>
+											<option value="<?php echo $row->id;?>" <?php echo set_select('monk_response_id', $row -> id); ?>><?php echo $row->username;?></option>
+											<?php
+											  }
+											?>
+										  </select>
+										  <?php echo form_error('monk_response_id'); ?>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-4 control-label no-padding-right" for="user_password">
+											លេខកូដសម្ងាត់ :<span class="required">*</span></label>
+										<div class="col-sm-8">
+											<input type="password" id="user_password" name="user_password"
+												   required class="col-xs-10 col-sm-9" value=""/>
+											<?php echo form_error('user_password'); ?>
+										</div>
+                                    </div>
 								</div>
 							</div>
 							<div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language"><i class="fa fa-plus"></i>បន្ថែមភាសាៈ</a></div>

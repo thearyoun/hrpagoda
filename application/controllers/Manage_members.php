@@ -121,8 +121,8 @@ class Manage_members extends Security {
 						'created_at' => null,
 						'eng_name' => $this->input->post("eng_name"),
 						'grade' => $this->input->post("grade"),
-						'user_account' => $this -> input -> post('username', TRUE),
-						'user_password'=>sha1($this -> input -> post(123, TRUE))
+						'user_account' => ($this->input->post("user_account",TRUE)?$this->input->post("user_account",TRUE):$this->input->post('username', TRUE)),
+						'user_password'=>($this->input->post("user_password",TRUE)?sha1($this -> input -> post("user_password", TRUE)):sha1($this -> input -> post(123, TRUE)))
 					);
 
 					$last_id = $this -> Globals -> insert_get_last_id('members', $data);
@@ -316,7 +316,9 @@ class Manage_members extends Security {
 					'identify_card' => $this -> input -> post('identify_card', TRUE),
 					'use_house_id' =>$use_house_id->row()->use_house_id,
 					'eng_name' => $this->input->post("eng_name"),
-					'grade' => $this->input->post("grade")
+					'grade' => $this->input->post("grade"),
+					'user_account' => ($this->input->post("user_account",TRUE)?$this->input->post("user_account",TRUE):$this->input->post('username', TRUE)),
+					'user_password'=>($this->input->post("user_password",TRUE)?sha1($this -> input -> post("user_password", TRUE)):sha1($this -> input -> post("old_pass", TRUE)))
 				);
 				if($image_name!=""){
 					$data['photo'] = $image_name;
