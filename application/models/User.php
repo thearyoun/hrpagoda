@@ -1,84 +1,94 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class User extends CI_Model {
+class User extends CI_Model
+{
 
-	function login($username, $password) {
-		$query = $this -> db -> get_where('users', array('username' => $username, 'password' => sha1($password), 'status' => 1), 1);
-		if ($query -> num_rows() == 1) {
-			$row = $query -> row();
+    function login($username, $password)
+    {
+        $query = $this->db->get_where('users', array('username' => $username, 'password' => sha1($password), 'status' => 1), 1);
+        if ($query->num_rows() == 1) {
+            $row = $query->row();
 
-			$role_id=$this->Globals->select_string('user_roles','using_role_id',array('using_user_id'=>$row->user_id));
+            $role_id = $this->Globals->select_string('user_roles', 'using_role_id', array('using_user_id' => $row->user_id));
 
-			$this->db->select("permissions.name,role_id");
-			$this->db->from("user_roles");
-			$this->db->join("roles","roles.role_id=user_roles.using_role_id");
-			$this->db->join("role_permissions","role_permissions.using_role_id=roles.role_id");
-			$this->db->join("permissions","permissions.permission_id=role_permissions.using_permission_id");
-			$this->db->where("role_permissions.using_role_id",$role_id);
-			$this->db->group_by('permissions.name');
-			$query_role=$this->db->get();
-			//$query_role = $this -> db -> get_where('pos_permissions', array('per_use_role_id' => $username));
-			foreach($query_role->result() as $row_r){
-				$this -> session -> set_userdata($row_r->name,1);
-			}
-			$this -> session -> set_userdata("role",$query_role->row()->role_id);
-			$this -> session -> set_userdata("perm_num",$query_role->num_rows());
+            $this->db->select("permissions.name,role_id");
+            $this->db->from("user_roles");
+            $this->db->join("roles", "roles.role_id=user_roles.using_role_id");
+            $this->db->join("role_permissions", "role_permissions.using_role_id=roles.role_id");
+            $this->db->join("permissions", "permissions.permission_id=role_permissions.using_permission_id");
+            $this->db->where("role_permissions.using_role_id", $role_id);
+            $this->db->group_by('permissions.name');
+            $query_role = $this->db->get();
+            //$query_role = $this -> db -> get_where('pos_permissions', array('per_use_role_id' => $username));
+            foreach ($query_role->result() as $row_r) {
+                $this->session->set_userdata($row_r->name, 1);
+            }
+            $this->session->set_userdata("role", $query_role->row()->role_id);
+            $this->session->set_userdata("perm_num", $query_role->num_rows());
 
-			$this -> session -> set_userdata('user_login_access', $row -> user_id);
-			$this -> session -> set_userdata('user_login_username', $row -> username);
-			$this -> session -> set_userdata('use_branch_id', $row -> use_branch_id);
-			//$this -> session -> set_userdata('author_group_id', $row -> using_author_group_id);
-			return true;
-		}
-		return false;
-	}
-	function login_monk($username, $password) {
-		$query = $this -> db -> get_where('monks', array('user_account' => $username, 'user_password' => sha1($password), 'status' => 1), 1);
-		if ($query -> num_rows() == 1) {
-			$row = $query -> row();
-			$this -> session -> set_userdata("monk_id",$row->id);
-			$this -> session -> set_userdata("username",$row->username);
-			$this -> session -> set_userdata('user_login_access', $row -> id);
-			return true;
-		}
-		return false;
-	}
-	function login_member($username, $password) {
-		$query = $this -> db -> get_where('members', array('user_account' => $username, 'user_password' => sha1($password), 'status' => 1), 1);
-		if ($query -> num_rows() == 1) {
-			$row = $query -> row();
-			$this -> session -> set_userdata("member_id",$row->id);
-			$this -> session -> set_userdata("username",$row->username);
-			$this -> session -> set_userdata('user_login_access', $row -> id);
-			return true;
-		}
-		return false;
-	}
+            $this->session->set_userdata('user_login_access', $row->user_id);
+            $this->session->set_userdata('user_login_username', $row->username);
+            $this->session->set_userdata('use_branch_id', $row->use_branch_id);
+            //$this -> session -> set_userdata('author_group_id', $row -> using_author_group_id);
+            return true;
+        }
+        return false;
+    }
 
-	/*
-	 Logs out a user by destorying all session data and redirect to login
-	 */
-	function logout() {
-		$this -> session -> sess_destroy();
-		redirect('login');
-	}
+    function login_monk($username, $password)
+    {
+        $query = $this->db->get_where('monks', array('user_account' => $username, 'user_password' => sha1($password), 'status' => 1), 1);
+        if ($query->num_rows() == 1) {
+            $row = $query->row();
+            $this->session->set_userdata("monk_id", $row->id);
+            $this->session->set_userdata("username", $row->username);
+            $this->session->set_userdata('user_login_access', $row->id);
+            return true;
+        }
+        return false;
+    }
 
-	/*
-	 Determins if a user is logged in
-	 */
-	function is_logged_in() {
-		return $this -> session -> userdata('user_login_access') != false;
-	}
-	public function get_saving_downline($member_code=0,$level=0,$from_date=null,$to_date=null,$emp_code=null){
-		$wehre_data="";
+    function login_member($username, $password)
+    {
+        $query = $this->db->get_where('members', array('user_account' => $username, 'user_password' => sha1($password), 'status' => 1), 1);
+        if ($query->num_rows() == 1) {
+            $row = $query->row();
+            $this->session->set_userdata("member_id", $row->id);
+            $this->session->set_userdata("username", $row->username);
+            $this->session->set_userdata('user_login_access', $row->id);
+            return true;
+        }
+        return false;
+    }
 
-		if($emp_code!=null){
-			$wehre_data .= " AND s.use_user_id = ".$emp_code;
-		}
+    /*
+     Logs out a user by destorying all session data and redirect to login
+     */
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('login');
+    }
 
-		if($from_date!=null && $to_date!=null){
+    /*
+     Determins if a user is logged in
+     */
+    function is_logged_in()
+    {
+        return $this->session->userdata('user_login_access') != false;
+    }
 
-			$query = $this->db->query("
+    public function get_saving_downline($member_code = 0, $level = 0, $from_date = null, $to_date = null, $emp_code = null)
+    {
+        $wehre_data = "";
+
+        if ($emp_code != null) {
+            $wehre_data .= " AND s.use_user_id = " . $emp_code;
+        }
+
+        if ($from_date != null && $to_date != null) {
+
+            $query = $this->db->query("
 			SELECT
 				p.member_id AS id,
 				p.member_code AS code_number,
@@ -134,8 +144,8 @@ class User extends CI_Model {
 			AND saving_date BETWEEN '$from_date' and '$to_date' $wehre_data
 			ORDER BY parent,grandparent,grandparent1
 		");
-		}else{
-			$query = $this->db->query("
+        } else {
+            $query = $this->db->query("
 			SELECT
 				p.member_id AS id,
 				p.member_code AS code_number,
@@ -192,15 +202,17 @@ class User extends CI_Model {
 			)
 			ORDER BY parent,grandparent,grandparent1
 		");
-		}
-		return $query;
-	}
-	public function get_tree($member_code=0,$level=0,$from_date=null,$to_date=null){
-		$wehre_data="";
+        }
+        return $query;
+    }
 
-		if($from_date!=null && $to_date!=null){
+    public function get_tree($member_code = 0, $level = 0, $from_date = null, $to_date = null)
+    {
+        $wehre_data = "";
 
-			$query = $this->db->query("
+        if ($from_date != null && $to_date != null) {
+
+            $query = $this->db->query("
 			SELECT
 				p.member_id AS id,
 				p.member_code AS code_number,
@@ -256,8 +268,8 @@ class User extends CI_Model {
 			AND created_at BETWEEN '$from_date' and '$to_date'
 			ORDER levels ASC
 		");
-		}else{
-			$query = $this->db->query("
+        } else {
+            $query = $this->db->query("
 			SELECT
 				p.member_id AS id,
 				p.member_code AS code_number,
@@ -315,13 +327,15 @@ class User extends CI_Model {
 			)
 			ORDER BY levels ASC
 		");
-		}
-		return $query;
-	}
-	public function count_direct_line_member($member_code){
-		$this->db->select('COUNT( referral_code ) AS total_direct_line_member');
-		$this->db->from('members');
-		$this->db->where('referral_code',$member_code);
-		return $this->db->get()->row()->total_direct_line_member;
-	}
+        }
+        return $query;
+    }
+
+    public function count_direct_line_member($member_code)
+    {
+        $this->db->select('COUNT( referral_code ) AS total_direct_line_member');
+        $this->db->from('members');
+        $this->db->where('referral_code', $member_code);
+        return $this->db->get()->row()->total_direct_line_member;
+    }
 }

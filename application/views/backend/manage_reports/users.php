@@ -104,9 +104,8 @@
 					</div>
 				</div>
 			</div>
-		</div><!-- /.col -->
-
-</div><!-- /.row -->
+		</div>
+</div>
 </form>
 <hr /> 
 <div class="row" id="users">
