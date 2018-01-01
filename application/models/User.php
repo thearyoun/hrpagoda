@@ -3,30 +3,24 @@
 class User extends CI_Model
 {
 
-<<<<<<< HEAD
-  function get_form_take_leave(){
-		$this->db->select("*");
-		$result = $this->db->get("permissions_take_leave");
-		if($result->num_rows()>0){
-			$this -> session ->set_userdata("monk_allow",$result->row()->monk_allow);
-			$this -> session ->set_userdata("member_allow",$result->row()->member_allow);
-		}else{
-			$this -> session ->set_userdata("monk_allow",1);
-			$this -> session ->set_userdata("member_allow",1);
-		}
-	}
-	function login($username, $password) {
-		$query = $this -> db -> get_where('users', array('username' => $username, 'password' => sha1($password), 'status' => 1), 1);
-		if ($query -> num_rows() == 1) {
-			$row = $query -> row();
-=======
+    function get_form_take_leave()
+    {
+        $this->db->select("*");
+        $result = $this->db->get("permissions_take_leave");
+        if ($result->num_rows() > 0) {
+            $this->session->set_userdata("monk_allow", $result->row()->monk_allow);
+            $this->session->set_userdata("member_allow", $result->row()->member_allow);
+        } else {
+            $this->session->set_userdata("monk_allow", 1);
+            $this->session->set_userdata("member_allow", 1);
+        }
+    }
+
     function login($username, $password)
     {
         $query = $this->db->get_where('users', array('username' => $username, 'password' => sha1($password), 'status' => 1), 1);
         if ($query->num_rows() == 1) {
             $row = $query->row();
->>>>>>> e5ba8bd48b233dbf093f101eeef967aed9d1ebae
-
             $role_id = $this->Globals->select_string('user_roles', 'using_role_id', array('using_user_id' => $row->user_id));
 
             $this->db->select("permissions.name,role_id");
@@ -44,50 +38,14 @@ class User extends CI_Model
             $this->session->set_userdata("role", $query_role->row()->role_id);
             $this->session->set_userdata("perm_num", $query_role->num_rows());
 
-<<<<<<< HEAD
-			$this -> session -> set_userdata('user_login_access', $row -> user_id);
-			$this -> session -> set_userdata('user_login_username', $row -> username);
-			$this -> session -> set_userdata('use_branch_id', $row -> use_branch_id);
-			$this->get_form_take_leave();
-			//$this -> session -> set_userdata('author_group_id', $row -> using_author_group_id);
-			return true;
-		}
-		return false;
-	}
-	function login_monk($username, $password) {
-		$query = $this -> db -> get_where('monks', array('user_account' => $username, 'user_password' => sha1($password), 'status' => 1), 1);
-		if ($query -> num_rows() == 1) {
-			$row = $query -> row();
-			$this -> session -> set_userdata("monk_id",$row->id);
-			$this -> session -> set_userdata("username",$row->username);
-			$this -> session -> set_userdata('user_login_access', $row -> id);
-			$this->get_form_take_leave();
-			return true;
-		}
-		return false;
-	}
-	function login_member($username, $password) {
-		$query = $this -> db -> get_where('members', array('user_account' => $username, 'user_password' => sha1($password), 'status' => 1), 1);
-		if ($query -> num_rows() == 1) {
-			$row = $query -> row();
-			$this -> session -> set_userdata("member_id",$row->id);
-			$this -> session -> set_userdata("username",$row->username);
-			$this -> session -> set_userdata('user_login_access', $row -> id);
-			$this->get_form_take_leave();
-			return true;
-		}
-		return false;
-	}
-=======
             $this->session->set_userdata('user_login_access', $row->user_id);
             $this->session->set_userdata('user_login_username', $row->username);
             $this->session->set_userdata('use_branch_id', $row->use_branch_id);
+            $this->get_form_take_leave();
             //$this -> session -> set_userdata('author_group_id', $row -> using_author_group_id);
             return true;
         }
-        return false;
     }
->>>>>>> e5ba8bd48b233dbf093f101eeef967aed9d1ebae
 
     function login_monk($username, $password)
     {
@@ -97,6 +55,7 @@ class User extends CI_Model
             $this->session->set_userdata("monk_id", $row->id);
             $this->session->set_userdata("username", $row->username);
             $this->session->set_userdata('user_login_access', $row->id);
+            $this->get_form_take_leave();
             return true;
         }
         return false;
@@ -110,9 +69,11 @@ class User extends CI_Model
             $this->session->set_userdata("member_id", $row->id);
             $this->session->set_userdata("username", $row->username);
             $this->session->set_userdata('user_login_access', $row->id);
+            $this->get_form_take_leave();
             return true;
         }
         return false;
+
     }
 
     /*
