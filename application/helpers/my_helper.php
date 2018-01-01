@@ -209,3 +209,12 @@ if(! function_exists("lavel_language_return")){
 		}
 	}
 }
+
+if(!function_exists("get_message")){
+    function get_message(){
+        $ci = &get_instance();
+        $ci->load->model("Custom_model");
+        $result = $ci->Custom_model->get_message();
+        return $result;
+    }
+}
