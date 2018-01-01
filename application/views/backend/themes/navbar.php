@@ -23,7 +23,8 @@
 
 		<div class="navbar-buttons navbar-header pull-right" role="navigation">
 			<ul class="nav ace-nav">
-                <li class="purple dropdown-modal">
+				<?php if($this->session->userdata("user_type")=="admin"):?>
+        <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
                         <span class="badge badge-important">
@@ -41,11 +42,11 @@
                                     <?php foreach (get_message()->result() as $message) { ?>
                                     <li>
                                         <?php if ($message->type == "member") { ?>
-                                        <a href="<?php echo base_url().'/manage_monk_take_leaves' ?>" class="clearfix">
+                                        <a href="<?php echo base_url().'manage_member_take_leaves' ?>" class="clearfix">
                                             <?php } else { ?>
-                                            <a href="<?php echo base_url().'/manage_member_take_leaves' ?>" class="clearfix">
+                                            <a href="<?php echo base_url().'manage_monk_take_leaves' ?>" class="clearfix">
                                                 <?php } ?>
-                                            <img src="<?php echo base_url().'/ftemplate/images/'. $message->photo; ?>" class="msg-photo" alt="Alex's Avatar">
+                                            <img src="<?php echo base_url().'ftemplate/images/'. $message->photo; ?>" class="msg-photo" alt="Alex's Avatar">
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue"><?php echo $message->username; ?>:</span>
@@ -64,6 +65,7 @@
                         </li>
                     </ul>
                 </li>
+				<?php endif;?>
 				<li class="light-blue">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle"> <span class="user-info"> <small>ស្វាគមន៍,</small> <?php echo $this->session->userdata('user_login_username');?> <?php echo $this->session->userdata('username');?> </span> <i class="ace-icon fa fa-caret-down"></i> </a>
 					<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">

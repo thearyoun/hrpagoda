@@ -6,11 +6,15 @@ class Custom_model extends CI_Model
 {
     public function get_monk_take_leaves()
     {
+			  $monk_id = $this -> session -> userdata("monk_id");
         $this->db->select('l.*,m.username as monk_name,h.username as handle_name,leave_types.name as leave_type_name');
         $this->db->from('monk_take_leaves AS l');
         $this->db->join('monks AS m', 'm.id = l.use_monk_id');
-        $this->db->join('monks AS h', 'h.id = l.use_monk_id');
+        $this->db->join('monks AS h', 'h.id = l.use_handle_by_id');
         $this->db->join('leave_types', 'leave_types.id= l.use_leave_type_id');
+				if($this->session->userdata("user_type") !="admin"){
+					$this->db->where("l.use_monk_id",$monk_id);
+				}
         $this->db->order_by('l.created_at', ' DESC');
         $query = $this->db->get();
         return $query;
@@ -18,11 +22,15 @@ class Custom_model extends CI_Model
 
     public function get_member_take_leaves()
     {
+			  $member_id = $this -> session -> userdata("member_id");
         $this->db->select('mem.*,m.username as member_name,h.username as handle_name,leave_types.name as leave_type_name');
         $this->db->from('member_take_leaves AS mem');
-        $this->db->join('monks AS m', 'm.id = mem.use_member_id');
+        $this->db->join('members AS m', 'm.id = mem.use_member_id');
         $this->db->join('monks AS h', 'h.id = mem.use_handle_by_id');
         $this->db->join('leave_types', 'leave_types.id= mem.use_leave_type_id');
+				if($this->session->userdata("user_type") !="admin"){
+					$this->db->where("mem.use_member_id",$member_id);
+				}
         $this->db->order_by('mem.created_at', ' DESC');
         $query = $this->db->get();
         return $query;
@@ -587,7 +595,7 @@ workingday.type_job");
         join take_leave_type on take_leave_type.name=monk_take_leaves.status
         join monks on monks.id=monk_take_leaves.use_monk_id
         where take_leave_type.id=1
-        UNION all 
+        UNION all
         select use_member_id as MDI,use_handle_by_id,use_leave_type_id,from_date,to_date,reason,notes,request_date,member_take_leaves.status,'member' as type,photo,username, member_take_leaves.created_at
         from member_take_leaves
         join take_leave_type on take_leave_type.name=member_take_leaves.status

@@ -5,12 +5,18 @@
 		$check="";
 	}
 ?>
+<?php if(($this->session->userdata("monk_allow")==1) || ($this->session->userdata("user_type")=="admin")):?>
 <label>
 <a href="<?php echo base_url();?>manage_monk_take_leaves/create_monk_take_leave" class="btn btn-primary">បង្កើតថ្មី</a>
 <?php if($this->session->userdata("user_type")=="admin"):?>
 &nbsp;&nbsp;<a id="monk_fom" style=" text-decoration: none;">ទម្រង់ការសុំច្បាប់ព្រះសង្ឃ:<input type="checkbox" class="form_monk" data-toggle="toggle" <?php echo $check;?> data-on="បង្ហាញ" data-off="មិនបង្ហាញ" data-width="100"></a>
 <?php endif;?>
 </label>
+<?php else:?>
+	<h3 for="message">
+		<?php echo $message;?>
+	</h3>
+<?php endif;?>
 <br /><br />
 <div class="row">
 	<div class="col-xs-12">
@@ -50,25 +56,6 @@
                 <?php if($this->session->userdata("user_type")=="monk"):?>
                     <td>
                         <?php echo $row->status;?>
-                    </td>
-                    <td>
-                        <div class="hidden-sm hidden-xs action-buttons">
-                            <a href="<?php echo base_url();?>manage_monk_take_leaves/update_monk_take_leave/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-                        </div>
-                        <div class="hidden-md hidden-lg">
-                            <div class="inline position-relative">
-                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                    <li>
-																			<li>
-																				<a href="<?php echo base_url();?>manage_monk_take_leaves/update_monk_take_leave/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-																			</li>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </td>
                 <?php endif;?>
                 <?php if($this->session->userdata("user_type")=="admin"):?>

@@ -1107,7 +1107,7 @@
 						var value = 0;
 						$.ajax({
 							type:"post",
-							url:"<?php echo base_url().'manage_member_take_leaves/update_form_monk_take_leave'?>",
+							url:"<?php echo base_url().'manage_member_take_leaves/update_form_member_take_leave'?>",
 							data:{'value':value,'name':'member_allow'},
 							success:function(response){
 									console.log(response);
@@ -1118,7 +1118,7 @@
 						var value = 1;
 						$.ajax({
 							type:"post",
-							url:"<?php echo base_url().'manage_member_take_leaves/update_form_monk_take_leave'?>",
+							url:"<?php echo base_url().'manage_member_take_leaves/update_form_member_take_leave'?>",
 							data:{'value':value,'name':'member_allow'},
 							success:function(response){
 									console.log(response);

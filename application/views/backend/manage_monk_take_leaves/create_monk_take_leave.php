@@ -57,7 +57,6 @@
 										</div>
 										<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="from_date"> ពីថ្ងៃ :<span class="required">*</span></label>
-
 										<div class="col-sm-7">
 											<div class="input-group">
 												<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="from_date" class="col-xs-10 col-sm-9" value="<?php echo set_value('from_date'); ?>"/>
