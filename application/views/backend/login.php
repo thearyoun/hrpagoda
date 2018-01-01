@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	
+
 <!-- Mirrored from responsiweb.com/themes/preview/ace/1.3.2/login.html by HTTrack Website Copier/3.x [XR&CO'2008], Mon, 17 Nov 2014 15:00:17 GMT -->
 <head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Login Page - Monitheavy Investment</title>
+		<title>Login Page - Langka HR</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -80,7 +80,7 @@
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
-													
+
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<select name="user_type" class="form-control">
@@ -89,7 +89,7 @@
 																<option value="monk">Monk</option>
 																<option value="member">Member</option>
 															</select>
-															
+
 														</span>
 													</label>
 													<label class="block clearfix">
@@ -104,7 +104,7 @@
 													<div class="space"></div>
 
 													<div class="clearfix">
-														
+
 
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
@@ -138,14 +138,14 @@
 										</div><!-- /.widget-main -->
 
 										<div class="toolbar clearfix">
-											
+
 										</div>
 									</div><!-- /.widget-body -->
 								</div><!-- /.login-box -->
 
-								
 
-								
+
+
 							</div><!-- /.position-relative -->
 
 							<!--<div class="navbar-fixed-top align-right">
@@ -205,33 +205,33 @@
 				$(target).addClass('visible');//show target
 			 });
 			});
-			
-			
-			
+
+
+
 			//you don't need this, just used for changing background
 			jQuery(function($) {
 			 $('#btn-login-dark').on('click', function(e) {
 				$('body').attr('class', 'login-layout');
 				$('#id-text2').attr('class', 'white');
 				$('#id-company-text').attr('class', 'blue');
-				
+
 				e.preventDefault();
 			 });
 			 $('#btn-login-light').on('click', function(e) {
 				$('body').attr('class', 'login-layout light-login');
 				$('#id-text2').attr('class', 'grey');
 				$('#id-company-text').attr('class', 'blue');
-				
+
 				e.preventDefault();
 			 });
 			 $('#btn-login-blur').on('click', function(e) {
 				$('body').attr('class', 'login-layout blur-login');
 				$('#id-text2').attr('class', 'white');
 				$('#id-company-text').attr('class', 'light-blue');
-				
+
 				e.preventDefault();
 			 });
-			 
+
 			});
 		</script>
 	</body>

@@ -15,18 +15,15 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="widget-main no-padding">
-
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ពុទ្ធបរិស័ទ្ធឈ្មោះ :<span class="required">*</span></label>
-
 											<div class="col-sm-7">
 												<?php if($this->session->userdata("user_type")=="member"):?>
-													<input type="text" class="col-sm-12" name="member_name" value="<?php echo $this->session->userdata("username");?>">
+													<input type="text" class="col-sm-12" readonly name="member_name" value="<?php echo $this->session->userdata("username");?>">
 													<input type="hidden" name="use_member_id" value="<?php echo $this->session->userdata("member_id")?>">
 											  <?php endif;?>
 												<?php if($this->session->userdata("user_type")=="admin"):?>
 												<select class="chosen-select form-control" id="use_member_id" data-placeholder="សូមជ្រើសរើស..." name="use_member_id">
-
 													<option value="">  </option>
 													<?php
 														foreach($members->result() as $row){
@@ -73,20 +70,30 @@
 									</div>
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="reason"> មូលហេតុ :</label>
-
 										<div class="col-sm-8">
 											<textarea name="reason" class="col-xs-10 col-sm-10" rows="5"><?php echo set_value('reason'); ?></textarea>
-
-
 										</div>
 									</div>
+									<?php if($this->session->userdata("user_type")=="admin"):?>
+										<div class="form-group">
+											<label class="col-sm-4 control-label no-padding-right" for="status_type"> ប្រភេទ :</label>
+											<div class="col-sm-7">
+												<select class="col-sm-9 chosen-select" name="status_type" data-placeholder="ជ្រើសរើសប្រភេទ" id="change_status_type" data-id="<?php echo $row->id;?>">
+													<option value=""></option>
+													<?php if($status_type !=false):
+														foreach ($status_type->result() as $value) {
+															echo "<option value='".$value->name."' ".($value->name==$row->status?"selected":"").">".$value->name."</option>";
+														?>
+												<?php } endif;?>
+												</select>
+											</div>
+										</div>
+									<?php endif;?>
 									</div>
 								</div>
 								<div class="col-sm-6">
-
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="use_handle_by_id"> ទទួលស្គាល់ដោយ :<span class="required">*</span></label>
-
 										<div class="col-sm-7">
 											<select class="chosen-select form-control" id="use_handle_by_id" data-placeholder="សូមជ្រើសរើស..." name="use_handle_by_id">
 

@@ -2,6 +2,17 @@
 
 class User extends CI_Model {
 
+  function get_form_take_leave(){
+		$this->db->select("*");
+		$result = $this->db->get("permissions_take_leave");
+		if($result->num_rows()>0){
+			$this -> session ->set_userdata("monk_allow",$result->row()->monk_allow);
+			$this -> session ->set_userdata("member_allow",$result->row()->member_allow);
+		}else{
+			$this -> session ->set_userdata("monk_allow",1);
+			$this -> session ->set_userdata("member_allow",1);
+		}
+	}
 	function login($username, $password) {
 		$query = $this -> db -> get_where('users', array('username' => $username, 'password' => sha1($password), 'status' => 1), 1);
 		if ($query -> num_rows() == 1) {
@@ -27,6 +38,7 @@ class User extends CI_Model {
 			$this -> session -> set_userdata('user_login_access', $row -> user_id);
 			$this -> session -> set_userdata('user_login_username', $row -> username);
 			$this -> session -> set_userdata('use_branch_id', $row -> use_branch_id);
+			$this->get_form_take_leave();
 			//$this -> session -> set_userdata('author_group_id', $row -> using_author_group_id);
 			return true;
 		}
@@ -39,6 +51,7 @@ class User extends CI_Model {
 			$this -> session -> set_userdata("monk_id",$row->id);
 			$this -> session -> set_userdata("username",$row->username);
 			$this -> session -> set_userdata('user_login_access', $row -> id);
+			$this->get_form_take_leave();
 			return true;
 		}
 		return false;
@@ -50,6 +63,7 @@ class User extends CI_Model {
 			$this -> session -> set_userdata("member_id",$row->id);
 			$this -> session -> set_userdata("username",$row->username);
 			$this -> session -> set_userdata('user_login_access', $row -> id);
+			$this->get_form_take_leave();
 			return true;
 		}
 		return false;

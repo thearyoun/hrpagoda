@@ -479,6 +479,33 @@ ORDER BY
 
 		return $this->db->get("members")->row();
 	}
+	public function get_data_monk_account($monk_id)
+	{
+		$this->db->select("`monks`.*, `houses`.`name` as `house_name`, `locations`.`name` as `location_name`, `groups`.`name` as `group_name`, `positions`.`name` as `pos_name`,
+fromdis.name as fromname,frcom.name as frcomname,frvil.name as frvilname,DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), monks.vegetarian_date)), '%Y')+0 as yeartime,
+curlo.name as curloname,curdis.name as curdisname,curcom.name as curcomname,curvil.name as curvilname");
+		$this->db->join("houses","`monks`.`use_house_id`=`houses`.`id`","left");
+		$this->db->join("locations","`monks`.`use_location_id`=`locations`.`id`","left");
+		$this->db->join("groups","`monks`.`use_group_id`=`groups`.`id`","left");
+		$this->db->join("positions","`monks`.`use_position_id`=`positions`.`id`","left");
+		$this->db->join("districts fromdis","fromdis.id=monks.distrinct_id","left");
+		$this->db->join("communes frcom","frcom.id=monks.commune_id","left");
+		$this->db->join("villages frvil","frvil.id=monks.village_id","left");
+		$this->db->join("locations curlo","curlo.id=monks.current_province","left");
+		$this->db->join("districts curdis","curdis.id=monks.current_district","left");
+		$this->db->join("communes curcom","curcom.id=monks.current_commune","left");
+		$this->db->join("villages curvil","curvil.id=monks.current_village","left");
+
+		$this->db->where("monks.id",$monk_id);
+		$this->db->where("monks.status",TRUE);
+
+		$result = $this->db->get("monks");
+
+		if($result->num_rows()>0){
+			return $result->row();
+		}
+		return false;
+	}
 
 	public function get_language($id,$type)
 	{
@@ -517,4 +544,6 @@ workingday.type_job");
 		}
 		return false;
 	}
+
+
 }

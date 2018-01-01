@@ -230,13 +230,13 @@ class Manage_members extends Security {
 		$this -> form_validation -> set_rules('work_type', 'work type', '');
 		$this -> form_validation -> set_rules('company_name', 'company name', '');
 		$this -> form_validation -> set_rules('company_address', 'address', '');
+		$data['member'] = $this -> Globals -> select_where('members', array('id'=> $member_id));
 
 		if ($this -> form_validation -> run() === FALSE) {
 
 			$data['monks'] = $this -> Globals -> select_all('monks');
 			$data['houses'] = $this -> Globals -> select_all('houses');
 			$data['locations'] = $this -> Globals -> select_all('locations');
-			$data['member'] = $this -> Globals -> select_where('members', array('id'=> $member_id));
 			$data['days'] = $this -> Globals -> select_all('dayofweek');
 			$data['education'] = $this -> Globals -> select_where('knowledges',array("parent_id"=>0,"status"=>1));
 			$data['langauges'] = $this -> Globals -> select_all('languages');
@@ -244,8 +244,7 @@ class Manage_members extends Security {
 			$data['get_daytime_stu'] = $this->Globals->get_dayworking(1,$member_id,'member_id');
 			$data['get_daytime_working'] = $this->Globals->get_dayworking(2,$member_id,'member_id');
 			$data['member_id'] = $member_id;
-			#var_dump($data['get_daytime_working']->result());
-			#exit;
+
 			if($data['member']->row()->grade !=null){
 				$data['grade'] = $this->Globals->select_where("knowledges",array("parent_id"=>$data['member']->row()->education));
 			}else{
@@ -257,24 +256,22 @@ class Manage_members extends Security {
 			$image_name="";
 			$error_upload=FALSE;
 			if (!empty($_FILES['userfile']['name'])){
-				$config['upload_path'] = './ftemplate/images/';
-	            $config['allowed_types'] = 'gif|jpg|jpeg|png';
-	            $config['max_size'] = '30000';
-	            $this->load->library('upload', $config);
+					$config['upload_path'] = './ftemplate/images/';
+          $config['allowed_types'] = 'gif|jpg|jpeg|png';
+          $config['max_size'] = '30000';
+          $this->load->library('upload', $config);
 
-	            if (!$this->upload->do_upload()) {
-	            	$data['errors']= array('error' => $this->upload->display_errors());
-					$error_upload=TRUE;
-	                $this->load->view('backend/index',$data);
-	            } else {
-
-	                $data = $this->upload->data();
-
-	                $image_name = $data['file_name'];
-
+          if (!$this->upload->do_upload()) {
+          	$data['errors']= array('error' => $this->upload->display_errors());
+						$error_upload=TRUE;
+              $this->load->view('backend/index',$data);
+          } else {
+              $data = $this->upload->data();
+              $image_name = $data['file_name'];
+						}
+				}else{
+					$image_name = $data['member']->row->photo;
 				}
-
-			}
 
 			if($error_upload!=TRUE){
 				$date_of_birth = date("Y-m-d", strtotime($this -> input -> post('date_of_birth')));

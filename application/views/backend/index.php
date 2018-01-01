@@ -41,6 +41,8 @@
 
 		<!-- ace settings handler -->
 		<script src="<?php echo base_url();?>dist/js/ace-extra.min.js"></script>
+		<link href="<?php echo base_url();?>dist/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -198,6 +200,7 @@
 		<script src="<?php echo base_url();?>dist/js/ace-elements.min.js"></script>
 		<script src="<?php echo base_url();?>dist/js/ace.min.js"></script>
 		<script src="<?php echo base_url();?>ftemplate/js/jquery.timepicker.min.js"></script>
+		<script src="<?php echo base_url();?>dist/js/bootstrap-toggle.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -262,18 +265,37 @@
 						"iDisplayLength": 50
 				    } );
 
-						$('#member-table')
-							.dataTable( {
+					$('#member-table').dataTable( {
+							bAutoWidth: false,
+							"aoColumns": [
+							  { "bSortable": false },
+							  null, null,null, null, null,null,null,
+							  { "bSortable": false }
+							],
+							"aaSorting": [7],
+							"iDisplayLength": 50
+					  } );
+					$('#member-take-leave-table').dataTable( {
+							bAutoWidth: false,
+							"aoColumns": [
+								{ "bSortable": false },
+								null, null,null, null, null,null,
+								{ "bSortable": false }
+							],
+							"aaSorting": [6],
+							"iDisplayLength": 50
+						} );
+
+						$('#admin-take-leave-table').dataTable( {
 								bAutoWidth: false,
 								"aoColumns": [
-								  { "bSortable": false },
-								  null, null,null, null, null,null,null,
-								  { "bSortable": false }
+									{ "bSortable": false },
+									null, null,null, null, null,null,null,
+									{ "bSortable": false }
 								],
 								"aaSorting": [7],
 								"iDisplayLength": 50
-						    } );
-
+							} );
 
 			    $('#sample-table-8')
 						.dataTable( {
@@ -1029,6 +1051,80 @@
 					 timeFormat: 'hh:mm p',
 					 scrollbar:true
 			    });
+
+					$("body").on("change","#change_status_type",function(){
+						var value = $(this).val();
+						var id = $(this).data("id");
+						$.ajax({
+							type:"post",
+							url:"<?php echo base_url().'manage_member_take_leaves/update_member_status'?>",
+							data:{'id':id,'status':value},
+							success:function(response){
+								console.log("update success");
+							}
+						});
+					});
+
+					$("body").on("change","#change_status_type_monk",function(){
+						var value = $(this).val();
+						var id = $(this).data("id");
+						$.ajax({
+							type:"post",
+							url:"<?php echo base_url().'manage_monk_take_leaves/update_member_status'?>",
+							data:{'id':id,'status':value},
+							success:function(response){
+								console.log("update success");
+							}
+						});
+					});
+
+					//monk allow permission take leave
+					$("body").on("click","#monk_fom .toggle-on",function(){
+						var value = 0;
+						$.ajax({
+							type:"post",
+							url:"<?php echo base_url().'manage_monk_take_leaves/update_form_monk_take_leave'?>",
+							data:{'value':value,'name':'monk_allow'},
+							success:function(response){
+									console.log(response);
+							}
+						});
+					});
+					$("body").on("click","#monk_fom .toggle-off",function(){
+						var value = 1;
+						$.ajax({
+							type:"post",
+							url:"<?php echo base_url().'manage_monk_take_leaves/update_form_monk_take_leave'?>",
+							data:{'value':value,'name':'monk_allow'},
+							success:function(response){
+									console.log(response);
+							}
+						});
+					});
+
+					//member allow permission take leave
+					$("body").on("click","#member_form .toggle-on",function(){
+						var value = 0;
+						$.ajax({
+							type:"post",
+							url:"<?php echo base_url().'manage_member_take_leaves/update_form_monk_take_leave'?>",
+							data:{'value':value,'name':'member_allow'},
+							success:function(response){
+									console.log(response);
+							}
+						});
+					});
+					$("body").on("click","#member_form .toggle-off",function(){
+						var value = 1;
+						$.ajax({
+							type:"post",
+							url:"<?php echo base_url().'manage_member_take_leaves/update_form_monk_take_leave'?>",
+							data:{'value':value,'name':'member_allow'},
+							success:function(response){
+									console.log(response);
+							}
+						});
+					});
     });
 
 </script>

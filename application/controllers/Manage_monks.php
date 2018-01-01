@@ -300,6 +300,8 @@ class Manage_monks extends Security {
 		$this -> form_validation -> set_rules('current_provice', 'Current Province', 'required');
 		$this -> form_validation -> set_rules('group', 'Group', 'required');
 
+		$data['monk'] = $this -> Globals -> select_where('monks',array('id'=>$monk_id));
+
 
 		if ($this -> form_validation -> run() === FALSE) {
 			$data['groups'] = $this -> Globals -> select_all('groups');
@@ -308,7 +310,6 @@ class Manage_monks extends Security {
 			$data['positions'] = $this -> Globals -> select_all('positions');
 			$data['locations'] = $this -> Globals -> select_all('locations');
 			$data['member_types'] = $this -> Globals -> select_all('member_types');
-			$data['monk'] = $this -> Globals -> select_where('monks',array('id'=>$monk_id));
 			$data['monk_group_info'] = $this -> Globals -> select_where('monk_groups',array('use_monk_id'=>$monk_id));
 			$data['langauges'] = $this -> Globals -> select_all('languages');
 			$data['monk_lang'] = $this->Globals->get_language_by_monk($monk_id);
@@ -328,18 +329,20 @@ class Manage_monks extends Security {
 			$image_name="";
 			$error_upload=FALSE;
 			if (!empty($_FILES['userfile']['name'])){
-				$config['upload_path'] = './ftemplate/images/';
-	            $config['allowed_types'] = 'gif|jpg|jpeg|png';
-	            $config['max_size'] = '30000';
-	            $this->load->library('upload', $config);
-	            if (!$this->upload->do_upload()) {
-	            	$data['errors']= array('error' => $this->upload->display_errors());
-									$error_upload=TRUE;
-	                $this->load->view('backend/index',$data);
-	            } else {
-	                $data = $this->upload->data();
-	                $image_name = $data['file_name'];
-							}
+		     $config['upload_path'] = './ftemplate/images/';
+          $config['allowed_types'] = 'gif|jpg|jpeg|png';
+          $config['max_size'] = '30000';
+          $this->load->library('upload', $config);
+          if (!$this->upload->do_upload()) {
+          	  $data['errors']= array('error' => $this->upload->display_errors());
+							$error_upload=TRUE;
+              $this->load->view('backend/index',$data);
+          } else {
+              $data = $this->upload->data();
+              $image_name = $data['file_name'];
+					}
+			}else{
+				$image_name = $data['monk']->row()->photo;
 			}
 
 
@@ -433,7 +436,6 @@ class Manage_monks extends Security {
 					'use_group_id'=>$this->input->post('group')
 					);
 					$this -> Globals -> update('monk_groups', $group_data,array('use_monk_id'=>$monk_id));
-					$this -> session -> set_flashdata('success', "monk account was updated successfully.");
 
 					$language_name = $this->input->post("language");
 					$read = $this->input->post("read");
@@ -494,19 +496,15 @@ class Manage_monks extends Security {
 									$this->Globals->insert('workingday', $data_work);
 							}
 					}
-
-					redirect('manage_monks');
+					$this -> session -> set_flashdata('success', "monk account was updated successfully.");
+					redirect('manage_monks/update_monk/'.$monk_id);
 				} else {
 
 					$this -> session -> set_flashdata('error', 'monk account  was updated fail.');
-					redirect('manage_monks');
+					redirect('manage_monks/update_monk/'.$monk_id);
 				}
 			}
-
 		}
-
-
-
 	}
 
 	public function delete_monk($monk_id = 0) {

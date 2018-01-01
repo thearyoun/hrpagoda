@@ -15,31 +15,34 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="widget-main no-padding">
-
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="use_monk_id"> ភិក្ខុឈ្មោះ :<span class="required">*</span></label>
-	
-											<div class="col-sm-7">
-												<select class="chosen-select form-control" id="use_monk_id" data-placeholder="សូមជ្រើសរើស..." name="use_monk_id">
-												
-													<option value="">  </option>
-													<?php
-														foreach($monks->result() as $row){
-													?>
-													<option value="<?php echo $row->id;?>" <?php echo ($monk_take_leave->row()->use_monk_id == $row->id)? 'selected':'';?>><?php echo $row->username;?></option>
-													<?php
-														}
-													?>
-												</select>
-												<?php echo form_error('use_monk_id'); ?>
-											</div>
+	                    <div class="col-sm-7">
+                      <?php if($this->session->userdata("user_type")=="monk"):?>
+                          <input type="text" class="col-sm-12" name="monk_name" readonly value="<?php echo $this->session->userdata("username");?>">
+                          <input type="hidden" name="use_monk_id" value="<?php echo $this->session->userdata("monk_id");?>">
+                      <?php endif;?>
+                      <?php if($this->session->userdata("user_type")=="admin"):?>
+                          <select class="chosen-select form-control" id="use_monk_id" data-placeholder="សូមជ្រើសរើស..." name="use_monk_id">
+                              <option value="">  </option>
+                              <?php
+                              foreach($monks->result() as $row){
+                                  ?>
+                                  <option value="<?php echo $row->id;?>" <?php echo ($monk_take_leave->row()->use_monk_id == $row->id)? 'selected':'';?>><?php echo $row->username;?></option>
+                                  <?php
+                              }
+                              ?>
+                          </select>
+	                        <?php endif;?>
+	                        <?php echo form_error('use_monk_id'); ?>
+	                    </div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="use_leave_type_id"> ប្រភេទនៃការឈប់ :<span class="required">*</span></label>
-	
+
 											<div class="col-sm-7">
 												<select class="chosen-select form-control" id="use_leave_type_id" data-placeholder="សូមជ្រើសរើស..." name="use_leave_type_id">
-												
+
 													<option value="">  </option>
 													<?php
 														foreach($leave_types->result() as $row){
@@ -70,20 +73,30 @@
 
 										<div class="col-sm-8">
 											<textarea name="reason" class="col-xs-10 col-sm-10" rows="5"><?php echo $monk_take_leave->row()->reason; ?></textarea>
-											
-											
 										</div>
-									</div>																				
+									</div>
+                    <?php if($this->session->userdata("user_type")=="admin"):?>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" for="status_type"> ប្រភេទ :</label>
+                            <div class="col-sm-7">
+                                <select class="col-sm-9 chosen-select" name="status_type" data-placeholder="ជ្រើសរើសប្រភេទ" data-id="<?php echo $row->id;?>">
+                                    <option value=""></option>
+                                    <?php if($status_type !=false):
+                                        foreach ($status_type->result() as $value) {
+                                            echo "<option value='".$value->name."' ".($value->name==$monk_take_leave->row()->status?"selected":"").">".$value->name."</option>";
+                                            ?>
+                                        <?php } endif;?>
+                                </select>
+                            </div>
+                        </div>
+                    <?php endif;?>
 									</div>
 								</div>
 								<div class="col-sm-6">
-									
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="use_handle_by_id"> ទទួលស្គាល់ដោយ :<span class="required">*</span></label>
-
 										<div class="col-sm-7">
 											<select class="chosen-select form-control" id="use_handle_by_id" data-placeholder="សូមជ្រើសរើស..." name="use_handle_by_id">
-											
 												<option value="">  </option>
 												<?php
 													foreach($monks->result() as $row){
@@ -98,7 +111,6 @@
 									</div>
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="request_date"> ថ្ងៃស្នើសុំ :<span class="required">*</span></label>
-
 										<div class="col-sm-7">
 											<div class="input-group">
 												<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="request_date" class="col-xs-10 col-sm-9" value="<?php echo date("d-m-Y", strtotime($monk_take_leave->row()->request_date));?>"/>
@@ -111,7 +123,6 @@
 									</div>
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="to_date"> ទៅថ្ងៃ :<span class="required">*</span></label>
-
 										<div class="col-sm-7">
 											<div class="input-group">
 												<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="to_date" class="col-xs-10 col-sm-9" value="<?php echo date("d-m-Y", strtotime($monk_take_leave->row()->to_date));?>"/>
@@ -124,14 +135,10 @@
 									</div>
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="notes"> កំណត់ចំនាំ :</label>
-
 										<div class="col-sm-8">
 											<textarea name="notes" class="col-xs-10 col-sm-10" rows="5"><?php echo $monk_take_leave->row()->notes;?></textarea>
-											
-											
 										</div>
-									</div>	
-
+									</div>
 								</div>
 							</div>
 						</div>

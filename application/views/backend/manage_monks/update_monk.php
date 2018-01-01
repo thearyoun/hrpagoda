@@ -1,6 +1,14 @@
 <label>
+  <?php if($this->session->userdata("user_type")=="admin"):?>
   <a href="<?php echo base_url();?>manage_monks"  class="btn btn-primary btn-sm"><i class="fa fa-backward"></i>ត្រលប់ក្រោយ</a>
   <a href="<?php echo base_url();?>manage_monks/create_monk" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>បន្ថែមថ្មី</a>
+<?php endif;
+  if($this->session->userdata("user_type")=="monk"):
+    ?>
+    <a href="<?php echo base_url();?>manage_monk_account"  class="btn btn-primary btn-sm"><i class="fa fa-backward"></i>ត្រលប់ក្រោយ</a>
+    <?php
+  endif;
+?>
 </label>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_monks/update_monk/<?php echo $this -> uri -> segment(3); ?>" enctype="multipart/form-data">
 	<div class="row">
@@ -1006,10 +1014,10 @@
 															<?php
 																$type_s="";
 																$gov="";
-																if($monk->row()->jop==1){
+																if($monk->row()->jop_type==1){
 																	$type_s="selected";
 																}
-																if($monk->row()->jop==2){
+																if($monk->row()->jop_type==2){
 																	$gov="selected";
 																}
 															?>
