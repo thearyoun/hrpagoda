@@ -513,3 +513,8 @@ $config['proxy_ips'] = '';
 $config['set_close_date'] = 26;
 // min member line direct
 $config['min_direct_line_member'] = 4;
+<<<<<<< HEAD
+=======
+
+$config['sess_match_useragent'] = FALSE;
+>>>>>>> e5ba8bd48b233dbf093f101eeef967aed9d1ebae
