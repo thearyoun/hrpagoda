@@ -68,7 +68,7 @@
 		<th width="20%">ភិក្ខុទទួលខុសត្រូវ </th>
 		<th width="2%">:</th>
 		<td width="28%"><?php echo $members->monk_name;?></td>
-		<th width="20%">ជ្រើសរើសរូបភាព </th>
+		<th width="20%">រូបភាព </th>
 		<th width="2%">:</th>
 		<td width="28%"><img src="<?php echo base_url();?>ftemplate/images/<?php echo $members->photo;?>" width="120px;"></td>
 	</tr>

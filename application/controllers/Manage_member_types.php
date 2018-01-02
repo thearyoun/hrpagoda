@@ -20,7 +20,7 @@ class Manage_member_types extends Security {
 			//$activation_key=random_string('alnum', 12);
 			$data = array('name' => $this -> input -> post('name', TRUE), 'description' => $this -> input -> post('description', TRUE),
 			//'password'=>sha1($this->input->post('password',TRUE)),
-			'status' => $this -> input -> post('status', TRUE), 'created_at' => null);
+			'status' => $this -> input -> post('status', TRUE), 'created_at' => date("Y-m-d H:i:s"));
 
 			$is_inserted = $this -> Globals -> insert('member_types', $data);
 			if ($is_inserted) {

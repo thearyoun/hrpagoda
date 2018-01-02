@@ -155,7 +155,7 @@ class Manage_monks extends Security
                     'user_account' => $this->input->post('user_account', TRUE),
                     'user_password' => sha1($this->input->post('user_password', TRUE)),
                     'status' => 1,
-                    'created_at' => null,
+                    'created_at' => date("Y-m-d H:i:s"),
                     'eng_name' => $this->input->post("eng_name"),
                     'nick_name' => $this->input->post("nick_name"),
                     'grade' => $this->input->post("grade"),
@@ -176,6 +176,7 @@ class Manage_monks extends Security
                     'generation' => $this->input->post("generation"),
                     'school_group' => $this->input->post("school_group"),
                     'school_address' => $this->input->post("school_address"),
+                    'major' => $this->input->post("major"),
                 );
 
                 $is_last_id = $this->Globals->insert_get_last_id('monks', $data);
@@ -186,7 +187,7 @@ class Manage_monks extends Security
                         'use_group_id' => $this->input->post('group'),
                         'use_monk_id' => $is_last_id,
                         'status' => 1,
-                        'created_at' => null
+                        'created_at' => date("Y-m-d H:i:s")
                     );
 
                     $this->Globals->insert('monk_groups', $group_data);
@@ -399,7 +400,6 @@ class Manage_monks extends Security
                     'user_account' => $this->input->post('user_account', TRUE),
                     'user_password' => (sha1($this->input->post('user_password', TRUE)) != "" ? sha1($this->input->post('user_password', TRUE)) : $this->input->post("old_password")),
                     'status' => 1,
-                    'created_at' => null,
                     'eng_name' => $this->input->post("eng_name"),
                     'nick_name' => $this->input->post("nick_name"),
                     'grade' => $this->input->post("grade"),
@@ -420,6 +420,7 @@ class Manage_monks extends Security
                     'generation' => $this->input->post("generation"),
                     'school_group' => $this->input->post("school_group"),
                     'school_address' => $this->input->post("school_address"),
+                    'major' => $this->input->post("major"),
                 );
                 if ($this->input->post('user_password', TRUE) != "") {
                     $data['user_password'] = sha1($this->input->post('user_password', TRUE));

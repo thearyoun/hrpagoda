@@ -6,7 +6,7 @@ class Manage_users extends Security {
 
 	public function index() {
 		$data['title'] = "Manage Users";
-		
+
 		$data['users'] = $this -> Globals -> select_join_get_only_fields('user_roles', $arr_fields = array('users.user_id', 'users.username', 'users.email', 'users.phone', 'users.status', 'users.created_at', 'roles.name'), $arr_join = array('users' => array('using_user_id' => 'user_id'), 'roles' => array('using_role_id' => 'role_id')), $join_type = 'INNER', $arr_where = NULL, $limit = NULL, $sort = NULL);
 		$this -> load -> view('backend/index', $data);
 	}
@@ -36,13 +36,13 @@ class Manage_users extends Security {
 			//$activation_key=random_string('alnum', 12);
 			$data = array('email' => $this -> input -> post('email', TRUE), 'password' => sha1($this -> input -> post('password', TRUE)), 'username' => $this -> input -> post('username', TRUE),
 			'address' => $this -> input -> post('address', TRUE), 'phone' => $this -> input -> post('phone', TRUE),
-			'status' => $this -> input -> post('status', TRUE), 'created_at' => null);
+			'status' => $this -> input -> post('status', TRUE), 'created_at' => date("Y-m-d H:i:s"));
 
 			$is_insert_last_id = $this -> Globals -> insert_get_last_id('users', $data);
 			if ($is_insert_last_id) {
 				//$activation_key=random_string('alnum', 12);
 				//$email=$this->input->post('email');
-				$data_role = array('using_user_id' => $is_insert_last_id, 'using_role_id' => $this -> input -> post('role'), 'status' => 1, 'created_at' => null);
+				$data_role = array('using_user_id' => $is_insert_last_id, 'using_role_id' => $this -> input -> post('role'), 'status' => 1, 'created_at' => date("Y-m-d H:i:s"));
 				$this -> Globals -> insert('user_roles', $data_role);
 
 				$this -> session -> set_flashdata('success', 'User account  was created success !.');
@@ -126,14 +126,14 @@ class Manage_users extends Security {
 			$this -> load -> view('backend/index', $data);
 		} else {
 			//$activation_key=random_string('alnum', 12);
-			$data = array('name' => $this -> input -> post('role_name', TRUE), 'description' => $this -> input -> post('role_desc', TRUE), 'status' => $this -> input -> post('status', TRUE), 'created_at' => null);
+			$data = array('name' => $this -> input -> post('role_name', TRUE), 'description' => $this -> input -> post('role_desc', TRUE), 'status' => $this -> input -> post('status', TRUE), 'created_at' => date("Y-m-d H:i:s"));
 			$permissions = $this -> input -> post('permissions', TRUE);
 			$is_inserted_last_id = $this -> Globals -> insert_get_last_id('roles', $data);
 			if ($is_inserted_last_id) {
 				//$activation_key=random_string('alnum', 12);
 				//$email=$this->input->post('email');
 				foreach ($permissions as $permission) {
-					$data = array('using_role_id' => $is_inserted_last_id, 'using_permission_id' => $permission, 'status' => 1, 'created_at' => null);
+					$data = array('using_role_id' => $is_inserted_last_id, 'using_permission_id' => $permission, 'status' => 1, 'created_at' => date("Y-m-d H:i:s"));
 					$this -> Globals -> insert('role_permissions', $data);
 				}
 				$this -> session -> set_flashdata('success', 'User access level  was created success !.');
@@ -164,16 +164,16 @@ class Manage_users extends Security {
 			$this -> load -> view('backend/index', $data);
 		} else {
 			//$activation_key=random_string('alnum', 12);
-			$data = array('name' => $this -> input -> post('role_name', TRUE), 'description' => $this -> input -> post('role_desc', TRUE), 'status' => $this -> input -> post('status', TRUE), 'created_at' => null);
+			$data = array('name' => $this -> input -> post('role_name', TRUE), 'description' => $this -> input -> post('role_desc', TRUE), 'status' => $this -> input -> post('status', TRUE), 'created_at' => date("Y-m-d H:i:s"));
 			$permissions = $this -> input -> post('permissions', TRUE);
 			$is_updated = $this -> Globals -> update('roles', $data, array('role_id' => $role_id));
-			
+
 				//$activation_key=random_string('alnum', 12);
 				//$email=$this->input->post('email');
 				$is_deleted = $this -> Globals -> delete('role_permissions', array('using_role_id' => $role_id));
 				if ($is_deleted) {
 					foreach ($permissions as $permission) {
-						$data = array('using_role_id' => $role_id, 'using_permission_id' => $permission, 'status' => 1, 'created_at' => null);
+						$data = array('using_role_id' => $role_id, 'using_permission_id' => $permission, 'status' => 1, 'created_at' => date("Y-m-d H:i:s"));
 						$this -> Globals -> insert('role_permissions', $data);
 					}
 					$this -> session -> set_flashdata('success', 'User access level  was updated success !.');
@@ -183,7 +183,7 @@ class Manage_users extends Security {
 					redirect('manage_users/update_role/' . $role_id);
 				}
 
-			
+
 		}
 	}
 

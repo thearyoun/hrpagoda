@@ -45,7 +45,7 @@
 							<td><?php echo $row->phone_number;?></td>
 							<td><?php echo $row->location_name;?></td>
 							<td><?php echo $row->yeartime.' (ឆ្នាំ)';?></td>
-							<td><?php echo $row->date_of_birth;?></td>
+							<td><?php echo convertDateToKhmer($row->date_of_birth);?></td>
 							<td><span class="label label-sm label-<?php echo $class;?>"><?php echo $status;?></span></td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">

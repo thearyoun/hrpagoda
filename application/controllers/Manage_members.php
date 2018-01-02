@@ -118,9 +118,10 @@ class Manage_members extends Security {
 						'identify_card' => $this -> input -> post('identify_card', TRUE),
 						'use_house_id' => $use_house_id->row()->use_house_id,
 						'status' => 1,
-						'created_at' => null,
+						'created_at' => date("Y-m-d H:i:s"),
 						'eng_name' => $this->input->post("eng_name"),
 						'grade' => $this->input->post("grade"),
+						'major' => $this->input->post("major"),
 						'user_account' => ($this->input->post("user_account",TRUE)?$this->input->post("user_account",TRUE):$this->input->post('username', TRUE)),
 						'user_password'=>($this->input->post("user_password",TRUE)?sha1($this -> input -> post("user_password", TRUE)):sha1($this -> input -> post(123, TRUE)))
 					);
@@ -314,6 +315,7 @@ class Manage_members extends Security {
 					'use_house_id' =>$use_house_id->row()->use_house_id,
 					'eng_name' => $this->input->post("eng_name"),
 					'grade' => $this->input->post("grade"),
+					'major' => $this->input->post("major"),
 					'user_account' => ($this->input->post("user_account",TRUE)?$this->input->post("user_account",TRUE):$this->input->post('username', TRUE)),
 					'user_password'=>($this->input->post("user_password",TRUE)?sha1($this -> input -> post("user_password", TRUE)):sha1($this -> input -> post("old_pass", TRUE)))
 				);

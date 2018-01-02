@@ -89,14 +89,27 @@
 		<th width="2%">:</th>
 		<td width="28%"><?php echo ($monks->leave_date?convertDateToKhmer($monks->leave_date):"");?></td>
 	</tr>
+	<?php if($lanuage !=false){
+			foreach ($lanuage->result() as $row) {
+		?>
+	<tr>
+		<th>ភាសា</th>
+		<th>:</th>
+		<th colspan="4"><?php echo $row->langname." : និយាយ(".lavel_language_return($row->speaking).")
+		ស្តាប់(".lavel_language_return($row->listening).") អាន(".lavel_language_return($row->reading).") សរសេរ(".lavel_language_return($row->writing).")";?></th>
+	</tr>
+<?php }}else{
+	echo "<tr><th colspan='6'>គ្មានភាសា</th></tr>";
+}?>
 	<tr>
 		<th width="20%">និមន្ដមកពីវត្ត </th>
 		<th width="2%">:</th>
 		<td width="28%"><?php echo $monks->from_pagoda;?></td>
-		<th width="20%">ជ្រើសរើសរូបភាព </th>
+		<th width="20%">រូបភាព </th>
 		<th width="2%">:</th>
 		<td width="28%"><img src="<?php echo base_url();?>ftemplate/images/<?php echo $monks->photo;?>" width="120"></td>
 	</tr>
+
 </table>
 <table class="table table-striped table-bordered table-hover">
 	<tr>

@@ -39,19 +39,11 @@
 							<td><?php echo ($row->gender=='M')? 'ប្រុស':'ស្រី';?></td>
 							<td><?php echo $row->nation;?></td>
 							<td><?php echo $row->phone_number;?></td>
-							<td><?php echo $row->date_of_birth;?></td>
+							<td><?php echo convertDateToKhmer($row->date_of_birth);?></td>
 							<td><span class="label label-sm label-<?php echo $class;?>"><?php echo $status;?></span></td>
-							<td><?php echo $row->created_at;?></td>
+							<td><?php echo ($row->created_at);?></td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<!--<a class="green" href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" title="Edit member"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
-									<?php
-										if($row->name!="Admin"){
-									?>
-									<a class="red" href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" title="Delete member" onclick="return confirm('Are you sure want to delete this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
-									<?php
-										}
-									?>-->
 									<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
 									<a class="red" href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" title="Delete member" onclick="return confirm('Are you sure want to delete this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 								</div>

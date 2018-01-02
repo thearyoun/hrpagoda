@@ -107,7 +107,7 @@ class Manage_member_take_leaves extends Security {
 				'notes' => $this -> input -> post('notes', TRUE),
 				'request_date' => $request_date,
 				'status' => ($this->input->post("status_type")?$this->input->post("status_type"):'មិនទាន់អនុញ្ញាត'),
-				'created_at' => date("Y-m-d H:i:s")
+				
 			);
 
 			$isUpdated = $this -> Globals -> update('member_take_leaves', $data, array('id'=> $take_leave_id));

@@ -113,6 +113,14 @@ if($this->session->userdata("user_type")=="member"){
 												<?php echo form_error('grade'); ?>
 											</div>
 										</div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label no-padding-right" for="major">
+                            ជំនាញ :</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="col-xs-10 col-sm-9" name="major" value="<?php echo $data->major;?>" id="major">
+                            <?php echo form_error('major'); ?>
+                        </div>
+                    </div>
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="family_status"> ស្ថានភាពគ្រួសារ : <span class="required">*</span></label>
 											<div class="col-sm-8">
