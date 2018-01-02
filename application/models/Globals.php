@@ -258,7 +258,17 @@ class Globals extends CI_Model
         if ($arr_where != NULL && is_array($arr_where)) {
             foreach ($arr_where as $fields => $value) {
                 if ($value != "") {
-                    $this->db->where($fields, $value);
+                    if (($fields == "date_start") || ($fields == "date_end")) {
+                        if ($fields == "date_start") {
+                            $this->db->where("date(monks.created_at) >= '" . $value . "'");
+                        }
+                        if ($fields == "date_end") {
+                            $this->db->where("date(monks.created_at) <= '" . $value . "'");
+                        }
+                    } else {
+                        $this->db->where($fields, $value);
+                    }
+
                 }
             }
         }

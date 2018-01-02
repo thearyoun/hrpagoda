@@ -47,7 +47,7 @@
                                     <?php echo form_error('houses'); ?>
                                 </div>
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                     <label for="groups" class="control-label">ក្រុម :</label>
                                     <select class="form-control" id="groups" name="groups">
                                         <option value="">--សូមជ្រើសរើស--</option>
@@ -62,8 +62,7 @@
                                     <?php echo form_error('groups'); ?>
                                 </div>
 
-
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                     <label for="member_types" class="control-label">ប្រភេទ :</label>
                                     <select class="form-control" id="member_types" name="member_types">
                                         <option value="">--សូមជ្រើសរើស--</option>
@@ -75,6 +74,18 @@
                                         }
                                         ?>
                                     </select>
+                                    <?php echo form_error('member_types'); ?>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="to_date" class="control-label">ពីថ្ងៃ :</label>
+                                    <input type="date" class="form-control" name="from_date" id="to_date" value="<?php echo set_value('from_date'); ?>">
+                                    <?php echo form_error('member_types'); ?>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="to_date" class="control-label">ដល់ថ្ងៃ :</label>
+                                    <input type="date" class="form-control" name="to_date" id="to_date" value="<?php echo set_value('to_date'); ?>">
                                     <?php echo form_error('member_types'); ?>
                                 </div>
 
@@ -120,6 +131,7 @@
                 <th><?php echo $this->lang->line(''); ?>កុដិលេខ</th>
                 <th><?php echo $this->lang->line(''); ?>ជនជាតិ</th>
                 <th><?php echo $this->lang->line(''); ?>លេខទូរស័ព្</th>
+                <th><?php echo $this->lang->line(''); ?>ប្រភេទ</th>
                 <th><?php echo $this->lang->line(''); ?>មកពីខេត្ត</th>
                 <th><?php echo $this->lang->line('tb_dob'); ?></th>
                 <th><?php echo $this->lang->line(''); ?>ស្ថានភាព</th>
@@ -131,6 +143,8 @@
             <tbody>
             <?php
             $i = 0;
+            $monk1=0;
+            $monk2=0;
             foreach ($monks->result() as $row) {
 
                 if ($row->status == 1) {
@@ -140,6 +154,14 @@
                     $class = "warning";
                     $status = "Inactive";
                 }
+
+                if($row->vegetarian_types==1){
+                    $monk1++;
+                }
+                if($row->vegetarian_types==2){
+                    $monk2++;
+                }
+
                 ?>
                 <tr>
                     <td class="center"><?php echo ++$i; ?></td>
@@ -147,6 +169,7 @@
                     <td><?php echo $row->house_name; ?></td>
                     <td><?php echo $row->nation; ?></td>
                     <td><?php echo $row->phone_number; ?></td>
+                    <td><?php echo vegetarian_type($row->vegetarian_types); ?></td>
                     <td><?php echo $row->location_name; ?></td>
                     <td><?php echo $row->date_of_birth; ?></td>
                     <td><span class="label label-sm label-<?php echo $class; ?>"><?php echo $status; ?></span></td>
@@ -192,8 +215,12 @@
             }
             ?>
             <tr>
-                <td colspan="5">ចំនួនព្រះសង្ឃសរុបៈ</td>
-                <td colspan="4"><?php echo $monks->num_rows(); ?> អង្គ</td>
+                <td colspan="2">ចំនួនព្រះសង្ឃសរុបៈ</td>
+                <td colspan="2"><?php echo $monks->num_rows(); ?> អង្គ</td>
+                <td>មានភិក្ខុ៖</td>
+                <td><?php echo $monk1;?> អង្គ</td>
+                <td>សាមណេ៖</td>
+                <td><?php echo $monk2;?> អង្គ</td>
             </tr>
             </tbody>
         </table>

@@ -179,6 +179,8 @@ class Manage_reports extends Security
         $houses = $this->input->post('houses', true);
         $groups = $this->input->post('groups', true);
         $member_types = $this->input->post('member_types', true);
+        $from_date = $this->input->post('from_date', true);
+        $to_date = $this->input->post('to_date', true);
 
         $arr_like = array();
         $arr_where = array();
@@ -197,6 +199,16 @@ class Manage_reports extends Security
 
         if ($member_types) {
             $arr_where["monks.vegetarian_types"] = $member_types;
+        }
+
+        if ($from_date) {
+            $from_date = date("Y-m-d", strtotime($from_date));
+            $arr_where['date_start'] = $from_date;
+        }
+
+        if ($to_date) {
+            $to_date = date("Y-m-d", strtotime($to_date));
+            $arr_where['date_end'] = $to_date;
         }
 
         if ($work_type) {
