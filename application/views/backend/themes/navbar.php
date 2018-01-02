@@ -24,19 +24,19 @@
 		<div class="navbar-buttons navbar-header pull-right" role="navigation">
 			<ul class="nav ace-nav">
 				<?php if($this->session->userdata("user_type")=="admin"):?>
-        <li class="purple dropdown-modal">
+                <li class="purple dropdown-modal">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
                         <span class="badge badge-important">
-                            <?php echo (get_message()!=false?get_message()->num_rows():"")?>
+                            <?php echo (get_message()!=false?get_message()->num_rows():0)?>
                         </span>
                     </a>
                     <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" style="">
                         <li class="dropdown-header">
                             <i class="ace-icon fa fa-envelope-o"></i>
-                            <?php echo (get_message()!=false?get_message()->num_rows():"")?> Messages
+                            <?php echo (get_message()!=false?get_message()->num_rows():0)?> Messages
                         </li>
-
+                        <?php if (get_message()!=false) { ?>
                         <li class="dropdown-content ace-scroll" style="position: relative;"><div class="scroll-track" style="display: block; height: 281px;"><div class="scroll-bar" style="height: 224px; top: 0px;"></div></div><div class="scroll-content" style="max-height: 281px;">
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <?php foreach (get_message()->result() as $message) { ?>
@@ -63,6 +63,7 @@
                                 </ul>
                             </div>
                         </li>
+                        <?php } ?>
                     </ul>
                 </li>
 				<?php endif;?>
