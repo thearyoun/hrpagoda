@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from responsiweb.com/themes/preview/ace/1.3.2/tables.html by HTTrack Website Copier/3.x [XR&CO'2008], Mon, 17 Nov 2014 14:59:15 GMT -->
 <head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
