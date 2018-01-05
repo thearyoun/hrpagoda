@@ -250,3 +250,13 @@ if (!function_exists("get_message")) {
         return $result;
     }
 }
+
+if(!function_exists("get_monk_take_leaves")){
+  function get_monk_take_leaves($monk_id)
+  {
+    $ci = &get_instance();
+    $ci->load->model("Custom_model");
+    $result = $ci->Custom_model->get_monk_take_leaves_attendant($monk_id);
+    return $result;
+  }
+}

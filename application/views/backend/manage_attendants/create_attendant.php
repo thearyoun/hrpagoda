@@ -15,13 +15,10 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="widget-main no-padding">
-
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="use_programme_id"> កម្មវីធី :<span class="required">*</span></label>
-	
 											<div class="col-sm-7">
 												<select class="chosen-select form-control" id="use_programme_id" data-placeholder="សូមជ្រើសរើស..." name="use_programme_id">
-												
 													<option value="">  </option>
 													<?php
 														foreach($programmes->result() as $row){
@@ -34,10 +31,8 @@
 												<?php echo form_error('use_programme_id'); ?>
 											</div>
 										</div>
-										
 										<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="date"> ថ្ងៃទី :<span class="required">*</span></label>
-
 										<div class="col-sm-7">
 											<div class="input-group">
 												<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="date" class="col-xs-10 col-sm-9" value="<?php echo set_value('date'); ?>"/>
@@ -48,18 +43,13 @@
 											<?php echo form_error('date'); ?>
 										</div>
 									</div>
-																												
 									</div>
 								</div>
 								<div class="col-sm-6">
-									
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="times"> វេន :<span class="required">*</span></label>
-
 										<div class="col-sm-7">
 											<select class="chosen-select form-control" id="times" data-placeholder="សូមជ្រើសរើស..." name="times">
-											
-												
 												<option value="">  </option>
 													<option value="morning" <?php echo set_select('times', "morning"); ?>>ព្រឹក</option>
 													<option value="evening" <?php echo set_select('times', "evening"); ?>>ល្ងាច</option>
@@ -68,8 +58,6 @@
 											<?php echo form_error('times'); ?>
 										</div>
 									</div>
-										
-
 								</div>
 							</div>
 						</div>
@@ -77,12 +65,10 @@
 				</div>
 			</div>
 		</div><!-- /.col -->
-
 	</div><!-- /.row -->
 	<br />
 	<div class="row">
 	<div class="col-xs-12">
-		
 		<table id="sample-table-7" class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
@@ -90,21 +76,17 @@
 						<input type="checkbox" class="ace" />
 						<span class="lbl"></span> </label></th>
 					<th class="center">មានច្បាប់</th>
-					
 					<th><?php echo $this -> lang -> line(''); ?>ភិក្ខុឈ្មោះ</th>
 					<th><?php echo $this -> lang -> line(''); ?>កុដិលេខ</th>
 					<th><?php echo $this -> lang -> line(''); ?>ជនជាតិ</th>
 					<th><?php echo $this -> lang -> line(''); ?>លេខទូរស័ព្ទ</th>
-					<th><?php echo $this -> lang -> line(''); ?>មកពីខេត្ត</th>					
-										
+					<th><?php echo $this -> lang -> line(''); ?>មកពីខេត្ត</th>
 				</tr>
 			</thead>
-
 			<tbody>
 				<?php
 					$i=0;
 					foreach($monks->result() as $row){
-						
 						if($row->status==1){
 							$class="success";
 							$status="Active";
@@ -112,32 +94,35 @@
 							$class="warning";
 							$status="Inactive";
 						}
+
+						if(get_monk_take_leaves($row->id) !=FALSE){
+							$style ="background-color:red;color:#fff";
+						}else{
+							$style='';
+						}
 				?>
-						<tr>
+						<tr style="<?php echo $style;?>">
 							<td class="center"><label class="attendants">
 								<input type="checkbox" class="ace" value="<?php echo $row->id;?>" name="attendants[]"/>
 								<span class="lbl"></span> </label></td>
 							<td class="center"><label class="take_leaves">
 								<input type="checkbox" class="ace" value="<?php echo $row->id;?>" name="take_leaves[]"/>
-								<span class="lbl"></span> </label></td>
-							
+								<span class="lbl"></span> </label>
+							</td>
 							<td><?php echo $row -> username; ?></td>
 							<td><?php echo $row -> house_name; ?></td>
 							<td><?php echo $row -> nation; ?></td>
 							<td><?php echo $row -> phone_number; ?></td>
 							<td><?php echo $row -> location_name; ?></td>
-							
-							
 						</tr>
 				<?php
 				}
 				?>
-				
 			</tbody>
 		</table>
 	</div><!-- /.span -->
 </div><!-- /.row -->
-	
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="clearfix form-actions">

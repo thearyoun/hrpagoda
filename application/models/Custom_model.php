@@ -608,5 +608,21 @@ workingday.type_job");
         return false;
     }
 
+    public function get_monk_take_leaves_attendant($monk_id)
+    {
+      $this->db->select("id");
 
+      $this->db->where("date(from_date) <=now()");
+      $this->db->where("date(to_date) >=now()");
+      $this->db->where("use_monk_id",$monk_id);
+
+      $this->db->order_by("id","desc");
+      $this->db->limit(1);
+
+      $result = $this->db->get("monk_take_leaves");
+      if($result->num_rows()>0){
+        return $result->row()->id;
+      }
+      return FALSE;
+    }
 }

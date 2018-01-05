@@ -37,7 +37,7 @@
 							<td><?php echo $row->house_name;?></td>
 							<td><?php echo $row->pro_name;?></td>
 							<td><?php echo $times;?></td>
-							<td><?php echo $row->date;?></td>
+							<td><?php echo convertDateToKhmer($row->date);?></td>
 							<td><?php echo ($row->present == 1? 'មាន':'អត់');?></td>
 							<td><?php echo ($row->is_take_leave == 1? 'មានច្បាប់':'អត់ច្បាប់');?></td>
 							<td>
