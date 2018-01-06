@@ -408,15 +408,39 @@
 				//oTable1.fnAdjustColumnSizing();
 
 
-				$(document).on('click', 'th input:checkbox' , function(){
-					var that = this;
-					$(this).closest('table').find('tr > td:first-child input:checkbox')
-					.each(function(){
-						this.checked = that.checked;
-						$(this).closest('tr').toggleClass('selected');
-					});
+				$(document).on('click', '.attendant_all' , function(){
+					if($(this).is(":checked")){
+						$(".attendant_check").prop('checked', true);
+
+						$(".take_leaves_check").prop('disabled', true);
+						$(".take_leaves_all").prop('disabled', true);
+					}else{
+						$(".attendant_check").prop('checked', false);
+
+						$(".take_leaves_check").prop('disabled', false);
+						$(".take_leaves_all").prop('disabled', false);
+					}
+					// var that = this;
+					// $(this).closest('table').find('tr > td:first-child input:checkbox')
+					// .each(function(){
+					// 	this.checked = that.checked;
+					// 	$(this).closest('tr').toggleClass('selected');
+					// });
 				});
 
+				$(document).on('click', '.take_leaves_all' , function(){
+					if($(this).is(":checked")){
+						$(".take_leaves_check").prop('checked', true);
+
+						$(".attendant_all").prop('disabled', true);
+						$(".attendant_check").prop('disabled', true);
+					}else{
+						$(".take_leaves_check").prop('checked', false);
+
+						$(".attendant_all").prop('disabled', false);
+						$(".attendant_check").prop('disabled', false);
+					}
+				});
 
 				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
 				function tooltip_placement(context, source) {

@@ -73,9 +73,13 @@
 			<thead>
 				<tr>
 					<th class="center"><label class="attendants">
-						<input type="checkbox" class="ace" />
-						<span class="lbl"></span> </label></th>
-					<th class="center">មានច្បាប់</th>
+						<input type="checkbox" class="ace attendant_all"/>
+						<span class="lbl"></span>អត់ច្បាប់</label>
+					</th>
+					<th class="center"><label class="take_leaves">
+						<input type="checkbox" class="ace take_leaves_all" />
+						<span class="lbl"></span>មានច្បាប់</label>
+					</th>
 					<th><?php echo $this -> lang -> line(''); ?>ភិក្ខុឈ្មោះ</th>
 					<th><?php echo $this -> lang -> line(''); ?>កុដិលេខ</th>
 					<th><?php echo $this -> lang -> line(''); ?>ជនជាតិ</th>
@@ -96,18 +100,23 @@
 						}
 
 						if(get_monk_take_leaves($row->id) !=FALSE){
-							$style ="background-color:red;color:#fff";
+							$style ="background-color:#FFFF00;color:#000000";
 						}else{
 							$style='';
 						}
 				?>
 						<tr style="<?php echo $style;?>">
-							<td class="center"><label class="attendants">
-								<input type="checkbox" class="ace" value="<?php echo $row->id;?>" name="attendants[]"/>
-								<span class="lbl"></span> </label></td>
-							<td class="center"><label class="take_leaves">
-								<input type="checkbox" class="ace" value="<?php echo $row->id;?>" name="take_leaves[]"/>
-								<span class="lbl"></span> </label>
+							<td class="center">
+								<label class="attendants">
+								<input type="checkbox" class="ace attendant_check" value="<?php echo $row->id;?>" name="attendants[]"/>
+								<span class="lbl"></span>
+								</label>
+							</td>
+							<td class="center">
+								<label class="take_leaves">
+									<input type="checkbox" class="ace take_leaves_check" value="<?php echo $row->id;?>" name="take_leaves[]"/>
+									<span class="lbl"></span>
+								</label>
 							</td>
 							<td><?php echo $row -> username; ?></td>
 							<td><?php echo $row -> house_name; ?></td>
