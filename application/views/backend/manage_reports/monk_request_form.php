@@ -3,7 +3,7 @@
         <div class="col-xs-12">
             <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:
     .0001pt;text-align:center;line-height:normal;font-weight: bold'>
-    <span lang=KHM style='font-size:10.0pt'>ព្រះរាជាណាចក្រកម្ពុជា <br/>
+    <span style='font-size:10.0pt'>ព្រះរាជាណាចក្រកម្ពុជា <br/>
 		ជាតិ សាសនា ព្រះមហាក្សត្រ<br/>
 		*************** <br/>
 		ប្រវត្តិរូបសង្ខេប</span></p><br/>
@@ -12,7 +12,7 @@
     <span lang=KHM
           style='font-size:10pt'>
 		<span style="margin-left:5em">ខ្ញុំព្រះករុណានាម </span><span
-                style="padding: 0px 8%;"><?php echo $monk_info->row()->username; ?><span> 	<span
+                style="padding: 0px 3em;"><?php echo $monk_info->row()->username; ?><span> 	<span
                         style="padding: 0px 4%;">ជនជាតិ</span> <?php echo $monk_info->row()->nation; ?> <span
                         style="padding: 0 0 0 4%;">សញ្ជាតិ	</span> <?php echo $monk_info->row()->nationality; ?> </span><br/>
 		ថ្ងៃ ខែ ឆ្នាំកំណើត<span
