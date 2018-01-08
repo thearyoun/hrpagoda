@@ -3,7 +3,7 @@
 
         <div class="col-xs-12">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#personal">ព័ត៌មានពុទ្ធបរិស័ទ្ធ</a></li>
+                <li class="active"><a data-toggle="tab" href="#personal">ព័ត៌មានផ្ទាល់ខ្លួនរបស់ព្រះសង្ឃ</a></li>
             </ul>
             <div class="tab-content">
                 <div id="personal" class="tab-pane fade in active">
@@ -13,7 +13,25 @@
 
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
-                                        ឈ្មោះពុទ្ធបរិស័ទ្ធ :</label>
+                                        ឈ្មោះ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ឈ្មោះឡាតាំង :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        នាមបញ្ញត្តិ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        សញ្ជាតិ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
 
@@ -26,95 +44,6 @@
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
                                         ថ្ងៃ ខែ ឆ្នាំកំណើត :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        ​ស្នាក់នៅថ្ងៃ :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        កំរិតការសិក្សា :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        ថ្នាក់ :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        ជំនាញ :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        ស្ថានភាពគ្រួសារ :</label>
-                                    <div class="col-xs-7">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                នៅលិវ
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                រៀបការ
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        ឈ្មោះគណនី :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        លេខកូដសម្ងាត់ :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                            </div>
-                            <div class="col-xs-6">
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        ឈ្មោះជាភាសាអង់គ្លេស :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        ភេទ :</label>
-                                    <div class="col-xs-7">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                ប្រុស
-                                            </label>
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                ស្រី
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        សញ្ជាតិ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
 
@@ -138,19 +67,142 @@
 
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
-                                        អត្តសញ្ញាណប័ណ្ណ :</label>
+                                        កំរិតវប្បធម៌ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
-                                        ភិក្ខុទទួលខុសត្រូវ :</label>
+                                        ថ្នាក់ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
-                                        ជ្រើសរើសរូបភាព :</label>
+                                        ជំនាញ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ទទួលស្គាល់ដោយ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        កុដិលេខ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ក្រុម :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ឈ្មោះគណនី :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                            </div>
+                            <div class="col-xs-6">
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        គង់នៅវត្ត :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        នៅខេត្ត :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        នៅស្រុក :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        នៅឃុំ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        នៅភូមិ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ថ្ងៃ ខែ ឆ្នាំបួស :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        បួសបាន :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ភិក្ខុ ឬ សាមណេរ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        លេខឆាយា :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        មុខងារ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ​ស្នាក់នៅថ្ងៃ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        និមន្ដមកពីវត្ត :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        មកពីខេត្ត :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        មកពីស្រុក :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        មកពីឃុំ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        មកពីភូមិ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
 
@@ -340,7 +392,7 @@
                                             <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                មន្ត្រីរាជការ
+                                                មន្រ្ដីរាជការ
                                             </label>
                                         </div>
                                     </div>
@@ -457,7 +509,54 @@
 
         <div class="col-xs-12">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#family_information">ព័ត៌មានគ្រួសារ </a></li>
+                <li class="active"><a data-toggle="tab" href="#teacher_information"> ព័ត៌មានព្រះឧបជ្ឈាយ៍ </a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="teacher_information" class="tab-pane fade in active">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-6">
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        ព្រះឧបជ្ឈាយ៍នាម :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        អាសយដ្ឋានបច្ចុប្បន្ន :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-6">
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        លេខទូរស័ព្ទ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-5 control-label text-right" for="username">
+                                        មុខងារ :</label>
+                                    <input type="text" id="username" name="username" class="col-xs-7">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#family_information">ព័ត៌មានគ្រួសាររបស់ព្រះសង្ឃ </a></li>
             </ul>
 
             <div class="tab-content">

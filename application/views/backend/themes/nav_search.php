@@ -13,7 +13,7 @@
 	}
 ?>
 
-<div class="breadcrumbs" id="breadcrumbs">
+<div class="breadcrumbs hidden-print" id="breadcrumbs">
 	<script type="text/javascript">
 		try {
 			ace.settings.check('breadcrumbs', 'fixed')
