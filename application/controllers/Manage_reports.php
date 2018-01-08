@@ -477,4 +477,10 @@ class Manage_reports extends Security
 
         $this->load->view('backend/index', $data);
     }
+
+    public function download_template_forms_member()
+    {
+        $data['title'] = "Download member request form";
+        $this->load->view('backend/index', $data);
+    }
 }
