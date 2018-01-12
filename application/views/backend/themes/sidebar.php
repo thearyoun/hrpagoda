@@ -251,6 +251,10 @@
 						<a href="<?php echo base_url(); ?>manage_locations"> <i class="menu-icon fa fa-caret-right"></i><?php echo $this->lang->line('');?>គ្រប់គ្រងទីកន្លែង</a>
 						<b class="arrow"></b>
 					</li>
+					<li class="">
+						<a href="<?php echo base_url(); ?>manage_reports/manage_form"> <i class="menu-icon fa fa-caret-right"></i><?php echo $this->lang->line('');?>ការទាញយក ទម្រង់</a>
+						<b class="arrow"></b>
+					</li>
 			</ul>
 	</li>
 	<?php } ?>

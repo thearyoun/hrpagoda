@@ -1,7 +1,208 @@
+<div class="hidden-print">
+  <label>
+    <a href="<?php echo base_url();?>manage_reports/manage_form" class="btn btn-primary btn-sm"><i class="fa fa-backward"></i> ត្រលប់ក្រោយ</a>
+    &nbsp;
+    <a href="javascript:void(0);" class="btn btn-success btn-sm" onclick="window.print();"><i class="fa fa-print"></i> បោះពុម្ព</a>
+  </label>
+</div>
+<div class="row">&nbsp;</div>
 <div id="template_form">
     <form action="#" class="form-horizontal">
-
+      <div class="col-xs-12">
+        <div class="text-center">
+            <h4>ព្រះរាជាណាចក្រកម្ពុជា</h4>
+            <h4>ជាតិ សាសនា ព្រះមហាក្សត្រ</h4>
+            <p>*******************</p>
+            <h4>ពាក្យសុំស្នាក់នៅ</h4>
+        </div>
+      </div>
+      <div class="col-xs-12 break-space">&nbsp;</div>
+      <div class="col-xs-12">
+        <div class="row">
+          <label style="width:60px;">&nbsp;</label>ខ្ញុំព្រះករុណាឈ្មោះ:................................................................
+          កើតនៅថ្ងៃទី:................ខែ:..............................ឆ្នាំ:20...........
+        </div>
+        <div class="break-space">&nbsp;</div>
+        <div class="row">
+          ជនជាតិ:....................................សញ្ជាតិ:.....................................
+          ភូមិ:.............................................................ឃុំ:...........................................
+        </div>
+        <div class="break-space">&nbsp;</div>
+        <div class="row">
+          ស្រុក:...........................................................................................................
+          ខេត្ត:..............................................................................................
+        </div>
+      </div>
+      <div class="col-xs-12 break-space">&nbsp;</div>
+      <div class="col-xs-12">
+        <div class="text-center">
+          <h4>សូមក្រាបថ្វាយបង្គំ</h4>
+          <h5 class="h3-break">&nbsp;</h5>
+          <h5>សម្តេចព្រះមហាអរិយវង្ស ព្រះចៅអធិការវត្តលង្កាព្រះកុសុមារាម ជាទីគោរពសក្ការៈដ៏ខ្ពង់ខ្ពស់</h5>
+          <h5 class="h5-break">&nbsp;</h5>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 break-space">&nbsp;</div> -->
+      <div class="col-xs-12">
+        <div class="row break-space">
+          <label style="width:30px;">&nbsp;</label>តាមរយៈ	មេកុដិលេខៈ.............................................................................
+        </div>
+        <!-- <div style="height:5px;">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:60px;">&nbsp;</label>ប្រធានគណៈគ្រប់គ្រងយុវជន និងកុមារ
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:60px;">&nbsp;</label>ប្រធានគណៈកម្មការវត្ត
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:30px;">&nbsp;</label>កម្មវត្ថុៈ	សំណើសុំការអនុញ្ញាតស្នាក់នៅកុដិលេខ:.....................ចាប់តាំងពីថ្ងៃទី:................
+          ខែ:..............................ឆ្នាំ:20...........
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:60px;">&nbsp;</label>សេចក្តីដូចមានប្រគេនថ្វាយក្នុងកម្មវត្ថុខាងលើនេះ សូមសម្តេចអនុញ្ញាតឱ្យខ្ញុំព្រះករុណាបានស្នាក់នៅ
+		ដោយសេចក្តីអនុគ្រោះ។
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:60px;">&nbsp;</label>ខ្ញុំព្រះករុណា សូមធ្វើកិច្ចសន្យាចំពោះប្រធានយុវជន មេកុដិ គណៈកម្មការ និងសម្តេចថាៈ
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:100px;">&nbsp;</label>-បើខ្ញុំព្រះករុណា បានប្រព្រឹត្តខុសនឹងច្បាប់កុដិ ច្បាប់វត្ត និងច្បាប់រដ្ឋ ខ្ញុំព្រះករុណាសូមដើរចេញដោយ
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:60px;">&nbsp;</label>គ្មានការទាមទារលក្ខខណ្ឌអ្វីឡើយ។
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:100px;">&nbsp;</label>-បើនៅពេលរៀនចប់ ខ្ញុំព្រះករុណា នឹងប្រគល់កន្លែងនោះប្រគេនព្រះអង្គមេកុដិវិញ។
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:100px;">&nbsp;</label>-សូមភ្ជាប់ជាមួយនូវរូបថតទំហំ ៣x៤ ចំនួន	០៣សន្លឹក។
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:100px;">&nbsp;</label>-សូមភ្ជាប់ជាមួយនូវរូបថតទំហំ ៤x៦ ចំនួន	០៣សន្លឹក។
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <label style="width:100px;">&nbsp;</label>-សូមភ្ជាប់ជាមួយនូវអត្តសញ្ញាណបណ្ណ(copy)	ចំនួន	០១សន្លឹក។
+        </div>
+        <!-- <div class="break-space">&nbsp;</div> -->
+        <div class="row break-space">
+          <div class="col-xs-7">&nbsp;</div>
+          <div class="col-xs-5">
+              វត្តលង្កាថ្ងៃទី:............ខែ:..............................ឆ្នាំ:20.....
+              <div class="row break-space">&nbsp;</div>
+              <div class="row">
+                <div class="col-xs-3">&nbsp;</div>
+                <div class="col-xs-4">
+                  ហត្ថលេខា
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+              <div class="row">
+                បានឃើញ និងប្រគេនមក
+              </div>
+              <div class="h5-break">&nbsp;</div>
+              <div class="row">
+                សម្តេចព្រះមហាអរិយវង្សព្រះចៅអធិការ
+              </div>
+              <div class="h5-break">&nbsp;</div>
+              <div class="row">
+                ព្រះមេត្តាពិនិត្យ នឹងសម្រេច
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                ថ្ងៃទី:............ខែ:..............................ឆ្នាំ:20.....
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                ប្រធានគណៈកម្មការវត្ត
+              </div>
+            </div>
+            <div class="col-xs-6 text-center">
+              <div class="break-space">&nbsp;</div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                បានឃើញ និងបញ្ជូនមក
+              </div>
+              <div class="h5-break">&nbsp;</div>
+              <div class="row">
+                ប្រធានគណៈកម្មការ
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                ថ្ងៃទី:............ខែ:..............................ឆ្នាំ:20.....
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                ប្រធានយុវជន នឹងកុមារ
+              </div>
+            </div>
+        </div>
+        <div class="break-space">&nbsp;</div>
+        <div class="h5-break">&nbsp;</div>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+              <div class="row">
+                បានឃើញ និងបញ្ជូនមក
+              </div>
+              <div class="h5-break">&nbsp;</div>
+              <div class="row">
+                ប្រធានយុវជន
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                ថ្ងៃទី:............ខែ:..............................ឆ្នាំ:20.....
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                មេកុដិ..............
+              </div>
+            </div>
+            <div class="col-xs-6 text-center">
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                បានឃើញ និងឯកភាព
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                ថ្ងៃទី:............ខែ:..............................ឆ្នាំ:20.....
+              </div>
+              <div class="break-space">&nbsp;</div>
+              <div class="row">
+                ចៅអធិការ
+              </div>
+              <div class="break-space">&nbsp;</div>
+            </div>
+        </div>
+      </div>
+      <div class="col-xs-12 break-space">&nbsp;</div>
+      <div class="break-space">&nbsp;</div>
         <div class="col-xs-12">
+          <div class="text-center">
+              <h4>ព្រះរាជាណាចក្រកម្ពុជា</h4>
+              <h4>ជាតិ សាសនា ព្រះមហាក្សត្រ</h4>
+              <p>*******************</p>
+              <!-- <h4 class="break-space">&nbsp;</h4> -->
+              <h4>ប្រវត្តិរូបសង្ខេប</h4>
+          </div>
+          <div class="pull-right">
+            <div class="image_carousel">
+                <img src="<?php echo base_url().'dist/images/photo1.jpg'?>" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12" style="margin-top:-20px;">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#personal">ព័ត៌មានពុទ្ធបរិស័ទ្ធ</a></li>
             </ul>
@@ -58,15 +259,23 @@
                                         ស្ថានភាពគ្រួសារ :</label>
                                     <div class="col-xs-7">
                                         <div class="checkbox">
-                                            <label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 នៅលិវ
-                                            </label>
+                                            </label> -->
                                             <label>
+                                              <input type="checkbox" class="ace">
+                                              <span class="lbl"></span>នៅលិវ
+                                            </label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 រៀបការ
+                                            </label> -->
+                                            <label>
+                                            	<input type="checkbox" class="ace">
+                                            	<span class="lbl"></span>រៀបការ
                                             </label>
                                         </div>
                                     </div>
@@ -77,16 +286,8 @@
                                         ឈ្មោះគណនី :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="col-xs-5 control-label text-right" for="username">
-                                        លេខកូដសម្ងាត់ :</label>
-                                    <input type="text" id="username" name="username" class="col-xs-7">
-                                </div>
-
                             </div>
                             <div class="col-xs-6">
-
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
                                         ឈ្មោះជាភាសាអង់គ្លេស :</label>
@@ -98,15 +299,23 @@
                                         ភេទ :</label>
                                     <div class="col-xs-7">
                                         <div class="checkbox">
-                                            <label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 ប្រុស
-                                            </label>
+                                            </label> -->
                                             <label>
+                                            	<input type="checkbox" class="ace">
+                                            	<span class="lbl"></span>ប្រុស
+                                            </label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 ស្រី
+                                            </label> -->
+                                            <label>
+                                            	<input type="checkbox" class="ace">
+                                            	<span class="lbl"></span>ស្រី
                                             </label>
                                         </div>
                                     </div>
@@ -147,10 +356,9 @@
                                         ភិក្ខុទទួលខុសត្រូវ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
-                                        ជ្រើសរើសរូបភាព :</label>
+                                        លេខកូដសម្ងាត់ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
 
@@ -195,21 +403,28 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="col-xs-6">
-
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
                                         ជាសិស្ស ឬ និស្សិត :</label>
                                     <div class="col-xs-7">
                                         <div class="checkbox">
-                                            <label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 សិស្ស
-                                            </label>
+                                            </label> -->
                                             <label>
+                                            	<input type="checkbox" class="ace">
+                                            	<span class="lbl"></span>សិស្ស
+                                            </label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 និស្សិត
+                                            </label> -->
+                                            <label>
+                                            	<input type="checkbox" class="ace">
+                                            	<span class="lbl"></span>និស្សិត
                                             </label>
                                         </div>
                                     </div>
@@ -235,7 +450,6 @@
 
                                 <div class="row">
                                     <div class="col-xs-6">
-
                                         <div class="form-group">
                                             <label class="col-xs-5 control-label text-right" for="username">
                                                 ពីថ្ងៃ :</label>
@@ -316,8 +530,7 @@
 
                                     </div>
                                 </div>
-
-                                <div class="form-group">
+                                <div class="form-group form-down">
                                     <label class="col-xs-5 control-label text-right" for="username">
                                         អាសយដ្ឋានសាលារៀន :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
@@ -333,15 +546,23 @@
                                     <div class="col-xs-7">
                                         <div class="checkbox">
                                             <label>
+                                              <input type="checkbox" class="ace">
+                                              <span class="lbl"></span>បុគ្គលិក
+                                            </label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 បុគ្គលិក
-                                            </label>
+                                            </label> -->
                                             <label>
+                                              <input type="checkbox" class="ace">
+                                              <span class="lbl"></span>មន្ត្រីរាជការ
+                                            </label>
+                                            <!-- <label>
                                                 <input type="checkbox" value="">
                                                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                                 មន្ត្រីរាជការ
-                                            </label>
+                                            </label> -->
                                         </div>
                                     </div>
                                 </div>
@@ -441,13 +662,11 @@
 
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-xs-5 control-label text-right" for="username">
                                         អាសយដ្ឋានស្ថាប័នធ្វើការ :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -541,30 +760,24 @@
                                         ជាកូនទី :</label>
                                     <input type="text" id="username" name="username" class="col-xs-7">
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </form>
 </div>
-
 <hr/>
 <div class="text-center hidden-print">
-    <button class="btn btn-warning" type="button" id="btn-print" onclick="printDiv('template_form')">
-        <i class="ace-icon fa fa-print bigger-110"></i>
-        <?php echo $this->lang->line('fm_btn_print'); ?>
-    </button>
+  <div class="text-center hidden-print">
+      <a href="javascript:void(0);" class="btn btn-success btn-sm" onclick="window.print();"><i class="fa fa-print"></i> បោះពុម្ព</a>
+  </div>
 </div>
 
 <script type="text/javascript">
+
     function printDiv(divName) {
-        //var divobj=document.getElementById('before_print');
-        //divobj.setAttribute('class','print_size');
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
@@ -574,6 +787,14 @@
 </script>
 
 <style>
+    .image_carousel img{
+      margin-right: 30px;
+      display: block;
+      float: left;
+      height: 130px;
+      width: 100px;
+      margin-top: -70%;
+    }
     .checkbox label:after,
     .radio label:after {
         content: '';
@@ -680,6 +901,28 @@
 
         .nav-tabs {
             margin-top: 10px;
+        }
+
+        .image_carousel img{
+          margin-right: 30px;
+          display: block;
+          float: left;
+          height: 130px;
+          width: 100px;
+          margin-top: -70%;
+        }
+
+        .break-space{
+          height: 40px;
+        }
+        .h3-break{
+          height: 10px;
+        }
+        .h5-break{
+          height: 20px;
+        }
+        .form-down{
+          /* margin-top: 3%; */
         }
     }
 </style>
