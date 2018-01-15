@@ -404,42 +404,80 @@
 			    $( tableTools.fnContainer() ).insertBefore('#sample-table-2');
 				*/
 
-
-				//oTable1.fnAdjustColumnSizing();
-
-
+				//All attendant on click
 				$(document).on('click', '.attendant_all' , function(){
+
 					if($(this).is(":checked")){
+
 						$(".attendant_check").prop('checked', true);
 
+						//disabled checkbox
 						$(".take_leaves_check").prop('disabled', true);
 						$(".take_leaves_all").prop('disabled', true);
+
+						//untick take_leaves
+						$(".take_leaves_check").prop('checked', false);
+						$(".take_leaves_all").prop('checked', false);
+
 					}else{
+
 						$(".attendant_check").prop('checked', false);
 
 						$(".take_leaves_check").prop('disabled', false);
 						$(".take_leaves_all").prop('disabled', false);
 					}
-					// var that = this;
-					// $(this).closest('table').find('tr > td:first-child input:checkbox')
-					// .each(function(){
-					// 	this.checked = that.checked;
-					// 	$(this).closest('tr').toggleClass('selected');
-					// });
+
 				});
 
+				//each attendant on clicking
+				$(document).on("click",".attendant_check",function(evt){
+					var id = $(this).val();
+
+					if($(this).is(":checked")){
+
+						$("#leaves-"+id).prop("checked",false);
+						$("#leaves-"+id).prop("disabled",true);
+
+					}else{
+						$("#leaves-"+id).prop("disabled",false);
+					}
+
+				});
+
+				//each take leaves on clicking
+				$(document).on("click",".take_leaves_check",function(evt){
+					var id = $(this).val();
+
+					if($(this).is(":checked")){
+
+						$("#attendant-"+id).prop("checked",false);
+						$("#attendant-"+id).prop("disabled",true);
+
+					}else{
+						$("#attendant-"+id).prop("disabled",false);
+					}
+
+				});
+
+				//all take leave click
 				$(document).on('click', '.take_leaves_all' , function(){
+
 					if($(this).is(":checked")){
 						$(".take_leaves_check").prop('checked', true);
-
+						//disable all checkbox
 						$(".attendant_all").prop('disabled', true);
 						$(".attendant_check").prop('disabled', true);
+						//untick attendant
+						$(".attendant_all").prop('checked', false);
+						$(".attendant_check").prop('checked', false);
+
 					}else{
 						$(".take_leaves_check").prop('checked', false);
 
 						$(".attendant_all").prop('disabled', false);
 						$(".attendant_check").prop('disabled', false);
 					}
+
 				});
 
 				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
@@ -1136,6 +1174,7 @@
 							}
 						});
 					});
+
 					$("body").on("click","#member_form .toggle-off",function(){
 						var value = 1;
 						$.ajax({

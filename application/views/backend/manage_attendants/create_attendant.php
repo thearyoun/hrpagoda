@@ -1,4 +1,43 @@
-<form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_attendants/create_attendant">
+<div class="col-xs-12">&nbsp;</div>
+<div class="col-xs-12">
+	<form class="form-horizontal" action="<?php echo base_url().'manage_attendants/create_attendant'; ?>" method="post">
+			<div class="col-sm-12">
+				<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right" for="type"> ប្រភេទ :</label>
+						<div class="col-sm-6">
+								<select class="col-sm-7" name="type">
+									<option value="1" <?php echo ($type==1?"selected":"")?>>ព្រះសង្ឃ</option>
+									<option value="2" <?php echo ($type==2?"selected":"")?>>ពុទ្ធបរិស័ទ្ធ</option>
+								</select>
+						</div>
+				</div>
+				<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right" for="house_no"> កុដិលេខ :</label>
+						<div class="col-sm-6">
+								<select class="col-sm-7" name="house_no">
+										<option value="">--សូមជ្រើសរើស--</option>
+										<?php
+											foreach ($house->result() as $val_house) {
+												echo "<option value='".$val_house->id."' ".($house_no==$val_house->id?"selected":"").">".$val_house->name."</option>";
+											}
+										?>
+								</select>
+						</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-2">&nbsp;</label>
+					<div class="col-sm-2">
+						<input type="submit" class="btn btn-primary btn-sm" name="search" value="ស្វែងរក">
+						<?php if($house_no!=""):?>
+						<a href="<?php echo base_url().'manage_attendants/clear_create_search';?>" class="btn btn-danger btn-sm">សំអាត</a>
+					<?php endif;?>
+					</div>
+				</div>
+			</div>
+	</form>
+</div>
+
+<form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_attendants/save_attendant">
 	<div class="row">
 		<div class="col-sm-12">
 			<?php
@@ -18,7 +57,7 @@
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="use_programme_id"> កម្មវីធី :<span class="required">*</span></label>
 											<div class="col-sm-7">
-												<select class="chosen-select form-control" id="use_programme_id" data-placeholder="សូមជ្រើសរើស..." name="use_programme_id">
+												<select class="chosen-select form-control" id="use_programme_id" data-placeholder="សូមជ្រើសរើស..." name="use_programme_id" required>
 													<option value="">  </option>
 													<?php
 														foreach($programmes->result() as $row){
@@ -28,6 +67,7 @@
 													}
 													?>
 												</select>
+												<input type="hidden" name="type" value="<?php echo $type;?>">
 												<?php echo form_error('use_programme_id'); ?>
 											</div>
 										</div>
@@ -35,7 +75,7 @@
 										<label class="col-sm-4 control-label no-padding-right" for="date"> ថ្ងៃទី :<span class="required">*</span></label>
 										<div class="col-sm-7">
 											<div class="input-group">
-												<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="date" class="col-xs-10 col-sm-9" value="<?php echo set_value('date'); ?>"/>
+												<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="date" class="col-xs-10 col-sm-9" value="<?php echo set_value('date'); ?>" required/>
 												<span class="input-group-addon">
 													<i class="fa fa-calendar bigger-110"></i>
 												</span>
@@ -49,7 +89,7 @@
 									<div class="form-group">
 										<label class="col-sm-4 control-label no-padding-right" for="times"> វេន :<span class="required">*</span></label>
 										<div class="col-sm-7">
-											<select class="chosen-select form-control" id="times" data-placeholder="សូមជ្រើសរើស..." name="times">
+											<select class="chosen-select form-control" id="times" data-placeholder="សូមជ្រើសរើស..." name="times" required>
 												<option value="">  </option>
 													<option value="morning" <?php echo set_select('times', "morning"); ?>>ព្រឹក</option>
 													<option value="evening" <?php echo set_select('times', "evening"); ?>>ល្ងាច</option>
@@ -76,7 +116,8 @@
 						<input type="checkbox" class="ace attendant_all"/>
 						<span class="lbl"></span>អត់ច្បាប់</label>
 					</th>
-					<th class="center"><label class="take_leaves">
+					<th class="center">
+						<label class="take_leaves">
 						<input type="checkbox" class="ace take_leaves_all" />
 						<span class="lbl"></span>មានច្បាប់</label>
 					</th>
@@ -108,13 +149,13 @@
 						<tr style="<?php echo $style;?>">
 							<td class="center">
 								<label class="attendants">
-								<input type="checkbox" class="ace attendant_check" value="<?php echo $row->id;?>" name="attendants[]"/>
+								<input type="checkbox" class="ace attendant_check" id="attendant-<?php echo $row->id;?>" value="<?php echo $row->id;?>" name="attendants[]"/>
 								<span class="lbl"></span>
 								</label>
 							</td>
 							<td class="center">
 								<label class="take_leaves">
-									<input type="checkbox" class="ace take_leaves_check" value="<?php echo $row->id;?>" name="take_leaves[]"/>
+									<input type="checkbox" class="ace take_leaves_check" id="leaves-<?php echo $row->id;?>" value="<?php echo $row->id;?>" name="take_leaves[]"/>
 									<span class="lbl"></span>
 								</label>
 							</td>

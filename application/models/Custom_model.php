@@ -49,6 +49,35 @@ class Custom_model extends CI_Model
         return $query;
     }
 
+    public function get_all_attendants($type,$house_no)
+    {
+
+        $this->db->select('*');
+        $this->db->from('v_attentdant');
+        $this->db->where("type",$type);
+        if($house_no !=""){
+          $this->db->where("use_house_id",$house_no);
+        }
+        $this->db->order_by('id', ' asc');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    //this function for get all v_attentdant
+    public function get_all_result_attendants($type,$house_no)
+    {
+
+        $this->db->select('*');
+        $this->db->from('view_attentdant');
+        $this->db->where("type",$type);
+        if($house_no !=""){
+          $this->db->where("house_id",$house_no);
+        }
+        $this->db->order_by('id', ' asc');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_monk_info($monk_id)
     {
         $this->db->select('mon.*,hou.name as house_name,loc.name as location_name,pos.name as position_name,mem_types.name as vegetarian_name');

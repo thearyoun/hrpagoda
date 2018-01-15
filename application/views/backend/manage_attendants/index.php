@@ -1,3 +1,42 @@
+<div class="col-xs-12">&nbsp;</div>
+<div class="col-xs-12">
+	<form class="form-horizontal" action="<?php echo base_url().'manage_attendants'; ?>" method="post">
+			<div class="col-sm-12">
+				<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right" for="type"> ប្រភេទ :</label>
+						<div class="col-sm-6">
+								<select class="col-sm-7" name="type">
+									<option value="1" <?php echo ($type==1?"selected":"")?>>ព្រះសង្ឃ</option>
+									<option value="2" <?php echo ($type==2?"selected":"")?>>ពុទ្ធបរិស័ទ្ធ</option>
+								</select>
+						</div>
+				</div>
+				<div class="form-group">
+						<label class="col-sm-2 control-label no-padding-right" for="house_no"> កុដិលេខ :</label>
+						<div class="col-sm-6">
+								<select class="col-sm-7" name="house_no">
+										<option value="">--សូមជ្រើសរើស--</option>
+										<?php
+											foreach ($house->result() as $val_house) {
+												echo "<option value='".$val_house->id."' ".($house_no==$val_house->id?"selected":"").">".$val_house->name."</option>";
+											}
+										?>
+								</select>
+						</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-2">&nbsp;</label>
+					<div class="col-sm-2">
+						<input type="submit" class="btn btn-primary btn-sm" name="search" value="ស្វែងរក">
+						<?php if($house_no!=""):?>
+						<a href="<?php echo base_url().'manage_attendants/clear_index_search';?>" class="btn btn-danger btn-sm">សំអាត</a>
+					<?php endif;?>
+					</div>
+				</div>
+			</div>
+	</form>
+</div>
+<div class="row">&nbsp;</div>
 <a href="<?php echo base_url();?>manage_attendants/create_attendant"><input type="button" class="btn btn-primary" value="បង្កើតថ្មី" /><br /><br /></a>
 <div class="row">
 	<div class="col-xs-12">
@@ -33,7 +72,7 @@
 				?>
 						<tr>
 							<td class="center"><?php echo ++$i;?></td>
-							<td><?php echo $row->mon_name;?></td>
+							<td><?php echo $row->member_name;?></td>
 							<td><?php echo $row->house_name;?></td>
 							<td><?php echo $row->pro_name;?></td>
 							<td><?php echo $times;?></td>
