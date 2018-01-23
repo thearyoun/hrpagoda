@@ -16,10 +16,10 @@
 								<div class="col-sm-6">
 									<div class="widget-main ">
 
-										
+
 										<div class="form-group">
 											<label class="col-sm-3 col-sm-offset-1 control-label" for="from_date"> <?php echo $this->lang->line('fm_from_date');?> :</label>
-	
+
 											<div class="col-sm-7">
 												<div class="input-group">
 													<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="from_date" class="col-xs-10 col-sm-9" value="<?php echo set_value('from_date'); ?>" required/>
@@ -30,18 +30,18 @@
 												<?php echo form_error('from_date'); ?>
 											</div>
 										</div>
-										
+
 
 									</div>
 								</div>
 								<div class="col-sm-6">
-									
+
 									<div class="widget-main">
 
-										
+
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="to_date"> <?php echo $this->lang->line('fm_to_date');?> :</label>
-	
+
 											<div class="col-sm-7">
 												<div class="input-group">
 													<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="to_date" class="col-xs-10 col-sm-9" value="<?php echo set_value('to_date'); ?>" required/>
@@ -57,32 +57,32 @@
 										</div>
 									</div>
 								</div>
-								
-								
-								
+
+
+
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="clearfix form-actions">
 											<div class="col-md-offset-5 col-md-7">
-												
+
 												<button class="btn btn-info" type="submit" id="btn-search">
 													<i class="ace-icon fa fa-search bigger-110"></i>
 													<?php echo $this->lang->line('fm_btn_search');?>
 												</button>
-							
-												
-												
+
+
+
 												&nbsp; &nbsp; &nbsp;
 												<button class="btn btn-default" type="button" id="btn-print" onclick="printDiv('members')">
 													<i class="ace-icon fa fa-print bigger-110"></i>
 													<?php echo $this->lang->line('fm_btn_print');?>
 												</button>
-												
+
 											</div>
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -161,18 +161,18 @@
 			</tbody>
 			
 		</table>
-		
-		<p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;text-align:right;line-height:normal;'>
-     <span lang=KHM
-    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី........ខែ .............ឆ្នាំ ...........<br />
-<span style="padding-right: 10% !important;">អ្នកស្រង់វត្តមាន
-</span></p>
-
-<p class=MsoNormal align=left style='margin-top: -60px;margin-bottom:.0001pt;text-align:left;line-height:normal;'>
-     <span lang=KHM
-    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>បានឃើញ និងឯកភាព<br />
-<span>          ចៅអធិការ
-</span></p>
+        <p class=MsoNormal align=center
+           style='margin-bottom:0in;margin-bottom:.0001pt;text-align:right;line-height:normal;'>
+             <span lang=KHM
+                   style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី...........ខែ..................ឆ្នាំ ២០<br/><br/>
+            <span style="padding-right: 10% !important;">អ្នកស្រង់វត្តមាន
+            </span>
+        </p>
+        <p class=MsoNormal align=left
+           style='margin-top: -60px;margin-bottom:.0001pt;text-align:left;line-height:normal;'>
+            <span style='font-size:12.0pt;margin-left:3%;font-family:"Khmer OS Battambang"'>បានឃើញ និងឯកភាព<br/><br/></span>
+            <span style='font-size:12.0pt;margin-left:6%;font-family:"Khmer OS Battambang"'>ចៅអធិការ</span>
+        </p>
 	</div><!-- /.span -->
 </div><!-- /.row -->
 <hr />

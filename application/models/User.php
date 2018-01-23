@@ -69,6 +69,7 @@ class User extends CI_Model
             $this->session->set_userdata("member_id", $row->id);
             $this->session->set_userdata("username", $row->username);
             $this->session->set_userdata('user_login_access', $row->id);
+            $this->session->set_userdata('manager', $row->manager);
             $this->get_form_take_leave();
             return true;
         }

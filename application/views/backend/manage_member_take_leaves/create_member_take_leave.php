@@ -6,7 +6,7 @@
 			?>
 			<div class="widget-box">
 				<div class="widget-header">
-					<h4 class="smaller"> Member Information</h4>
+					<h4 class="smaller">ព័ត៌មានគ្រហស្ថ</h4>
 				</div>
 
 				<div class="widget-body">
@@ -16,7 +16,7 @@
 								<div class="col-sm-6">
 									<div class="widget-main no-padding">
 										<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ពុទ្ធបរិស័ទ្ធឈ្មោះ :<span class="required">*</span></label>
+											<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> គ្រហស្ថឈ្មោះ :<span class="required">*</span></label>
 											<div class="col-sm-7">
 												<?php if($this->session->userdata("user_type")=="member"):?>
 													<input type="text" class="col-sm-12" readonly name="member_name" value="<?php echo $this->session->userdata("username");?>">

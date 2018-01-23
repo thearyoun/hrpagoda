@@ -6,7 +6,7 @@
 			?>
 			<div class="widget-box">
 				<div class="widget-header">
-					<h4 class="smaller"> ព័ត៌មានពុទ្ធបរិស័ទ្ធ</h4>
+					<h4 class="smaller"> ព័ត៌មានគ្រហស្ថ</h4>
 				</div>
 				<div class="widget-body">
 					<div class="widget-main">
@@ -15,26 +15,26 @@
 								<div class="col-sm-6">
 									<div class="widget-main no-padding">
 										<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> ពុទ្ធបរិស័ទ្ធឈ្មោះ :<span class="required">*</span></label>
-                        <div class="col-sm-7">
-                            <?php if($this->session->userdata("user_type")=="member"):?>
-                                <input type="text" class="col-sm-12" readonly name="member_name" value="<?php echo $this->session->userdata("username");?>">
-                                <input type="hidden" name="use_member_id" value="<?php echo $this->session->userdata("member_id")?>">
-                            <?php endif;?>
-                            <?php if($this->session->userdata("user_type")=="admin"):?>
-                                <select class="chosen-select form-control" id="use_member_id" data-placeholder="សូមជ្រើសរើស..." name="use_member_id">
-                                    <option value="">  </option>
-                                    <?php
-                                    foreach($members->result() as $row){
-                                        ?>
-                                        <option value="<?php echo $row->id;?>" <?php echo ($member_take_leave->row()->use_member_id == $row->id)? 'selected':'';?>><?php echo $row->username;?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            <?php endif;?>
-                            <?php echo form_error('use_member_id'); ?>
-                        </div>
+											<label class="col-sm-4 control-label no-padding-right" for="monk_response_id"> គ្រហស្ថឈ្មោះ :<span class="required">*</span></label>
+                                            <div class="col-sm-7">
+                                                <?php if($this->session->userdata("user_type")=="member"):?>
+                                                    <input type="text" class="col-sm-12" readonly name="member_name" value="<?php echo $this->session->userdata("username");?>">
+                                                    <input type="hidden" name="use_member_id" value="<?php echo $this->session->userdata("member_id")?>">
+                                                <?php endif;?>
+                                                <?php if($this->session->userdata("user_type")=="admin"):?>
+                                                    <select class="chosen-select form-control" id="use_member_id" data-placeholder="សូមជ្រើសរើស..." name="use_member_id">
+                                                        <option value="">  </option>
+                                                        <?php
+                                                        foreach($members->result() as $row){
+                                                            ?>
+                                                            <option value="<?php echo $row->id;?>" <?php echo ($member_take_leave->row()->use_member_id == $row->id)? 'selected':'';?>><?php echo $row->username;?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                <?php endif;?>
+                                                <?php echo form_error('use_member_id'); ?>
+                                            </div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 control-label no-padding-right" for="use_leave_type_id"> ប្រភេទនៃការឈប់ :<span class="required">*</span></label>

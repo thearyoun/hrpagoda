@@ -6,7 +6,7 @@
 			?>
 			<div class="widget-box">
 				<div class="widget-header">
-					<h4 class="smaller"> Member Information</h4>
+					<h4 class="smaller">ព័ត៌មានផ្ទាល់ខ្លួនរបស់ព្រះសង្ឃ</h4>
 				</div>
 				<div class="widget-body">
 					<div class="widget-main">

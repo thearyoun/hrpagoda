@@ -48,15 +48,9 @@ class Manage_reports extends Security
     {
         $data['title'] = "Manage members";
 
-        //$this->form_validation->set_rules('username', 'Useranme', 'required|false');
-        //$this->form_validation->set_rules('work_type', 'work_type', 'required|false');
-
         $username = $this->input->post('username', true);
         $work_type = $this->input->post('work_type', true);
         $houses = $this->input->post('houses', true);
-
-        //$groups = $this->input->post('groups', true);
-        //$member_types = $this->input->post('member_types', true);
 
         $arr_like = array();
         $arr_where = array();
@@ -68,13 +62,6 @@ class Manage_reports extends Security
         if ($houses) {
             $arr_where["members.use_house_id"] = $houses;
         }
-
-//        if($groups){
-//            $arr_where["members.group"] = $groups;
-//        }
-//        if($member_types){
-//            $arr_where["members.username"] = $username;
-//        }
 
         if ($work_type) {
             if ($work_type > 2) {
@@ -92,62 +79,12 @@ class Manage_reports extends Security
         $data['members'] = $this->Globals->select_all('members');
         $data['member_types'] = $this->Globals->select_all('member_types');
         $data['groups'] = $this->Globals->select_all('groups');
-        $data['houses'] = $this->Globals->select_all('houses');
         $data['users'] = $this->Globals->select_all('users');
         $arr_where["members.status"] = 1;
+        $data['houses'] = $this->Globals->select_all('houses');
         $data['member_list'] = $this->Globals->select_like_where('members', $arr_fields = array('members.*', 'houses.name as house_name'), $arr_join = array('houses' => array('use_house_id' => 'id')), $join_type = 'INNER', $arr_like, $arr_where);
 
         $this->load->view('backend/index', $data);
-//        }else {
-//            if ($this->input->post('username', true)) {
-//                $arr_like["members.username"] = $this->input->post('username', true);
-//            }
-//            if ($this->input->post("work_type", true)) {
-//                $work_type = $this->input->post("work_type", true);
-//                if ($work_type > 2) {
-//                    $arr_where["study_type"] = array(1, 2);
-//                } else {
-//                    $arr_where["study_type"] = $work_type;
-//                }
-//            }
-//
-//            $data['members'] = $this->Globals->select_all('members');
-//            $data['member_types'] = $this->Globals->select_all('member_types');
-//            $data['groups'] = $this->Globals->select_all('groups');
-//            $data['houses'] = $this->Globals->select_all('houses');
-//            $data['users'] = $this->Globals->select_all('users');
-//            $arr_where["members.status"] = 1;
-//            $data['member_list'] = $this->Globals->select_like_where('members',$arr_like, $arr_where);
-//            $this->load->view('backend/index', $data);
-//        }
-
-
-//        if (!$this->form_validation->run()) {
-//            //var_dump($data['users']);
-//
-//        } else {
-//            $username = $this->input->post('username', true);
-//            $work_type = $this->input->post('work_type', true);
-//            $member = $this->input->post('member', true);
-//
-////            echo $username;exit;
-//
-//            $arr_where = array(
-//                'members.usernames' => $username,
-//                'members.work_type' => $work_type,
-//                //'members.created_at <=' => date("Y-m-d", strtotime($to_date)),
-//            );
-//
-//            $use_branch_id = $this->session->userdata('use_branch_id');
-//            if ($use_branch_id === '1') {
-//                $arr_where['members.status'] = 1;
-//            } else {
-//                $arr_where['members.status'] = 1;
-//                //$arr_where['members.use_branch_id'] = $use_branch_id;
-//            }
-//            $data['member_list'] = $this->Globals->select_all_like('members', $arr_where);
-//            $this->load->view('backend/index', $data);
-//        }
 
     }
 
@@ -384,6 +321,7 @@ class Manage_reports extends Security
     {
         $data['title'] = "Full Attendant Report";
         $this->load->model('Custom_model');
+
         $data['group'] = $this->Globals->select_where('groups', array('id' => $group_id));
 
         $this->form_validation->set_rules('from_date', 'From Date', 'required');
@@ -494,5 +432,52 @@ class Manage_reports extends Security
     {
         $data['title'] = "Download member request form";
         $this->load->view('backend/index', $data);
+    }
+
+    public function print_member_card(){
+
+        $data['title'] = "Print Member Card";
+        $this->load->library("encrypt");
+        $username = $this->input->post('username', true);
+        $work_type = $this->input->post('work_type', true);
+        $houses = $this->input->post('houses', true);
+
+        $arr_like = array();
+        $arr_where = array();
+
+        if ($username) {
+            $arr_like["members.username"] = $username;
+        }
+
+        if ($houses) {
+            $arr_where["members.use_house_id"] = $houses;
+        }
+
+        if ($work_type) {
+            if ($work_type > 2) {
+                if ($work_type == 3) {
+                    $arr_where["student_type"] = 1;
+                } else if ($work_type == 4) {
+                    $arr_where["student_type"] = 2;
+                }
+            } else {
+                $arr_where["work_type"] = $work_type;
+            }
+        }
+
+        $arr_where["members.status"] = 1;
+        $data['houses'] = $this->Globals->select_all('houses');
+        $data['data_member'] = $this->Globals->select_like_where('members', $arr_fields = array('members.*', 'houses.name as house_name'), $arr_join = array('houses' => array('use_house_id' => 'id')), $join_type = 'INNER', $arr_like, $arr_where);
+
+        $this->load->view('backend/index', $data);
+    }
+
+    function testencrypting(){
+        $this->load->library("encrypt");
+        $str = '12345';
+        $key = 'masterencryptionby_chivornSession';
+        $encrypted =  $this->encrypt->sha1('Some string');;
+        echo $this->encrypt->sha1("20eabe5d64b0e216796e834f52d61fd0b70332fc");
+        exit;
     }
 }

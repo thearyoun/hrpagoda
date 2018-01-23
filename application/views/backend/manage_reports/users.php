@@ -6,7 +6,7 @@
 			?>
 			<div class="widget-box">
 				<div class="widget-header">
-					<h4 class="smaller"> Search Information</h4>
+					<h4 class="smaller"> ពត៏មានអំពីការស្វែងរក</h4>
 				</div>
 
 				<div class="widget-body">
@@ -15,11 +15,8 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="widget-main ">
-
-										
 										<div class="form-group">
-											<label class="col-sm-3 col-sm-offset-1 control-label" for="from_date"> <?php echo $this->lang->line('fm_from_date');?> :</label>
-	
+											<label class="col-sm-3 col-sm-offset-1 control-label" for="from_date">ពីថ្ងៃ:</label>
 											<div class="col-sm-7">
 												<div class="input-group">
 													<input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="from_date" class="col-xs-10 col-sm-9" value="<?php echo set_value('from_date'); ?>" required/>
@@ -31,10 +28,10 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-3 col-sm-offset-1 control-label" for="emp_code"> <?php echo $this->lang->line('fm_employees');?> :</label>
+											<label class="col-sm-3 col-sm-offset-1 control-label" for="emp_code">ឈ្មោះ:</label>
 	
 											<div class="col-sm-7">
-												<select class="chosen-select form-control" id="emp_code" data-placeholder="Choose a Employee..." name="emp_code">
+												<select class="chosen-select form-control" id="emp_code" data-placeholder="ឈ្មោះ" name="emp_code">
 													<option value=""></option>
 													<?php
 														foreach($users->result() as $row){
@@ -56,7 +53,7 @@
 
 										
 										<div class="form-group">
-											<label class="col-sm-3 control-label" for="to_date"> <?php echo $this->lang->line('fm_to_date');?> :</label>
+											<label class="col-sm-3 control-label" for="to_date">ដល់ថ្ងៃ:</label>
 	
 											<div class="col-sm-7">
 												<div class="input-group">
@@ -83,7 +80,7 @@
 												
 												<button class="btn btn-info" type="submit" id="btn-search">
 													<i class="ace-icon fa fa-search bigger-110"></i>
-													<?php echo $this->lang->line('fm_btn_search');?>
+													ស្វែងរក
 												</button>
 							
 												
@@ -91,7 +88,7 @@
 												&nbsp; &nbsp; &nbsp;
 												<button class="btn btn-default" type="button" id="btn-print" onclick="printDiv('users')">
 													<i class="ace-icon fa fa-print bigger-110"></i>
-													<?php echo $this->lang->line('fm_btn_print');?>
+													បោះពុម្ព
 												</button>
 												
 											</div>
@@ -134,10 +131,10 @@
 						
 						if($row->status==1){
 							$class="success";
-							$status="Active";
+							$status="ប្រើ";
 						}else{
 							$class="warning";
-							$status="Inactive";
+							$status="មិនប្រើ";
 						}
 				?>
 						<tr>

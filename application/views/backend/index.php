@@ -10,7 +10,7 @@
 
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="<?php echo base_url();?>dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="<?php echo base_url();?>font-awesome/4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="<?php echo base_url();?>font-awesome/4.7.0/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
 		<link rel="stylesheet" href="<?php echo base_url();?>dist/css/jquery-ui.custom.min.css" />
@@ -292,7 +292,8 @@
 									{ "bSortable": false }
 								],
 								"aaSorting": [7],
-								"iDisplayLength": 50
+								"iDisplayLength": 50,
+                                "order": [[ 0, "asc" ]]
 							} );
 
 			    $('#sample-table-8')
@@ -427,6 +428,8 @@
 						$(".take_leaves_all").prop('disabled', false);
 					}
 
+					$(".attendant_check").prop("disabled",false);
+
 				});
 
 				//each attendant on clicking
@@ -477,6 +480,8 @@
 						$(".attendant_all").prop('disabled', false);
 						$(".attendant_check").prop('disabled', false);
 					}
+
+                    $(".take_leaves_check").prop("disabled",false);
 
 				});
 

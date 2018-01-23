@@ -23,9 +23,11 @@ class Manage_member_account extends CI_Controller {
 
 		$data['title'] = "Manage Attendants";
 		$this->load->model('Custom_model');
+
 		$member_id = $this -> session -> userdata("member_id");
-		$data['attendants'] = $this -> Custom_model -> get_attendant_where_member($member_id);
-		//$data['attendants'] = $this -> Globals -> select_all('attendants');
+        $type=2;
+
+		$data['attendants'] = $this -> Custom_model -> get_all_result_attendants($type,null,$member_id);
 		$this -> load -> view('backend/index', $data);
 	}
 

@@ -7,7 +7,7 @@
 						<div class="col-sm-6">
 								<select class="col-sm-7" name="type">
 									<option value="1" <?php echo ($type==1?"selected":"")?>>ព្រះសង្ឃ</option>
-									<option value="2" <?php echo ($type==2?"selected":"")?>>ពុទ្ធបរិស័ទ្ធ</option>
+									<option value="2" <?php echo ($type==2?"selected":"")?>>គ្រហស្ថ</option>
 								</select>
 						</div>
 				</div>
@@ -37,7 +37,9 @@
 	</form>
 </div>
 <div class="row">&nbsp;</div>
-<a href="<?php echo base_url();?>manage_attendants/create_attendant"><input type="button" class="btn btn-primary" value="បង្កើតថ្មី" /><br /><br /></a>
+<a href="<?php echo base_url();?>manage_attendants/create_attendant" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> បង្កើតថ្មី</a>
+<br/>
+<br/>
 <div class="row">
 	<div class="col-xs-12">
 		<?php
@@ -81,8 +83,8 @@
 							<td><?php echo ($row->is_take_leave == 1? 'មានច្បាប់':'អត់ច្បាប់');?></td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="<?php echo base_url();?>manage_attendants/update_attendant/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-									<a class="red" href="<?php echo base_url();?>manage_attendants/delete_attendant/<?php echo $row->id;?>" title="Delete member" onclick="return confirm('Are you sure want to delete this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+									<a href="<?php echo base_url();?>manage_attendants/update_attendant/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+									<a class="red" href="<?php echo base_url();?>manage_attendants/លុប_attendant/<?php echo $row->id;?>" title="លុប" onclick="return confirm('Are you sure want to លុប this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 								</div>
 								<div class="hidden-md hidden-lg">
 									<div class="inline position-relative">
@@ -91,10 +93,10 @@
 										</button>
 										<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 											<li>
-												<a href="<?php echo base_url();?>manage_attendants/update_attendant/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_attendants/update_attendant/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
 											</li>
 											<li>
-												<a href="<?php echo base_url();?>manage_attendants/delete_attendant/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_attendants/លុប_attendant/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="លុប"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
 											</li>
 										</ul>
 									</div>

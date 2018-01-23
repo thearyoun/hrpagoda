@@ -7,7 +7,7 @@
 						<div class="col-sm-6">
 								<select class="col-sm-7" name="type">
 									<option value="1" <?php echo ($type==1?"selected":"")?>>ព្រះសង្ឃ</option>
-									<option value="2" <?php echo ($type==2?"selected":"")?>>ពុទ្ធបរិស័ទ្ធ</option>
+									<option value="2" <?php echo ($type==2?"selected":"")?>>គ្រហស្ថ</option>
 								</select>
 						</div>
 				</div>
@@ -36,6 +36,11 @@
 			</div>
 	</form>
 </div>
+
+<div class="row">&nbsp;</div>
+<a href="<?php echo base_url();?>manage_attendants" class="btn btn-primary btn-sm"><i class="fa fa-backward"></i> បញ្ជីវត្តមាន</a>
+<br/>
+<br/>
 
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_attendants/save_attendant">
 	<div class="row">
@@ -140,7 +145,7 @@
 							$status="Inactive";
 						}
 
-						if(get_monk_take_leaves($row->id) !=FALSE){
+						if(get_monk_take_leaves($row->id,$type) !=FALSE){
 							$style ="background-color:#FFFF00;color:#000000";
 						}else{
 							$style='';

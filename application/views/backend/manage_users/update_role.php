@@ -20,7 +20,7 @@
 			?>
 			<div class="widget-box">
 				<div class="widget-header">
-					<h4 class="smaller"> Access Setup</h4>
+					<h4 class="smaller">ការកំណត់ទៅលើការប្រើប្រាស់:</h4>
 				</div>
 
 				<div class="widget-body">
@@ -31,15 +31,15 @@
 									<div class="widget-main no-padding">
 
 										<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="role_name"> <?php echo $this->lang->line('fm_role_name');?> :<span class="required">*</span></label>
+											<label class="col-sm-4 control-label no-padding-right" for="role_name">ឈោះមុខងារប្រើប្រាស់:<span class="required">*</span></label>
 
 											<div class="col-sm-8">
-												<input type="text" id="role_name" name="role_name" placeholder="Role Name" class="col-xs-10 col-sm-9" value="<?php echo $name;?>"/>
+												<input type="text" id="role_name" name="role_name" placeholder="ឈោះមុខងារប្រើប្រាស់" class="col-xs-10 col-sm-9" value="<?php echo $name;?>"/>
 												<?php echo form_error('role_name'); ?>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="role_desc"> <?php echo $this->lang->line('fm_role_description');?></label>
+											<label class="col-sm-4 control-label no-padding-right" for="role_desc">ការពណ៏នា:</label>
 
 											<div class="col-sm-8">
 												<textarea name="role_desc" rows="4" class="col-xs-10 col-sm-10"><?php echo $description;?></textarea>
@@ -47,12 +47,12 @@
 										</div>
 
 										<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="status"> <?php echo $this->lang->line('fm_status');?> </label>
+											<label class="col-sm-4 control-label no-padding-right" for="status">ស្ថានភាព:</label>
 
 											<div class="col-sm-8">
 												<select name="status" class="col-xs-10 col-sm-10">
-														<option value="1" <?php echo ($status==1)? 'selected':'';?>>Active</option>
-														<option value="0" <?php echo ($status==0)? 'selected':'';?>>Inactive</option>
+														<option value="1" <?php echo ($status==1)? 'selected':'';?>>ប្រើ</option>
+														<option value="0" <?php echo ($status==0)? 'selected':'';?>>មិនប្រើ</option>
 												</select>
 											</div>
 										</div>
@@ -61,7 +61,7 @@
 								<div class="col-sm-6">
 									
 									<div class="control-group">
-												<label class="control-label bolder blue"><?php echo $this->lang->line('fm_permission');?></label>
+												<label class="control-label bolder blue">ការកំណត់ដែលអនុញ្ញាតអោយប្រើប្រាស់បាន</label>
 												<?php
 													foreach($permissions->result() as $row){
 														if(in_array($row->permission_id, $access_permission)){
@@ -98,13 +98,13 @@
 				<div class="col-md-offset-4 col-md-8">
 					<button class="btn btn-info" type="submit">
 						<i class="ace-icon fa fa-check bigger-110"></i>
-						<?php echo $this->lang->line('fm_btn_submit');?>
+                        រក្សារទុក
 					</button>
 
 					&nbsp; &nbsp; &nbsp;
 					<button class="btn" type="reset">
 						<i class="ace-icon fa fa-undo bigger-110"></i>
-						<?php echo $this->lang->line('fm_btn_reset');?>
+                        បោះបង់ចោល
 					</button>
 				</div>
 			</div>

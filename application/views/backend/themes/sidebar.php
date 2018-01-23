@@ -11,12 +11,12 @@
 				segment(1)) == '')? 'class="active open"' : 'class=""' ?>> <a href="<?php echo base_url(); ?>manage_member_account">
 					<i class="menu-icon fa fa-user"></i>
 					<span class="menu-text">
-						<!-- <?php echo $this->lang->line('sidebar_dashboard');?> -->
 						គណនីផ្ទាល់ខ្លួន
 					</span> </a>
 				<b class="arrow"></b>
 			</li>
 		<?php }?>
+
 		<?php if($this->session->userdata("sidebar_users")){ ?>
 		<li <?php echo (str_replace('-', '_', $this -> uri ->
 			segment(1)) == '')? 'class="active open"' : 'class=""' ?>> <a href="<?php echo base_url(); ?>admindev">
@@ -89,15 +89,19 @@
 		<?php }?>
 		<?php if($this->session->userdata("sidebar_our_members")){ ?>
 		<li <?php echo (str_replace('-', '_', $this -> uri ->
-			segment(1)) == 'manage_members' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> <?php echo $this->lang->line('');?>ពុទ្ធបរិស័ទ្ទ</span> <b class="arrow fa fa-angle-down"></b> </a>
+			segment(1)) == 'manage_members' )? 'class="active open"' : 'class=""' ?>>
+            <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user-circle"></i>
+                <span class="menu-text"> <?php echo $this->lang->line('');?>គ្រហស្ថ</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="active">
-					<a href="<?php echo base_url(); ?>manage_members/create_member"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('sidebar_add_new');?> </a>
+					<a href="<?php echo base_url(); ?>manage_members/create_member"> <i class="menu-icon fa fa-caret-right"></i> គ្រហស្ថ </a>
 					<b class="arrow"></b>
 				</li>
 				<li class="">
-					<a href="<?php echo base_url(); ?>manage_members"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?> បញ្ជីពុទ្ធបរិស័ទ្ទ</a>
+					<a href="<?php echo base_url(); ?>manage_members"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?> បញ្ជីគ្រហស្ថ</a>
 					<b class="arrow"></b>
 				</li>
 			</ul>
@@ -105,7 +109,10 @@
 		<?php }?>
 		<?php if($this->session->userdata("sidebar_our_members")){ ?>
 		<li <?php echo (str_replace('-', '_', $this -> uri ->
-			segment(1)) == 'manage_monks' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> ព្រះសង្ឃ </span> <b class="arrow fa fa-angle-down"></b> </a>
+			segment(1)) == 'manage_monks' )? 'class="active open"' : 'class=""' ?>>
+            <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user-circle-o"></i>
+                <span class="menu-text"> ព្រះសង្ឃ </span> <b class="arrow fa fa-angle-down"></b>
+            </a>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="active">
@@ -121,49 +128,86 @@
 		<?php } ?>
 		<!--monk menu-->
 		<?php if($this->session->userdata("monk_id")){ ?>
-			<li <?php echo (str_replace('-', '_', $this -> uri ->
-				segment(1)) == 'manage_monk_account' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> <?php echo $this->lang->line('');?>គណនីរបស់ខ្ញុំ</span> <b class="arrow fa fa-angle-down"></b> </a>
-
-				<b class="arrow"></b>
-
-				<ul class="submenu">
-					<li class="active">
-						<a href="<?php echo base_url(); ?>manage_monk_account"> <i class="menu-icon fa fa-caret-right"></i>ពត័មានផ្ទាល់ខ្លួន</a>
-						<b class="arrow"></b>
-					</li>
-					<li class="">
-						<a href="<?php echo base_url(); ?>manage_monk_account/attendant"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?> បញ្ជីវត្តមាន</a>
-						<b class="arrow"></b>
-					</li>
-				</ul>
-			</li>
+            <li <?php echo (str_replace('-', '_', $this -> uri ->
+                segment(1)) == '')? 'class="active open"' : 'class=""' ?>> <a href="<?php echo base_url(); ?>manage_monk_account">
+                    <i class="menu-icon fa fa-user"></i>
+                    <span class="menu-text">
+						គណនីផ្ទាល់ខ្លួន
+					</span> </a>
+                <b class="arrow"></b>
+            </li>
 			<?php } ?>
+
 		<?php if(($this->session->userdata("user_type")=="monk") || ($this->session->userdata("user_type")=="member")){?>
 			<li <?php echo (str_replace('-', '_', $this -> uri ->
 				segment(1)) == 'manage_member_take_leaves' ) || (str_replace('-', '_', $this -> uri ->
-				segment(1)) == 'manage_monk_take_leaves' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> គ្រប់គ្រងការសុំច្បាប់ </span> <b class="arrow fa fa-angle-down"></b> </a>
+				segment(1)) == 'manage_monk_take_leaves' ) || (str_replace('-', '_', $this -> uri ->
+                segment(1)) == 'manage_monk_account') || (str_replace('-', '_', $this -> uri ->
+                segment(1)) == 'manage_member_account') ? 'class="active open"' : 'class=""' ?>>
+                <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-rocket"></i>
+                    <span class="menu-text"> ការសុំច្បាប់និងវត្តមាន </span> <b class="arrow fa fa-angle-down"></b>
+                </a>
 				<b class="arrow"></b>
 				<ul class="submenu">
 					<?php if(($this->session->userdata("user_type")=="monk")){?>
 					<li class="">
-						<a href="<?php echo base_url(); ?>manage_monk_take_leaves"> <i class="menu-icon fa fa-caret-right"></i> ការសុំច្បាប់ព្រះសង្ឃ </a>
+						<a href="<?php echo base_url(); ?>manage_monk_take_leaves">
+                            <i class="menu-icon fa fa-caret-right"></i> ការសុំច្បាប់ </a>
 						<b class="arrow"></b>
 					</li>
+                    <li class="">
+                        <a href="<?php echo base_url(); ?>manage_monk_account/attendant">
+                            <i class="menu-icon fa fa-caret-right"></i> បញ្ជីវត្តមាន</a>
+                        <b class="arrow"></b>
+                    </li>
 				<?php }
 					if(($this->session->userdata("user_type")=="member")){
 				?>
 					<li class="">
-						<a href="<?php echo base_url(); ?>manage_member_take_leaves"> <i class="menu-icon fa fa-caret-right"></i> ការសុំច្បាប់ពុទ្ធបរិស័ទ្ធ </a>
+						<a href="<?php echo base_url(); ?>manage_member_take_leaves">
+                            <i class="menu-icon fa fa-caret-right"></i> ការសុំច្បាប់ </a>
 						<b class="arrow"></b>
 					</li>
+                    <li class="">
+                        <a href="<?php echo base_url(); ?>manage_member_account/attendant">
+                            <i class="menu-icon fa fa-caret-right"></i> បញ្ជីវត្តមាន</a>
+                        <b class="arrow"></b>
+                    </li>
 				<?php }?>
 				</ul>
 			</li>
 		<?php }?>
+        <?php
+            if(($this->session->userdata("user_type")=="member") && ($this->session->userdata("manager")==1)){
+            ?>
+                <li <?php echo (str_replace('-', '_', $this -> uri ->
+                    segment(1)) == 'manage_members' )? 'class="active open"' : 'class=""' ?>>
+                    <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user-circle"></i>
+                        <span class="menu-text"> <?php echo $this->lang->line('');?>គ្រហស្ថ</span>
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="active">
+                            <a href="<?php echo base_url(); ?>manage_members/create_member"> <i class="menu-icon fa fa-caret-right"></i> គ្រហស្ថ </a>
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="<?php echo base_url(); ?>manage_members"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?> បញ្ជីគ្រហស្ថ</a>
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+        <?php
+            }
+        ?>
 		<?php if($this->session->userdata("sidebar_our_members")){ ?>
 		<li <?php echo (str_replace('-', '_', $this -> uri ->
 			segment(1)) == 'manage_member_take_leaves' ) || (str_replace('-', '_', $this -> uri ->
-			segment(1)) == 'manage_monk_take_leaves' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> គ្រប់គ្រងការសុំច្បាប់ </span> <b class="arrow fa fa-angle-down"></b> </a>
+			segment(1)) == 'manage_monk_take_leaves')? 'class="active open"' : 'class=""' ?>>
+            <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-rocket"></i>
+                <span class="menu-text"> គ្រប់គ្រងការសុំច្បាប់ </span> <b class="arrow fa fa-angle-down"></b>
+            </a>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
@@ -171,7 +215,7 @@
 					<b class="arrow"></b>
 				</li>
 				<li class="">
-					<a href="<?php echo base_url(); ?>manage_member_take_leaves"> <i class="menu-icon fa fa-caret-right"></i> ការសុំច្បាប់ពុទ្ធបរិស័ទ្ធ </a>
+					<a href="<?php echo base_url(); ?>manage_member_take_leaves"> <i class="menu-icon fa fa-caret-right"></i> ការសុំច្បាប់គ្រហស្ថ </a>
 					<b class="arrow"></b>
 				</li>
 			</ul>
@@ -180,7 +224,10 @@
 		<?php if($this->session->userdata("sidebar_our_members")){ ?>
 		<li <?php echo (str_replace('-', '_', $this -> uri ->
 			segment(1)) == 'manage_attendants' ) || (str_replace('-', '_', $this -> uri ->
-			segment(1)) == 'manage_attendants' )? 'class="active open"' : 'class=""' ?>> <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user"></i> <span class="menu-text"> ការគ្រប់គ្រងវត្តមាន </span> <b class="arrow fa fa-angle-down"></b> </a>
+			segment(1)) == 'manage_attendants' )? 'class="active open"' : 'class=""' ?>>
+            <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-user-times"></i>
+                <span class="menu-text"> ការគ្រប់គ្រងវត្តមាន </span> <b class="arrow fa fa-angle-down"></b>
+            </a>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
@@ -205,7 +252,8 @@
 	|| str_replace('-', '_', $this -> uri -> segment(1)) == 'manage_positions'
 	|| str_replace('-', '_', $this -> uri -> segment(1)) == 'manage_programmes'
 	|| str_replace('-', '_', $this -> uri -> segment(1)) == 'manage_locations' )? 'class="active open"' : 'class=""' ?>>
-		<a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-users"></i> <span class="menu-text">
+		<a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-cog"></i>
+            <span class="menu-text">
 			<!-- <?php echo $this->lang->line('sidebar_setup');?> -->
 			ការតម្លើងទិន្នន័យធំៗ
 		</span> <b class="arrow fa fa-angle-down"></b> </a>
@@ -260,7 +308,8 @@
 	<?php } ?>
 	<?php if($this->session->userdata("sidebar_reports")){ ?>
 	<li <?php echo (str_replace('-', '_', $this -> uri ->segment(1)) == 'manage_reports' )? 'class="active open"' : 'class=""' ?>>
-		 <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-file-o"></i> <span class="menu-text">
+		 <a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-list"></i>
+             <span class="menu-text">
 			 <!-- <?php echo $this->lang->line('sidebar_reports');?>  -->
 			 របាយការណ៍
 			 <span class="badge badge-primary">5</span> </span> <b class="arrow fa fa-angle-down"></b> </a>
@@ -274,7 +323,7 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?php echo base_url(); ?>manage_reports/members"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?> របាយការណ៍ពុទ្ទបរិស័ទ្ទ</a>
+				<a href="<?php echo base_url(); ?>manage_reports/members"> <i class="menu-icon fa fa-caret-right"></i>របាយការណ៍គ្រហស្ថ</a>
 				<b class="arrow"></b>
 			</li>
 			<li class="">
@@ -294,9 +343,13 @@
 				<b class="arrow"></b>
 			</li>
 			<li class="">
-				<a href="<?php echo base_url(); ?>manage_reports/member_book_forms"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?>សៀវភៅបញ្ជីពុទ្ធបរិស័ទ្ទ</a>
+				<a href="<?php echo base_url(); ?>manage_reports/member_book_forms"> <i class="menu-icon fa fa-caret-right"></i> <?php echo $this->lang->line('');?>សៀវភៅបញ្ជីគ្រហស្ថ</a>
 				<b class="arrow"></b>
 			</li>
+            <li class="">
+                <a href="<?php echo base_url(); ?>manage_reports/print_member_card"> <i class="menu-icon fa fa-caret-right"></i>បោះពុម្ពកាតរបស់គ្រហស្ថ</a>
+                <b class="arrow"></b>
+            </li>
 		</ul>
 	</li>
 	<?php } ?>

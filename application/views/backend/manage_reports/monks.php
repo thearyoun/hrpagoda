@@ -149,10 +149,10 @@
 
                 if ($row->status == 1) {
                     $class = "success";
-                    $status = "Active";
+                    $status = "ប្រើ";
                 } else {
                     $class = "warning";
-                    $status = "Inactive";
+                    $status = "មិនប្រើ";
                 }
 
                 if($row->vegetarian_types==1){

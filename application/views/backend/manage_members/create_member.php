@@ -1,8 +1,8 @@
 <label>
-  <?php if($this->session->userdata("user_type")=="admin"){ ?>
-  <a href="<?php echo base_url();?>manage_members" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>បញ្ជីពុទ្ធបរិស័ទ្ទ</a>
+  <?php if(($this->session->userdata("user_type")=="admin") || ($this->session->userdata("manager")==1)){ ?>
+  <a href="<?php echo base_url();?>manage_members" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> បញ្ជីគ្រហស្ថ</a>
   <?php }
-    if($this->session->userdata("user_type")=="member"){
+    if(($this->session->userdata("user_type")=="member") && ($this->session->userdata("manager")==0)){
       ?>
       <a href="<?php echo base_url();?>manage_member_account" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>ត្រលប់ក្រោយ</a>
       <?php
@@ -17,7 +17,7 @@
 			?>
 			<div class="widget-box">
 				<div class="widget-header">
-					<h4 class="smaller"> ព័ត៌មានពុទ្ធបរិស័ទ្ធ</h4>
+					<h4 class="smaller"> ព័ត៌មានគ្រហស្ថ</h4>
 				</div>
 				<div class="widget-body">
 					<div class="widget-main">
@@ -26,7 +26,7 @@
 								<div class="col-sm-6">
 									<div class="widget-main no-padding">
 										<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="username"> ឈ្មោះពុទ្ធបរិស័ទ្ធ :<span class="required">*</span></label>
+											<label class="col-sm-4 control-label no-padding-right" for="username"> ឈ្មោះគ្រហស្ថ :<span class="required">*</span></label>
 											<div class="col-sm-8">
 												<input type="text" id="username" name="username" required class="col-xs-10 col-sm-9" value="<?php echo set_value('username'); ?>"/>
 												<?php echo form_error('username'); ?>
@@ -218,7 +218,7 @@
                   </div>
 								</div>
 							</div>
-							<div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language"><i class="fa fa-plus"></i>បន្ថែមភាសាៈ</a></div>
+							<div class="row"><a href="javascript:void(0)" class="btn btn-primary btn-sm add_language"><i class="fa fa-plus"></i> បន្ថែមភាសាៈ</a></div>
 							<div class="row data_language" style="margin-left:3%;">
 								<div class="col-xs-12 col-sm-9 col-md-3">
 									<div class="form-group">

@@ -1,4 +1,7 @@
-<a href="<?php echo base_url();?>manage_houses/create_house"><input type="button" class="btn btn-primary" value="<?php echo $this->lang->line('sidebar_add_new');?>" /><br /><br /></a>
+<a href="<?php echo base_url();?>manage_houses/create_house"​ class="btn btn-primary btn-sm">
+<i class="fa fa-plus"></i> បន្ថែមថ្មី
+</a>
+<br /><br />
 <div class="row">
 	<div class="col-xs-12">
 		<?php
@@ -24,10 +27,10 @@
 						
 						if($row->status==1){
 							$class="success";
-							$status="Active";
+							$status="ប្រើ";
 						}else{
 							$class="warning";
-							$status="Inactive";
+							$status="មិនប្រើ";
 						}
 				?>
 						<tr>
@@ -46,9 +49,9 @@
 								
 								<div class="hidden-sm hidden-xs action-buttons">
 					
-									<a class="green" href="<?php echo base_url();?>manage_houses/update_house/<?php echo $row->id;?>" title="Edit house"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+									<a class="green" href="<?php echo base_url();?>manage_houses/update_house/<?php echo $row->id;?>" title="កែប្រែ"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
 					
-									<a class="red" href="<?php echo base_url();?>manage_houses/delete_house/<?php echo $row->id;?>" title="Delete house" onclick="return confirm('Are you sure want to delete this selected house ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+									<a class="red" href="<?php echo base_url();?>manage_houses/លុប_house/<?php echo $row->id;?>" title="លុប" onclick="return confirm('Are you sure want to លុប this selected house ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 								</div>
 								<div class="hidden-md hidden-lg">
 									<div class="inline house-relative">
@@ -60,11 +63,11 @@
 											
 					
 											<li>
-												<a href="<?php echo base_url();?>houses/update_house/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>houses/update_house/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
 											</li>
 					
 											<li>
-												<a href="<?php echo base_url();?>houses/delete_house/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>houses/លុប_house/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="លុប"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
 											</li>
 										</ul>
 									</div>

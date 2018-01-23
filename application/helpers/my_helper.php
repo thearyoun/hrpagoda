@@ -252,11 +252,11 @@ if (!function_exists("get_message")) {
 }
 
 if(!function_exists("get_monk_take_leaves")){
-  function get_monk_take_leaves($monk_id)
+  function get_monk_take_leaves($monk_id,$type)
   {
     $ci = &get_instance();
     $ci->load->model("Custom_model");
-    $result = $ci->Custom_model->get_monk_take_leaves_attendant($monk_id);
+    $result = $ci->Custom_model->get_monk_take_leaves_attendant($monk_id,$type);
     return $result;
   }
 }

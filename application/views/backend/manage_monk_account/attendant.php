@@ -34,7 +34,7 @@
 				?>
 						<tr>
 							<td class="center"><?php echo ++$i;?></td>
-							<td><?php echo $row->mon_name;?></td>
+							<td><?php echo $row->member_name;?></td>
 							<td><?php echo $row->house_name;?></td>
 							<td><?php echo $row->pro_name;?></td>
 							<td><?php echo $times;?></td>

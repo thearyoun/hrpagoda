@@ -173,9 +173,6 @@ class Manage_attendants extends Security {
 
 	public function update_attendant($attendant_id = 0) {
 		$data['title'] = "Update Attendant";
-
-		$data['title'] = "Create Attendant";
-
 		$this -> form_validation -> set_rules('use_programme_id', 'programme', 'required');
 		$this -> form_validation -> set_rules('times', 'times', 'required');
 		$this -> form_validation -> set_rules('date', 'date', 'required');

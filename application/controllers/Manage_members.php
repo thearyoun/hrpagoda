@@ -317,7 +317,7 @@ class Manage_members extends Security {
 					'grade' => $this->input->post("grade"),
 					'major' => $this->input->post("major"),
 					'user_account' => ($this->input->post("user_account",TRUE)?$this->input->post("user_account",TRUE):$this->input->post('username', TRUE)),
-					'user_password'=>($this->input->post("user_password",TRUE)?sha1($this -> input -> post("user_password", TRUE)):sha1($this -> input -> post("old_pass", TRUE)))
+					'user_password'=>($this->input->post("user_password",TRUE)?sha1($this -> input -> post("user_password", TRUE)):$this->input->post("old_password"))
 				);
 				if($image_name!=""){
 					$data['photo'] = $image_name;

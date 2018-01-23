@@ -29,10 +29,10 @@
 
 						if($row->status==1){
 							$class="success";
-							$status="Active";
+							$status="ប្រើ";
 						}else{
 							$class="warning";
-							$status="Inactive";
+							$status="មិនប្រើ";
 						}
 				?>
 						<tr>
@@ -49,17 +49,17 @@
 							<td><span class="label label-sm label-<?php echo $class;?>"><?php echo $status;?></span></td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<!--<a class="green" href="<?php echo base_url();?>manage_monks/update_monk/<?php echo $row->id;?>" title="Edit monk"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+									<!--<a class="green" href="<?php echo base_url();?>manage_monks/update_monk/<?php echo $row->id;?>" title="កែប្រែ monk"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
 									<?php
 										if($row->name!="Admin"){
 									?>
-									<a class="red" href="<?php echo base_url();?>manage_monks/delete_monk/<?php echo $row->id;?>" title="Delete monk" onclick="return confirm('Are you sure want to delete this selected monk ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+									<a class="red" href="<?php echo base_url();?>manage_monks/លុប_monk/<?php echo $row->id;?>" title="លុប monk" onclick="return confirm('Are you sure want to លុប this selected monk ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 									<?php
 										}
 									?>-->
 									<!-- <a href="<?php echo base_url();?>manage_monks/view_monk/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="View"> <span class="blue"> <i class="ace-icon fa fa-folder-open bigger-120"></i> </span> </a> -->
-									<a href="<?php echo base_url();?>manage_monks/update_monk/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-									<a class="red" href="<?php echo base_url();?>manage_monks/delete_monk/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete monk" onclick="return confirm('Are you sure want to delete this selected monk ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+									<a href="<?php echo base_url();?>manage_monks/update_monk/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+									<a class="red" href="<?php echo base_url();?>manage_monks/លុប_monk/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="លុប" onclick="return confirm('Are you sure want to លុប this selected monk ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 								</div>
 								<div class="hidden-md hidden-lg">
 									<div class="inline position-relative">
@@ -71,10 +71,10 @@
 												<a href="<?php echo base_url();?>manage_monks/view_monk/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="View"> <span class="blue"> <i class="ace-icon fa fa-folder-open bigger-120"></i> </span> </a>
 											</li> -->
 											<li>
-												<a href="<?php echo base_url();?>manage_monks/update_monk/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_monks/update_monk/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
 											</li>
 											<li>
-												<a href="<?php echo base_url();?>manage_monks/delete_monk/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_monks/លុប_monk/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="លុប"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
 											</li>
 										</ul>
 									</div>

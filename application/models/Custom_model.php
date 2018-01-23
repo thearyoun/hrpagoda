@@ -49,31 +49,39 @@ class Custom_model extends CI_Model
         return $query;
     }
 
-    public function get_all_attendants($type,$house_no)
+    public function get_all_attendants($type,$house_no=null)
     {
 
         $this->db->select('*');
         $this->db->from('v_attentdant');
         $this->db->where("type",$type);
+
         if($house_no !=""){
           $this->db->where("use_house_id",$house_no);
         }
+
         $this->db->order_by('id', ' asc');
         $query = $this->db->get();
         return $query;
     }
 
     //this function for get all v_attentdant
-    public function get_all_result_attendants($type,$house_no)
+    public function get_all_result_attendants($type,$house_no=null,$id=null)
     {
 
         $this->db->select('*');
         $this->db->from('view_attentdant');
         $this->db->where("type",$type);
+
         if($house_no !=""){
           $this->db->where("house_id",$house_no);
         }
-        $this->db->order_by('id', ' asc');
+
+        if($id !=null){
+            $this->db->where("member_id",$id);
+        }
+
+        $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query;
     }
@@ -637,21 +645,51 @@ workingday.type_job");
         return false;
     }
 
-    public function get_monk_take_leaves_attendant($monk_id)
+    public function get_monk_take_leaves_attendant($monk_id,$type)
     {
-      $this->db->select("id");
+      $this->db->select("member_id");
 
       $this->db->where("date(from_date) <=date(now())");
       $this->db->where("date(to_date) >=date(now())");
-      $this->db->where("use_monk_id",$monk_id);
+      $this->db->where("member_id",$monk_id);
+      $this->db->where("type",$type);
 
-      $this->db->order_by("id","desc");
+      $this->db->order_by("member_id","desc");
       $this->db->limit(1);
 
-      $result = $this->db->get("monk_take_leaves");
+      $result = $this->db->get("v_takeleaves");
       if($result->num_rows()>0){
-        return $result->row()->id;
+        return $result->row()->member_id;
       }
       return FALSE;
+    }
+
+    //this function is for get data for attentdant report
+    public function get_data_report_attendant($pro_id,$from_date=null,$to_date=null){
+        $this->db->select("username,name,id,
+                    sum(total_has) as total_has,
+                    sum(total_no) as total_no,
+                    sum(morning_has) as morning_has,
+                    sum(morning_no) as morning_no,
+                    sum(evening_has) as evening_has,
+                    sum(evening_no) as evening_no,
+                    sum(fullday_has) as fullday_has,
+                    sum(fullday_no) as fullday_no");
+
+        $this->db->where("use_programme_id",$pro_id);
+        if($from_date !=null){
+            $this->db->where("date >=",$from_date);
+        }
+        if($to_date !=null){
+            $this->db->where("date <=",$to_date);
+        }
+
+        $this->db->group_by("id,type");
+
+        $result = $this->db->get("v_report_attentdant");
+        if($result->num_rows()>0){
+            return $result;
+        }
+        return false;
     }
 }

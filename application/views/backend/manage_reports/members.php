@@ -53,13 +53,13 @@
                                         <div class="col-md-offset-5 col-md-7">
                                             <button class="btn btn-info" type="submit" id="btn-search">
                                                 <i class="ace-icon fa fa-search bigger-110"></i>
-                                                <?php echo $this->lang->line('fm_btn_search'); ?>
+                                                ស្វែងរក
                                             </button>
                                             &nbsp; &nbsp; &nbsp;
                                             <button class="btn btn-default" type="button" id="btn-print"
                                                     onclick="printDiv('members')">
                                                 <i class="ace-icon fa fa-print bigger-110"></i>
-                                                <?php echo $this->lang->line('fm_btn_print'); ?>
+                                                បោះពុម្ព
                                             </button>
 
                                         </div>
@@ -103,10 +103,10 @@
                 foreach ($member_list->result() as $row) {
                     if ($row->status == 1) {
                         $class = "success";
-                        $status = "Active";
+                        $status = "ប្រើ";
                     } else {
                         $class = "warning";
-                        $status = "Inactive";
+                        $status = "មិនប្រើ";
                     }
                     ?>
                     <tr>
@@ -130,7 +130,7 @@
                         <td><?php echo ($row->gender == 'M') ? 'ប្រុស' : 'ស្រី'; ?></td>
                         <td><?php echo $row->nation; ?></td>
                         <td><?php echo $row->phone_number; ?></td>
-                        <td><?php echo $row->date_of_birth; ?></td>
+                        <td><?php echo convertDateToKhmer($row->date_of_birth); ?></td>
                         <td><span class="label label-sm label-<?php echo $class; ?>"><?php echo $status; ?></span></td>
                         <td class="hidden-print">
                             <a href="<?php echo base_url(); ?>manage_reports/member_request_form/<?php echo $row->id; ?>"

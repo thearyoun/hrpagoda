@@ -30,13 +30,13 @@
 		
 		-ទីលំនៅសព្វថ្ងៃ  <span style="padding: 0 0 0 10%;">		<?php echo $member_info->row()->current_address;?><span></span> <br />
 		
-		
+	<br/>
 	<span style="margin-left:5em">ពុទ្ធិកយុវជនរូបនេះពិតជាកំពុងស្នាក់នៅវត្តលង្កាព្រះកុសុមារាមប្រាកដមែន។</span>
 	</span></p>
 	<p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:
     .0001pt;text-align:right;line-height:normal;'>
      <span lang=KHM
-    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី        ខែ           ឆ្នាំ ២០១៦<br />
+    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី.........ខែ ..................ឆ្នាំ២០<br /><br />
 <span style="padding-right: 10% !important;">ចៅអធិការ
 </span></p>
 

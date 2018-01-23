@@ -43,8 +43,8 @@
 	<p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:
     .0001pt;text-align:right;line-height:normal;'>
      <span lang=KHM
-    style='font-size:10.0pt;font-family:"Khmer OS Battambang"'>ធ្វើនៅ.....................ថ្ងៃទី............ខែ...............ឆ្នាំ២០១៦<br />
-<span style="padding-right: 18% !important;">ហត្ថលេខា និង ឈ្មោះ
+    style='font-size:10.0pt;font-family:"Khmer OS Battambang"'>ធ្វើនៅ.....................ថ្ងៃទី............ខែ...............ឆ្នាំ២០<br /><br />
+<span style="padding-right: 11% !important;">ហត្ថលេខា និង ឈ្មោះ
 </span></p>
 
 <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:
@@ -52,7 +52,7 @@
      <span lang=KHM
     style='font-size:10.0pt;font-family:"Khmer OS Battambang"'>
 	
-<span style="margin-left: 3%">អ្នកទទួលខុសត្រូវ</span><br />
+<span style="margin-left: 3%">អ្នកទទួលខុសត្រូវ</span><br /><br />
 <span style="margin-left: 3%">មេកុដិលេខ.................</span>
 </span>
 </p>

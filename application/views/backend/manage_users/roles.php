@@ -1,3 +1,8 @@
+<label>
+    <a href="<?php echo base_url().'manage_users/create_role'?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> បង្កើតថ្មី</a>
+</label>
+<br/>
+<br/>
 <div class="row">
 	<div class="col-xs-12">
 		<?php
@@ -23,10 +28,10 @@
 						
 						if($row->status==1){
 							$class="success";
-							$status="Active";
+							$status="ប្រើ";
 						}else{
 							$class="danger";
-							$status="Inactive";
+							$status="មិនប្រើ";
 						}
 				?>
 						<tr>
@@ -42,9 +47,9 @@
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
 					
-									<a class="green" href="<?php echo base_url();?>manage_users/update_role/<?php echo $row->role_id;?>" title="Edit Role"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+									<a class="green" href="<?php echo base_url();?>manage_users/update_role/<?php echo $row->role_id;?>" title="កែប្រែ"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
 					
-									<a class="red" href="<?php echo base_url();?>manage_users/delete_role/<?php echo $row->role_id;?>" title="Delete Role" onclick="return confirm('Are you sure want to delete this selected role ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+									<a class="red" href="<?php echo base_url();?>manage_users/លុប_role/<?php echo $row->role_id;?>" title="លុប" onclick="return confirm('Are you sure want to លុប this selected role ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 								</div>
 								<div class="hidden-md hidden-lg">
 									<div class="inline position-relative">
@@ -56,11 +61,11 @@
 											
 					
 											<li>
-												<a href="<?php echo base_url();?>manage_uses/update_role/<?php echo $row->role_id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_uses/update_role/<?php echo $row->role_id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
 											</li>
 					
 											<li>
-												<a href="<?php echo base_url();?>manage_uses/delete_role/<?php echo $row->role_id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_uses/លុប_role/<?php echo $row->role_id;?>" class="tooltip-error" data-rel="tooltip" title="លុប"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
 											</li>
 										</ul>
 									</div>

@@ -28,15 +28,15 @@
 		-មុខរបរសព្វថ្ងៃ<span style="padding: 0 0 0 10%;">	<?php echo $member_info->row()->position;?></span>	<br />
 		-អត្តសញ្ញាណប័ណ្ណលេខ <span style="padding: 0 0 0 10%;">	<?php echo $member_info->row()->identify_card;?></span>	<br />
 		
-		-ទីលំនៅសព្វថ្ងៃ  <span style="padding: 0 0 0 10%;">		<?php echo $member_info->row()->current_address;?><span></span> <br />
+		-ទីលំនៅសព្វថ្ងៃ  <span style="padding: 0 0 0 10%;">		<?php echo $member_info->row()->current_address;?><span></span> <br /><br />
 		
 		
-	<span style="margin-left:5em">ពុទ្ធិកយុវជនរូបនេះពិតជាបានលាចាកសិក្ខាបទកាលពីថ្ងៃទី ០៧ ខែវិច្ឆិកា ឆ្នាំ ២០១៣			 ប្រាកដមែន។</span>
+	<span style="margin-left:2em">ពុទ្ធិកយុវជនរូបនេះពិតជាបានលាចាកសិក្ខាបទកាលពីថ្ងៃទី ០៧ ខែ វិច្ឆិកា ឆ្នាំ ២០១៣ ប្រាកដមែន។</span>
 	</span></p>
 	<p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:
     .0001pt;text-align:right;line-height:normal;'>
      <span lang=KHM
-    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី        ខែ           ឆ្នាំ ២០១៦<br />
+    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី.............ខែ................... ឆ្នាំ២០<br /><br />
 <span style="padding-right: 10% !important;">ចៅអធិការ
 </span></p>
 

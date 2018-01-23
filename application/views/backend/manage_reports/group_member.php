@@ -41,21 +41,25 @@
 				
 			</tbody>
 		</table>
-		<p class=MsoNormal align=left style='margin-bottom:0in;margin-bottom:.0001pt;text-align:left;line-height:normal;'>
-     <span lang=KHM
-    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>បញ្ជាក់៖ ប្រធានក្រុមនីមួយ ៗ ត្រូវយកវត្តមានជារៀងរាល់ថ្ងៃ។</p>
-
-		<p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;text-align:right;line-height:normal;'>
-     <span lang=KHM
-    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី ........ ខែ ............ ឆ្នាំ ............<br />
-<span style="padding-right: 10% !important;"><b>អ្នកស្រង់វត្តមាន</b><!--ប្រធានក្រុម<?php echo $group->row()->name?>-->
-</span></p>
-
-<p class=MsoNormal align=left style='margin-top: -60px;margin-bottom:.0001pt;text-align:left;line-height:normal;'>
-     <span lang=KHM
-    style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>បានឃើញ និងឯកភាព<br />
-<span>          <b>ចៅអធិការ</b>
-</span></p>
+        <p class=MsoNormal align=left
+           style='margin-bottom:0in;margin-bottom:.0001pt;text-align:left;line-height:normal;'>
+            <span lang=KHM
+                  style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>បញ្ជាក់៖ ប្រធានក្រុមនីមួយ ៗ ត្រូវយកវត្តមានជារៀងរាល់ថ្ងៃ។
+            </span>
+        </p>
+        <br/>
+        <p class=MsoNormal align=center
+           style='margin-bottom:0in;margin-bottom:.0001pt;text-align:right;line-height:normal;'>
+             <span lang=KHM
+                   style='font-size:12.0pt;font-family:"Khmer OS Battambang"'>វត្តលង្កា ថ្ងៃទី...........ខែ..................ឆ្នាំ ២០<br/><br/>
+            <span style="padding-right: 10% !important;">អ្នកស្រង់វត្តមាន
+            </span>
+        </p>
+        <p class=MsoNormal align=left
+           style='margin-top: -60px;margin-bottom:.0001pt;text-align:left;line-height:normal;'>
+            <span style='font-size:12.0pt;margin-left:3%;font-family:"Khmer OS Battambang"'>បានឃើញ និងឯកភាព<br/><br/></span>
+            <span style='font-size:12.0pt;margin-left:6%;font-family:"Khmer OS Battambang"'>ចៅអធិការ</span>
+        </p>
 	</div><!-- /.span -->
 </div><!-- /.row -->
 <hr />

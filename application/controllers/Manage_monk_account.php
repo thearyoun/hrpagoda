@@ -17,9 +17,11 @@ class Manage_monk_account extends CI_Controller {
 
 		$data['title'] = "Manage Attendants";
 		$this->load->model('Custom_model');
+
 		$monk_id = $this -> session -> userdata("monk_id");
-		$data['attendants'] = $this -> Custom_model -> get_attendant_where($monk_id);
-		//$data['attendants'] = $this -> Globals -> select_all('attendants');
+		$type=1;
+		$data['attendants'] = $this -> Custom_model -> get_all_result_attendants($type,null,$monk_id);
+
 		$this -> load -> view('backend/index', $data);
 
 	}

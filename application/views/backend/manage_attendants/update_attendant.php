@@ -1,3 +1,8 @@
+<div class="row">&nbsp;</div>
+<a href="<?php echo base_url();?>manage_attendants" class="btn btn-primary btn-sm"><i class="fa fa-backward"></i> បញ្ជីវត្តមាន</a>&nbsp;
+<a href="<?php echo base_url();?>manage_attendants/create_attendant" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> បង្កើតថ្មី</a>
+<br/>
+<br/>
 <form class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>manage_attendants/update_attendant/<?php echo $this->uri->segment(3);?>">
 	<div class="row">
 		<div class="col-sm-12">
@@ -87,10 +92,15 @@
 		<table id="sample-table-7" class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<th class="center"><label class="attendants">
-						<input type="checkbox" class="ace" />
-						<span class="lbl"></span> </label></th>
-					<th class="center">មានច្បាប់</th>
+                    <th class="center"><label class="attendants">
+                            <input type="checkbox" class="ace attendant_all"/>
+                            <span class="lbl"></span>អត់ច្បាប់</label>
+                    </th>
+                    <th class="center">
+                        <label class="take_leaves">
+                            <input type="checkbox" class="ace take_leaves_all" />
+                            <span class="lbl"></span>មានច្បាប់</label>
+                    </th>
 					<th><?php echo $this -> lang -> line(''); ?>ភិក្ខុឈ្មោះ</th>
 					<th><?php echo $this -> lang -> line(''); ?>កុដិលេខ</th>
 					<th><?php echo $this -> lang -> line(''); ?>ជនជាតិ</th>
@@ -127,13 +137,23 @@
 						}
 				?>
 						<tr>
-							<td class="center"><label class="attendants">
-								<input type="checkbox" class="ace" value="1" name="attendant" <?php echo $checked;?>/>
-								<span class="lbl"></span> </label></td>
-		
-							<td class="center"><label class="take_leaves">
-								<input type="checkbox" class="ace" value="1" name="take_leaves" <?php echo $lchecked;?>/>
-								<span class="lbl"></span> </label></td>
+
+                            <td class="center">
+                                <label class="attendants">
+                                    <input type="checkbox" class="ace attendant_check"
+                                           id="attendant-<?php echo $row->id;?>" value="1"
+                                           name="attendants" <?php echo $checked;?>/>
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
+                            <td class="center">
+                                <label class="take_leaves">
+                                    <input type="checkbox" class="ace take_leaves_check"
+                                           id="leaves-<?php echo $row->id;?>" value="1"
+                                           name="take_leaves" <?php echo $lchecked;?>/>
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
 							<td><?php echo $row -> username; ?></td>
 							<td><?php echo $row -> house_name; ?></td>
 							<td><?php echo $row -> nation; ?></td>

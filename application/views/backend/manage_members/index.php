@@ -1,5 +1,6 @@
 <label>
-	<a href="<?php echo base_url();?>manage_members/create_member" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>បន្ថែមថ្មី</a>
+	<a href="<?php echo base_url();?>manage_members/create_member"
+       class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> បន្ថែមថ្មី</a>
 </label>
 <div class="row">
 	<div class="col-xs-12">
@@ -27,10 +28,10 @@
 					foreach($members->result() as $row){
 						if($row->status==1){
 							$class="success";
-							$status="Active";
+							$status="នៅប្រើ";
 						}else{
 							$class="warning";
-							$status="Inactive";
+							$status="មិនន្រើ";
 						}
 				?>
 						<tr>
@@ -44,8 +45,8 @@
 							<td><?php echo ($row->created_at);?></td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-									<a class="red" href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" title="Delete member" onclick="return confirm('Are you sure want to delete this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+									<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+									<a class="red" href="<?php echo base_url();?>manage_members/លុប_member/<?php echo $row->id;?>" title="លុប" onclick="return confirm('Are you sure want to លុប this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 								</div>
 								<div class="hidden-md hidden-lg">
 									<div class="inline position-relative">
@@ -54,10 +55,10 @@
 										</button>
 										<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 											<li>
-												<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
 											</li>
 											<li>
-												<a href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
+												<a href="<?php echo base_url();?>manage_members/លុប_member/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="លុប"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
 											</li>
 										</ul>
 									</div>

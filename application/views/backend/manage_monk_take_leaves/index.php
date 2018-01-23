@@ -7,7 +7,7 @@
 ?>
 <?php if(($this->session->userdata("monk_allow")==1) || ($this->session->userdata("user_type")=="admin")):?>
 <label>
-<a href="<?php echo base_url();?>manage_monk_take_leaves/create_monk_take_leave" class="btn btn-primary">បង្កើតថ្មី</a>
+<a href="<?php echo base_url();?>manage_monk_take_leaves/create_monk_take_leave" class="btn btn-primary"><i class="fa fa-plus"></i> បង្កើតថ្មី</a>
 <?php if($this->session->userdata("user_type")=="admin"):?>
 &nbsp;&nbsp;<a id="monk_fom" style=" text-decoration: none;">ទម្រង់ការសុំច្បាប់ព្រះសង្ឃ:<input type="checkbox" class="form_monk" data-toggle="toggle" <?php echo $check;?> data-on="បង្ហាញ" data-off="មិនបង្ហាញ" data-width="100"></a>
 <?php endif;?>
@@ -33,9 +33,9 @@
 					<th><?php echo $this->lang->line('');?>ថ្ងៃស្នើសុំ</th>
 					<th><?php echo $this->lang->line('');?>ពីថ្ងៃ</th>
 					<th><?php echo $this->lang->line('');?>ទៅថ្ងៃ</th>
-          <th><?php echo $this->lang->line('');?>ស្ថានភាព</th>
-					<?php if($this->session->userdata("user_type")=="admin"):?>
-          <th></th>
+                  <th><?php echo $this->lang->line('');?>ស្ថានភាព</th>
+                            <?php if($this->session->userdata("user_type")=="admin"):?>
+                  <th></th>
 				  <?php endif;?>
 				</tr>
 			</thead>
@@ -70,23 +70,23 @@
                     </td>
                     <td>
                         <div class="hidden-sm hidden-xs action-buttons">
-													<a href="<?php echo base_url();?>manage_monk_take_leaves/update_monk_take_leave/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-													<a class="red" href="<?php echo base_url();?>manage_monk_take_leaves/delete_monk_take_leave/<?php echo $row->id;?>" title="Delete member" onclick="return confirm('Are you sure want to delete this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+                            <a href="<?php echo base_url();?>manage_monk_take_leaves/update_monk_take_leave/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+                            <a class="red" href="<?php echo base_url();?>manage_monk_take_leaves/លុប_monk_take_leave/<?php echo $row->id;?>" title="លុប" onclick="return confirm('Are you sure want to លុប this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
                         </div>
                         <div class="hidden-md hidden-lg">
-													<div class="inline position-relative">
-														<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-															<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-														</button>
-														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-															<li>
-																<a href="<?php echo base_url();?>manage_monk_take_leaves/update_monk_take_leave/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-															</li>
-															<li>
-																<a href="<?php echo base_url();?>manage_monk_take_leaves/delete_monk_take_leave/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
-															</li>
-														</ul>
-													</div>
+                            <div class="inline position-relative">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a href="<?php echo base_url();?>manage_monk_take_leaves/update_monk_take_leave/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="កែប្រែ"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url();?>manage_monk_take_leaves/លុប_monk_take_leave/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="លុប"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </td>
                 <?php endif;?>

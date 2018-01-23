@@ -1,10 +1,10 @@
-<?php if($this->session->userdata("user_type")=="admin"){?>
+<?php if(($this->session->userdata("user_type")=="admin") || ($this->session->userdata("manager")==1)){?>
 <label>
-  <a href="<?php echo base_url();?>manage_members"  class="btn btn-primary btn-sm"><i class="fa fa-backward"></i>ត្រលប់ក្រោយ</a>
-  <a href="<?php echo base_url();?>manage_members/create_member" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>បន្ថែមថ្មី</a>
+  <a href="<?php echo base_url();?>manage_members"  class="btn btn-primary btn-sm"><i class="fa fa-backward"></i> ត្រលប់ក្រោយ</a>
+  <a href="<?php echo base_url();?>manage_members/create_member" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> បន្ថែមថ្មី</a>
 </label>
 <?php }
-if($this->session->userdata("user_type")=="member"){
+if(($this->session->userdata("user_type")=="member") && ($this->session->userdata("manager")==0)){
   ?>
   <a href="<?php echo base_url();?>manage_member_account" class="btn btn-primary btn-sm"><i class="fa fa-list"></i>ត្រលប់ក្រោយ</a>
   <?php
@@ -19,7 +19,7 @@ if($this->session->userdata("user_type")=="member"){
 			?>
 			<div class="widget-box">
 				<div class="widget-header">
-					<h4 class="smaller"> ព័ត៌មានពុទ្ធបរិស័ទ្ធ</h4>
+					<h4 class="smaller"> ព័ត៌មានគ្រហស្ថ</h4>
 				</div>
 				<div class="widget-body">
 					<div class="widget-main">
@@ -28,7 +28,7 @@ if($this->session->userdata("user_type")=="member"){
 								<div class="col-sm-6">
 									<div class="widget-main no-padding">
 										<div class="form-group">
-											<label class="col-sm-4 control-label no-padding-right" for="username"> ឈ្មោះពុទ្ធបរិស័ទ្ធ :<span class="required">*</span></label>
+											<label class="col-sm-4 control-label no-padding-right" for="username"> ឈ្មោះគ្រហស្ថ :<span class="required">*</span></label>
 											<div class="col-sm-8">
 												<input type="text" id="username" name="username" required
 												class="col-xs-10 col-sm-9"
@@ -1030,12 +1030,12 @@ if($this->session->userdata("user_type")=="member"){
 				<div class="col-md-offset-5 col-md-7">
 					<button class="btn btn-info" type="submit">
 						<i class="ace-icon fa fa-check bigger-110"></i>
-						Submit
+                        រក្សាទុក
 					</button>
 					&nbsp; &nbsp; &nbsp;
 					<button class="btn" type="reset">
 						<i class="ace-icon fa fa-undo bigger-110"></i>
-						Reset
+                        ធ្វើសារដើម
 					</button>
 				</div>
 			</div>

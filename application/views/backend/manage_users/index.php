@@ -1,4 +1,7 @@
-<a href="<?php echo base_url();?>manage_users/create_user"><input type="button" class="btn btn-primary" value="Add New" /><br /><br /></a>
+<a href="<?php echo base_url();?>manage_users/create_user"​ class="btn btn-primary btn-sm">
+    <i class="fa fa-plus"></i> បង្កើតថ្មី
+</a>
+<br/><br/>
 <div class="row">
 	<div class="col-xs-12">
 		<?php
@@ -25,32 +28,29 @@
 						
 						if($row->status==1){
 							$class="success";
-							$status="Active";
+							$status="ប្រើ";
 						}else{
 							$class="warning";
-							$status="Inactive";
+							$status="មិនប្រើ";
 						}
 				?>
 						<tr>
 							<td class="center"><?php echo ++$i;?></td>
-		
 							<td><a href="#"><?php echo $row->username;?></a></td>
 							<td><?php echo $row->email;?></td>
 							<td><?php echo $row->phone;?></td>
 							<td><?php echo $row->name;?></td>
 							<td><span class="label label-sm label-<?php echo $class;?>"><?php echo $status;?></span></td>
-		
 							<td><?php echo $row->created_at;?></span></td>
-		
 							<td>
 								
 								<div class="hidden-sm hidden-xs action-buttons">
 					
-									<a class="green" href="<?php echo base_url();?>manage_users/update_user/<?php echo $row->user_id;?>" title="Edit User"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
+									<a class="green" href="<?php echo base_url();?>manage_users/update_user/<?php echo $row->user_id;?>" title="កែប្រែ"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
 									<?php
 										if($row->name!="Admin"){
 									?>
-									<a class="red" href="<?php echo base_url();?>manage_users/delete_user/<?php echo $row->user_id;?>" title="Delete User" onclick="return confirm('Are you sure want to delete this selected user ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
+									<a class="red" href="<?php echo base_url();?>manage_users/delete_user/<?php echo $row->user_id;?>" title="លុប" onclick="return confirm('Are you sure want to delete this selected user ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
 									<?php
 										}
 									?>
