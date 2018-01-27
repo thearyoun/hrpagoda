@@ -692,4 +692,20 @@ workingday.type_job");
         }
         return false;
     }
+
+    public function get_comment($post_id){
+        $query='SELECT if(user_type="admin",users.username,if(user_type="member",members.username,monks.username)) as username,
+if(user_type="admin","avatar.png",if(user_type="member",members.photo,monks.photo)) as photo,
+users.user_id,comments.comment,comments.post_id
+                from comments
+                left join users on users.user_id=comments.user_id and comments.user_type="admin"
+                left join members on members.id=comments.user_id and comments.user_type="member"
+                left join monks on monks.id=comments.user_id and comments.user_type="monk"
+                where comments.post_id=?';
+        $result = $this->db->query($query,[$post_id]);
+        if($result->num_rows()>0){
+            return $result;
+        }
+        return false;
+    }
 }

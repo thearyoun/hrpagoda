@@ -36,6 +36,7 @@ class User extends CI_Model
                 $this->session->set_userdata($row_r->name, 1);
             }
             $this->session->set_userdata("role", $query_role->row()->role_id);
+            $this->session->set_userdata("user_id", $row->user_id);
             $this->session->set_userdata("perm_num", $query_role->num_rows());
 
             $this->session->set_userdata('user_login_access', $row->user_id);
@@ -52,6 +53,7 @@ class User extends CI_Model
         $query = $this->db->get_where('monks', array('user_account' => $username, 'user_password' => sha1($password), 'status' => 1), 1);
         if ($query->num_rows() == 1) {
             $row = $query->row();
+            $this->session->set_userdata("user_id", $row->id);
             $this->session->set_userdata("monk_id", $row->id);
             $this->session->set_userdata("username", $row->username);
             $this->session->set_userdata('user_login_access', $row->id);
@@ -67,6 +69,7 @@ class User extends CI_Model
         if ($query->num_rows() == 1) {
             $row = $query->row();
             $this->session->set_userdata("member_id", $row->id);
+            $this->session->set_userdata("user_id", $row->id);
             $this->session->set_userdata("username", $row->username);
             $this->session->set_userdata('user_login_access', $row->id);
             $this->session->set_userdata('manager', $row->manager);

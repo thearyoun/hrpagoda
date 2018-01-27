@@ -260,3 +260,13 @@ if(!function_exists("get_monk_take_leaves")){
     return $result;
   }
 }
+
+if(!function_exists("get_comment")){
+    function get_comment($post_id)
+    {
+        $ci = &get_instance();
+        $ci->load->model("Custom_model");
+        $result = $ci->Custom_model->get_comment($post_id);
+        return $result;
+    }
+}

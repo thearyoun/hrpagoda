@@ -1,92 +1,65 @@
-<a href="<?php echo base_url();?>manage_members/create_member"><input type="button" class="btn btn-primary" value="Add New" /><br /><br /></a>
-<div class="row">
-	<div class="col-xs-12">
-		<?php
-			$this->load->view('backend/notification/index.php');
-		?>
-		<table id="sample-table-8" class="table table-striped table-bordered table-hover">
-			<thead>
-				<tr>
-					<th class="center">#</th>
-					
-					<th><?php echo $this->lang->line('');?>សមាជិកឈ្មោះ</th>
-					<th><?php echo $this->lang->line('');?>ភេទ</th>
-					<th><?php echo $this->lang->line('');?>ជនជាតិ</th>
-					<th><?php echo $this->lang->line('');?>លេខទូរស័ព្ទ</th>
-					<th><?php echo $this->lang->line('tb_dob');?></th>
-					<th><?php echo $this->lang->line('tb_created_date');?></th>
-					
-					<th></th>
-				</tr>
-			</thead>
+<?php if($this->session->userdata("user_type")=="admin"):?>
+<label for="">
+    <a href="<?php echo base_url().'admindev/create'?>" class="btn btn-primary btn-sm">
+       <i class="fa fa-plus"></i> បង្កើតថ្មី
+    </a>
+</label>
+<?php endif;?>
+    <div class="col-md-12">
+        <?php foreach ($posts->result() as $row) { ?>
+            <div class="card">
+                <h2><?php echo $row->title; ?></h2>
+                <h5>Posted on, <?php echo $row->created_at; ?></h5>
+                <div class="fakeimg" style="height:200px;">Image</div>
+                <br>
+                <?php echo character_limiter($row->body); ?>
+                <hr>
+                <div class="comment">
+                    <?php
+                    $comment = get_comment($row->id);
+                    if ($comment) {
+                        foreach ($comment->result() as $row_com) {
+                            ?>
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <img src="<?php echo base_url().'ftemplate/images/'.$row_com->photo; ?>" class="media-object" style="width:60px">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><?php echo ucfirst($row_com->username); ?></h4>
+                                    <p><?php echo $row_com->comment; ?></p>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <form method="post" action="<?php echo base_url(); ?>admindev/publish_comments">
+                    <input type="hidden" name="post_id" value="<?php echo $row->id; ?>">
+                    <div class="form-group">
+                        <label for="comment" class="control-label">Comments:</label>
+                        <textarea name="comment" cols="30" rows="5" id="comment" class="form-control"></textarea>
+                    </div>
 
-			<tbody>
-				<?php
-					$i=0;
-					foreach($members->result() as $row){
-						
-						if($row->status==1){
-							$class="success";
-							$status="Active";
-						}else{
-							$class="warning";
-							$status="Inactive";
-						}
-				?>
-						<tr>
-							<td class="center"><?php echo ++$i;?></td>
-		
-							
-							<td><?php echo $row->username;?></td>
-							<td><?php echo $row->gender;?></td>
-							<td><?php echo $row->nation;?></td>
-							<td><?php echo $row->phone_number;?></td>
-							<td><?php echo $row->date_of_birth;?></td>
-							<td><?php echo $row->created_at;?></td>							
-		
-							
-		
-							<td>
-								
-								<div class="hidden-sm hidden-xs action-buttons">
-					
-									<!--<a class="green" href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" title="Edit member"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>
-									<?php
-										if($row->name!="Admin"){
-									?>
-									<a class="red" href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" title="Delete member" onclick="return confirm('Are you sure want to delete this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
-									<?php
-										}
-									?>-->
-									<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-									<a class="red" href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" title="Delete member" onclick="return confirm('Are you sure want to delete this selected member ?')"> <i class="ace-icon fa fa-trash-o bigger-130"></i> </a>
-								</div>
-								<div class="hidden-md hidden-lg">
-									<div class="inline position-relative">
-										<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-											<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-										</button>
-					
-										<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-											
-					
-											<li>
-												<a href="<?php echo base_url();?>manage_members/update_member/<?php echo $row->id;?>" class="tooltip-success" data-rel="tooltip" title="Edit"> <span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span> </a>
-											</li>
-					
-											<li>
-												<a href="<?php echo base_url();?>manage_members/delete_member/<?php echo $row->id;?>" class="tooltip-error" data-rel="tooltip" title="Delete"> <span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span> </a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</td>
-						</tr>
-				<?php
-					}
-				?>
-				
-			</tbody>
-		</table>
-	</div><!-- /.span -->
-</div><!-- /.row -->
+                    <button type="submit" class="btn btn-primary btn-success">Submit</button>
+                </form>
+            </div>
+            <hr>
+        <?php } ?>
+    </div>
+
+<style>
+    /* Add a card effect for articles */
+    .card {
+        background-color: white;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    /* Fake image */
+    .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+    }
+</style>

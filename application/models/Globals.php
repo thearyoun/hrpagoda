@@ -837,7 +837,6 @@ class Globals extends CI_Model
     {
         if (!is_array($arr_data) || count($arr_data) <= 0)
             return FALSE;
-
         $this->db->insert($table, $arr_data);
         $isSaved = $this->db->affected_rows();
         if ($isSaved) {
